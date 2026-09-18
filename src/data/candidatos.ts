@@ -257,6 +257,53 @@ export const candidatos: Candidato[] = [
     genero: "M",
     status: "Pré-candidato",
   },
+  // Adicione ao final do array de candidatos
+  ...["ac", "al", "ap", "am", "ba", "ce", "df", "es", "go", "ma", "mt", "ms", "pa", "pb", "pr", "pe", "pi", "rn", "ro", "rr", "sc", "se", "to"].flatMap((uf, i) => [
+    {
+      id: `${uf}-gov-1`,
+      nome: `Candidato A - ${uf.toUpperCase()}`,
+      numero: "10",
+      partido: "PSDB",
+      cargo: "Governador" as const,
+      estadoId: `br-${uf}`,
+      foto: `https://i.pravatar.cc/150?img=${10 + i}`,
+      idade: 50 + (i % 15),
+      genero: "M" as const,
+      status: "Pré-candidato" as const,
+      bio: "Candidato de exemplo para demonstração.",
+      propostas: [
+        { area: "Saúde", resumo: "Ampliar o atendimento básico e reduzir filas de exames." },
+        { area: "Educação", resumo: "Investir em escolas técnicas e formação de professores." },
+        { area: "Economia", resumo: "Atrair investimentos e simplificar impostos." },
+        { area: "Segurança", resumo: "Reforçar o efetivo policial e integrar forças." },
+      ],
+      historico: [{ cargo: "Deputado Estadual", periodo: "2019 — 2022" }],
+      patrimonio: [{ bem: "Imóvel", valor: "R$ 500.000,00" }],
+      redesSociais: [{ rede: "Instagram", url: "#" }],
+    },
+    {
+      id: `${uf}-gov-2`,
+      nome: `Candidato B - ${uf.toUpperCase()}`,
+      numero: "13",
+      partido: "PT",
+      cargo: "Governador" as const,
+      estadoId: `br-${uf}`,
+      foto: `https://i.pravatar.cc/150?img=${30 + i}`,
+      idade: 45 + (i % 20),
+      genero: "F" as const,
+      status: "Pré-candidato" as const,
+      bio: "Candidata de exemplo para demonstração.",
+      propostas: [
+        { area: "Saúde", resumo: "Fortalecer o SUS e ampliar a atenção primária." },
+        { area: "Educação", resumo: "Universalizar creches e ampliar o ensino integral." },
+        { area: "Economia", resumo: "Estimular a indústria local e o empreendedorismo." },
+        { area: "Meio Ambiente", resumo: "Metas de redução de emissões e transição energética." },
+      ],
+      historico: [{ cargo: "Vereadora", periodo: "2017 — 2020" }],
+      patrimonio: [{ bem: "Apartamento", valor: "R$ 800.000,00" }],
+      redesSociais: [{ rede: "Instagram", url: "#" }],
+    },
+  ]),
 ];
 
 export const governadoresAtuais: Record<string, string> = {

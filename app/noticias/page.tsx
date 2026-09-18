@@ -30,7 +30,8 @@ export default function NoticiasPage() {
           <Link
             key={n.id}
             href={`/noticias/${n.id}`}
-            className="group bg-white dark:bg-azul-light/20 rounded-2xl overflow-hidden border border-cinza-medio dark:border-azul-light hover:shadow-xl transition-all"
+            className="... animate-in fade-in duration-500"
+            style={{ animationDelay: `${n.id * 50}ms` }}
           >
             <div className={`h-44 ${n.cor} opacity-85 group-hover:opacity-100 transition-opacity`} />
             <div className="p-5 space-y-3">
