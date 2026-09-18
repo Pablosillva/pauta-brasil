@@ -1,20 +1,9 @@
 "use client";
 
-// import {
-//   candidatos,
-//   governadoresAtuais,
-//   nomesEstados,
-//   getNomeEstado,
-//   getGovernador,
-//   getCandidatosDoEstado,
-// } from "@/data/candidatos";
 import { useEffect, useState } from "react";
 import { X, GitCompare, Filter } from "lucide-react";
-import {
-    getNomeEstado,
-    getGovernador,
-    getCandidatosDoEstado,
-} from "@/data/candidatos";
+import { getNomeEstado, getGovernador } from "@/data/candidatos";
+import type { Candidato } from "@/data/candidatos";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -37,6 +26,8 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
     const [cargoAtivo, setCargoAtivo] = useState<Cargo>("Governador");
     const [filtroPartido, setFiltroPartido] = useState<string>("todos");
     const [filtroGenero, setFiltroGenero] = useState<string>("todos");
+    const [candidatosTse, setCandidatosTse] = useState<Candidato[]>([]);
+    const [carregando, setCarregando] = useState(false);
 
     // Fechar com ESC
     useEffect(() => {
@@ -49,10 +40,29 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
 
     // Bloquear scroll do body quando aberto
     useEffect(() => {
-        if (estadoId) document.body.style.overflow = "hidden";
-        return () => {
-            document.body.style.overflow = "";
-        };
+        if (!estadoId) {
+            setCandidatosTse([]);
+            return;
+        }
+
+        const uf = estadoId.replace(/^br-/, "").toUpperCase();
+
+        setCarregando(true);
+        fetch(`/api/candidatos/${uf}`)      // ← URL nova, sem query string
+            .then((r) => r.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    setCandidatosTse(data);
+                } else {
+                    console.error("API não retornou array:", data);
+                    setCandidatosTse([]);
+                }
+            })
+            .catch((err) => {
+                console.error("Erro ao carregar candidatos:", err);
+                setCandidatosTse([]);
+            })
+            .finally(() => setCarregando(false));
     }, [estadoId]);
 
     if (!estadoId) return null;
@@ -60,18 +70,20 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
     const nomeEstado = getNomeEstado(estadoId);
     const governador = getGovernador(estadoId);
 
-    const candidatosFiltrados = getCandidatosDoEstado(estadoId)
-        .filter((c) => c.cargo === cargoAtivo)
-        .filter((c) => filtroPartido === "todos" || c.partido === filtroPartido)
-        .filter((c) => filtroGenero === "todos" || c.genero === filtroGenero);
+    const lista = Array.isArray(candidatosTse) ? candidatosTse : [];
 
-    const partidosDisponiveis = Array.from(
-        new Set(
-            getCandidatosDoEstado(estadoId)
-                .filter((c) => c.cargo === cargoAtivo)
-                .map((c) => c.partido)
-        )
-    );
+const candidatosFiltrados = lista
+  .filter((c) => c.cargo === cargoAtivo)
+  .filter((c) => filtroPartido === "todos" || c.partido === filtroPartido)
+  .filter((c) => filtroGenero === "todos" || c.genero === filtroGenero);
+
+const partidosDisponiveis = Array.from(
+  new Set(
+    lista
+      .filter((c) => c.cargo === cargoAtivo)
+      .map((c) => c.partido)
+  )
+);
 
     return (
         <>
@@ -158,63 +170,63 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
                 </div>
 
                 {/* Lista de candidatos */}
-<div
-  key={cargoAtivo}
-  className="flex-1 overflow-y-auto px-6 py-4 space-y-3 animate-in fade-in duration-300"
->
-  {candidatosFiltrados.length === 0 ? (
-    <div className="text-center py-12 text-cinza-escuro dark:text-cinza-medio">
-      <p className="text-sm">
-        Nenhum candidato encontrado para{" "}
-        <strong>{cargoAtivo}</strong> com os filtros atuais.
-      </p>
-    </div>
-  ) : (
-    candidatosFiltrados.map((c) => (
-      <article
-        key={c.id}
-        className="flex gap-4 p-4 rounded-xl border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light/20 hover:border-verde transition-colors"
-      >
-        <img
-          src={c.foto}
-          alt={`Foto de ${c.nome}`}
-          className="w-16 h-16 rounded-full object-cover flex-shrink-0"
-          loading="lazy"
-        />
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-2">
-            <div className="min-w-0">
-              <h3 className="font-semibold text-azul dark:text-white truncate">
-                {c.nome}
-              </h3>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                {c.partido} · Nº {c.numero}
-              </p>
-            </div>
-            <span className="text-xs font-semibold text-verde bg-verde/10 px-2 py-1 rounded whitespace-nowrap">
-              {c.status}
-            </span>
-          </div>
-          <Link
-            href={`/candidatos/${c.id}`}
-            className="mt-2 inline-block text-sm font-semibold text-verde hover:text-verde-dark transition-colors"
-          >
-            Ver propostas →
-          </Link>
-        </div>
-      </article>
-    ))
-  )}
-</div>
+                <div
+                    key={cargoAtivo}
+                    className="flex-1 overflow-y-auto px-6 py-4 space-y-3 animate-in fade-in duration-300"
+                >
+                    {candidatosFiltrados.length === 0 ? (
+                        <div className="text-center py-12 text-cinza-escuro dark:text-cinza-medio">
+                            <p className="text-sm">
+                                Nenhum candidato encontrado para{" "}
+                                <strong>{cargoAtivo}</strong> com os filtros atuais.
+                            </p>
+                        </div>
+                    ) : (
+                        candidatosFiltrados.map((c) => (
+                            <article
+                                key={c.id}
+                                className="flex gap-4 p-4 rounded-xl border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light/20 hover:border-verde transition-colors"
+                            >
+                                <img
+                                    src={c.foto}
+                                    alt={`Foto de ${c.nome}`}
+                                    className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                                    loading="lazy"
+                                />
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex items-start justify-between gap-2">
+                                        <div className="min-w-0">
+                                            <h3 className="font-semibold text-azul dark:text-white truncate">
+                                                {c.nome}
+                                            </h3>
+                                            <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
+                                                {c.partido} · Nº {c.numero}
+                                            </p>
+                                        </div>
+                                        <span className="text-xs font-semibold text-verde bg-verde/10 px-2 py-1 rounded whitespace-nowrap">
+                                            {c.status}
+                                        </span>
+                                    </div>
+                                    <Link
+                                        href={`/candidatos/${c.id}`}
+                                        className="mt-2 inline-block text-sm font-semibold text-verde hover:text-verde-dark transition-colors"
+                                    >
+                                        Ver propostas →
+                                    </Link>
+                                </div>
+                            </article>
+                        ))
+                    )}
+                </div>
 
-{/* Rodapé do painel */}
-<footer className="px-6 py-4 border-t border-cinza-medio dark:border-azul-light bg-cinza-claro dark:bg-azul-light/30">
-  <button className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors">
-    <GitCompare size={18} />
-    Comparar candidatos deste estado
-  </button>
-</footer>
-        </aside >
+                {/* Rodapé do painel */}
+                <footer className="px-6 py-4 border-t border-cinza-medio dark:border-azul-light bg-cinza-claro dark:bg-azul-light/30">
+                    <button className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors">
+                        <GitCompare size={18} />
+                        Comparar candidatos deste estado
+                    </button>
+                </footer>
+            </aside >
         </>
     );
 }
