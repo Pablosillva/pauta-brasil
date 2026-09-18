@@ -90,7 +90,7 @@ export function Header() {
       {/* Menu mobile */}
       {open && (
         <div className="xl:hidden border-t border-cinza-medio dark:border-azul-light px-4 py-4 space-y-4 bg-white dark:bg-azul-dark">
-          <SearchBar />
+          <SearchBar onSearch={() => setOpen(false)} />
           <nav className="flex flex-col gap-1">
             {navItems.map((item) => (
               <Link

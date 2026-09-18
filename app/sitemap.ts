@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/portal`, lastModified: agora, changeFrequency: "daily", priority: 0.9 },
     { url: `${siteUrl}/mapa`, lastModified: agora, changeFrequency: "weekly", priority: 0.9 },
     { url: `${siteUrl}/candidatos`, lastModified: agora, changeFrequency: "daily", priority: 0.9 },
+     { url: `${siteUrl}/busca`, lastModified: agora, changeFrequency: "monthly", priority: 0.5 },
     { url: `${siteUrl}/comparador`, lastModified: agora, changeFrequency: "weekly", priority: 0.8 },
     { url: `${siteUrl}/noticias`, lastModified: agora, changeFrequency: "hourly", priority: 0.9 },
     { url: `${siteUrl}/planos`, lastModified: agora, changeFrequency: "weekly", priority: 0.7 },
