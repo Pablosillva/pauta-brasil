@@ -48,7 +48,8 @@ export function UltimasNoticias() {
           <Link
             key={i}
             href={`/noticias/${i}`}
-            className="group bg-white dark:bg-azul-light rounded-xl overflow-hidden border border-cinza-medio dark:border-azul hover:shadow-lg transition-all"
+            className="group bg-white dark:bg-azul-light rounded-xl overflow-hidden border border-cinza-medio dark:border-azul hover:shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-500"
+            style={{ animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
           >
             {/* Imagem placeholder */}
             <div

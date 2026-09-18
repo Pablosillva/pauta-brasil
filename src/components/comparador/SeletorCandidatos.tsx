@@ -53,6 +53,7 @@ export function SeletorCandidatos({
               src={c.foto}
               alt={c.nome}
               className="w-10 h-10 rounded-full object-cover"
+              loading="lazy"
             />
             <div className="min-w-0">
               <p className="text-sm font-semibold text-azul dark:text-white truncate">
@@ -110,6 +111,7 @@ export function SeletorCandidatos({
                     src={c.foto}
                     alt={c.nome}
                     className="w-9 h-9 rounded-full object-cover"
+                    loading="lazy"
                   />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-azul dark:text-white truncate">

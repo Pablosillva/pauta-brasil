@@ -59,6 +59,7 @@ export function TabelaComparativa({ ids }: TabelaComparativaProps) {
                     src={c.foto}
                     alt={c.nome}
                     className="w-12 h-12 rounded-full object-cover border-2 border-verde"
+                    loading="lazy"
                   />
                   <div>
                     <p className="font-bold">{c.nome}</p>

@@ -26,12 +26,12 @@ export default function NoticiasPage() {
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {noticias.map((n) => (
+        {noticias.map((n, i) => (
           <Link
             key={n.id}
             href={`/noticias/${n.id}`}
-            className="... animate-in fade-in duration-500"
-            style={{ animationDelay: `${n.id * 50}ms` }}
+            className="group bg-white dark:bg-azul-light/20 rounded-2xl overflow-hidden border border-cinza-medio dark:border-azul-light hover:shadow-xl transition-all animate-in fade-in slide-in-from-bottom-2 duration-500"
+            style={{ animationDelay: `${i * 60}ms`, animationFillMode: "backwards" }}
           >
             <div className={`h-44 ${n.cor} opacity-85 group-hover:opacity-100 transition-opacity`} />
             <div className="p-5 space-y-3">

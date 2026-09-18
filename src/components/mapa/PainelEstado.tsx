@@ -158,7 +158,10 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
                 </div>
 
                 {/* Lista de candidatos */}
-<div className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
+<div
+  key={cargoAtivo}
+  className="flex-1 overflow-y-auto px-6 py-4 space-y-3 animate-in fade-in duration-300"
+>
   {candidatosFiltrados.length === 0 ? (
     <div className="text-center py-12 text-cinza-escuro dark:text-cinza-medio">
       <p className="text-sm">
@@ -176,6 +179,7 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
           src={c.foto}
           alt={`Foto de ${c.nome}`}
           className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+          loading="lazy"
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between gap-2">

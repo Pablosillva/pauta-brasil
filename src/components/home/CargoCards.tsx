@@ -40,13 +40,14 @@ export function CargoCards() {
   return (
     <section className="max-w-7xl mx-auto px-6 py-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {cargos.map((cargo) => {
+        {cargos.map((cargo, i) => {
           const Icon = cargo.icon;
           return (
             <Link
               key={cargo.titulo}
               href={cargo.href}
-              className="group bg-white dark:bg-azul-light border border-cinza-medio dark:border-azul rounded-xl p-5 hover:shadow-lg hover:border-verde dark:hover:border-verde transition-all"
+              className="group bg-white dark:bg-azul-light border border-cinza-medio dark:border-azul rounded-xl p-5 hover:shadow-lg hover:border-verde dark:hover:border-verde transition-all animate-in fade-in slide-in-from-bottom-2 duration-500"
+              style={{ animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
             >
               <div
                 className={`w-12 h-12 rounded-lg ${cargo.cor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}

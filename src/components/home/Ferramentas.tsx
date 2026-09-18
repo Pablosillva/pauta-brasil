@@ -39,13 +39,14 @@ export function Ferramentas() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {ferramentas.map((f) => {
+          {ferramentas.map((f, i) => {
             const Icon = f.icon;
             return (
               <Link
                 key={f.titulo}
                 href={f.href}
-                className="group bg-white dark:bg-azul rounded-xl p-6 border border-cinza-medio dark:border-azul-light hover:border-verde hover:shadow-lg transition-all"
+                className="group bg-white dark:bg-azul dark:bg-azul-light rounded-xl p-6 border border-cinza-medio dark:border-azul-light hover:border-verde hover:shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-500"
+                style={{ animationDelay: `${i * 100}ms`, animationFillMode: "backwards" }}
               >
                 <div className="w-12 h-12 rounded-lg bg-verde/10 flex items-center justify-center mb-4 group-hover:bg-verde group-hover:text-white transition-colors">
                   <Icon

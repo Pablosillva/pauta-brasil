@@ -45,11 +45,12 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtrados.map((c) => (
+          {filtrados.map((c, i) => (
             <Link
               key={c.id}
               href={`/candidatos/${c.id}`}
-              className="group bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-5 hover:border-verde hover:shadow-lg transition-all animate-in fade-in duration-300"
+              className="group bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-5 hover:border-verde hover:shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-500"
+              style={{ animationDelay: `${i * 40}ms`, animationFillMode: "backwards" }}
             >
               <div className="flex items-center gap-4 mb-4">
                 <img
