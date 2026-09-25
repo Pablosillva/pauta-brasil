@@ -1,27 +1,17 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { Users } from "lucide-react";
-import { candidatos, nomesEstados } from "@/data/candidatos";
+import { readFile, readdir } from "fs/promises";
+import path from "path";
+import { nomesEstados, type Candidato } from "@/data/candidatos";
 import { FiltrosCandidatos } from "@/components/candidatos/FiltrosCandidatos";
+import { FotoCandidato } from "@/components/ui/FotoCandidato";
 
-export async function generateMetadata({ searchParams }: PageProps) {
-  const { estado, cargo, partido } = await searchParams;
-
-  const partes = [];
-  if (cargo) partes.push(cargo);
-  if (estado) partes.push(nomesEstados[estado] ?? estado.toUpperCase());
-  if (partido) partes.push(partido);
-
-  const titulo = partes.length > 0
-    ? `Candidatos: ${partes.join(" · ")}`
-    : "Candidatos";
-
-  return {
-    title: titulo,
-    description:
-      "Conheça todos os candidatos cadastrados no Pauta Brasil. Use os filtros para refinar por estado, cargo ou partido.",
-  };
-}
+export const metadata = {
+  title: "Candidatos",
+  description:
+    "Conheça todos os candidatos cadastrados no Pauta Brasil. Use os filtros para refinar por estado, cargo ou partido.",
+};
 
 interface PageProps {
   searchParams: Promise<{
@@ -31,12 +21,34 @@ interface PageProps {
   }>;
 }
 
+async function carregarTodosCandidatos(): Promise<Candidato[]> {
+  const dir = path.join(process.cwd(), "src/data/tse");
+  const arquivos = await readdir(dir);
+
+  const todos: Candidato[] = [];
+
+  for (const arquivo of arquivos) {
+    if (arquivo === "_indice.json" || !arquivo.endsWith(".json")) continue;
+    try {
+      const conteudo = await readFile(path.join(dir, arquivo), "utf-8");
+      const lista = JSON.parse(conteudo) as Candidato[];
+      todos.push(...lista);
+    } catch {
+      // ignora arquivo inválido
+    }
+  }
+
+  return todos;
+}
+
 export default async function CandidatosPage({ searchParams }: PageProps) {
   const { estado, cargo, partido } = await searchParams;
 
+  const todosCandidatos = await carregarTodosCandidatos();
+
   const norm = (id: string) => id.toLowerCase().replace(/^br[-_]?/, "");
 
-  const filtrados = candidatos
+  const filtrados = todosCandidatos
     .filter((c) => !estado || norm(c.estadoId) === norm(estado))
     .filter((c) => !cargo || c.cargo === cargo)
     .filter((c) => !partido || c.partido === partido);
@@ -45,7 +57,6 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
-      {/* Cabeçalho */}
       <header className="mb-8">
         <div className="inline-flex items-center gap-2 text-verde mb-3">
           <Users size={18} />
@@ -63,12 +74,10 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
         </p>
       </header>
 
-      {/* Filtros */}
       <Suspense fallback={<div className="h-20" />}>
         <FiltrosCandidatos />
       </Suspense>
 
-      {/* Lista */}
       {filtrados.length === 0 ? (
         <div className="text-center py-16 bg-cinza-claro dark:bg-azul-light/10 rounded-2xl animate-in fade-in">
           <p className="text-lg font-semibold text-azul dark:text-white mb-2">
@@ -86,7 +95,7 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtrados.map((c, i) => (
+          {filtrados.slice(0, 60).map((c, i) => (
             <Link
               key={c.id}
               href={`/candidatos/${c.id}`}
@@ -97,12 +106,13 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
               }}
             >
               <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={c.foto}
-                  alt={`Foto de ${c.nome}`}
-                  className="w-16 h-16 rounded-full object-cover"
-                  loading="lazy"
-                />
+                <div className="w-16 h-16 rounded-full bg-cinza-medio dark:bg-azul-light overflow-hidden flex-shrink-0">
+                  <FotoCandidato
+                    src={c.foto}
+                    alt={`Foto de ${c.nome}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="min-w-0">
                   <h3 className="font-bold text-azul dark:text-white truncate group-hover:text-verde transition-colors">
                     {c.nome}
@@ -115,8 +125,7 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
 
               <div className="flex items-center justify-between text-xs">
                 <span className="text-cinza-escuro dark:text-cinza-medio">
-                  {c.cargo} ·{" "}
-                  {nomesEstados[c.estadoId] ?? c.estadoId.toUpperCase()}
+                  {c.cargo} · {nomesEstados[c.estadoId] ?? c.estadoId.toUpperCase()}
                 </span>
                 <span className="font-semibold text-verde bg-verde/10 px-2 py-1 rounded">
                   {c.status}

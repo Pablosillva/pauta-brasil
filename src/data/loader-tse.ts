@@ -29,14 +29,11 @@ export async function carregarCandidatosDoEstado(
 
   try {
     const mod = await import(`./tse/${ufUpper.toLowerCase()}.json`);
-    // Aceita tanto mod.default quanto mod direto
     const lista = ((mod as any).default ?? mod) as Candidato[];
-
     if (!Array.isArray(lista)) {
       console.error(`Formato inesperado para ${ufUpper}:`, typeof lista);
       return [];
     }
-
     cache.set(ufUpper, lista);
     return lista;
   } catch (err) {

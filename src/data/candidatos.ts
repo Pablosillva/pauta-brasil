@@ -14,6 +14,9 @@ export interface Candidato {
   idade: number;
   genero: "M" | "F";
   status: "Candidato oficial" | "Pré-candidato" | "Eleito" | "Atual ocupante";
+  situacaoDetalhada?: string;
+  ocupacao?: string;
+  grauInstrucao?: string;
   // ⬇️ Agora opcionais
   bio?: string;
   propostas?: Proposta[];
