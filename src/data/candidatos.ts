@@ -6,6 +6,7 @@ export interface Proposta {
 export interface Candidato {
   id: string;
   nome: string;
+  nomeUrna?: string;
   numero: string;
   partido: string;
   cargo: "Presidente" | "Governador" | "Senador" | "Deputado Federal" | "Deputado Estadual";
