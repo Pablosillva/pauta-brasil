@@ -23,11 +23,20 @@ export const metadata: Metadata = {
     template: "%s | Pauta Brasil",
   },
   icons: {
-    icon: [
-      {url: "/icon.svg", type: "image/svg+xml"},
-    ],
-    apple: "/icon.svg",
-  },
+  icon: [
+    { url: "/favicon.ico", sizes: "any" },
+    { url: "/icon.svg", type: "image/svg+xml" },
+    { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+  ],
+  apple: "/apple-touch-icon.png",
+  other: [
+    {
+      rel: "manifest",
+      url: "/site.webmanifest",
+    },
+  ],
+},
   description:
     "Acompanhe candidatos, propostas e o cenário político do Brasil. Mapa interativo, comparador de propostas, ranking de popularidade e notícias.",
   keywords: [

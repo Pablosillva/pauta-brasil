@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Search, User, Newspaper } from "lucide-react";
-import { candidatos, nomesEstados } from "@/data/candidatos";
+import { readFile, readdir } from "fs/promises";
+import path from "path";
+import { nomesEstados, type Candidato } from "@/data/candidatos";
 import { noticias } from "@/data/noticias";
+import { FotoCandidato } from "@/components/ui/FotoCandidato";
 
 interface PageProps {
   searchParams: Promise<{ q?: string }>;
@@ -14,21 +17,42 @@ export async function generateMetadata({ searchParams }: PageProps) {
   };
 }
 
+async function carregarTodosCandidatos(): Promise<Candidato[]> {
+  const dir = path.join(process.cwd(), "src/data/tse");
+  const arquivos = await readdir(dir);
+  const todos: Candidato[] = [];
+
+  for (const arquivo of arquivos) {
+    if (arquivo === "_indice.json" || !arquivo.endsWith(".json")) continue;
+    try {
+      const conteudo = await readFile(path.join(dir, arquivo), "utf-8");
+      todos.push(...JSON.parse(conteudo));
+    } catch {
+      // ignora arquivo inválido
+    }
+  }
+
+  return todos;
+}
+
 export default async function BuscaPage({ searchParams }: PageProps) {
   const { q } = await searchParams;
   const termo = (q ?? "").trim().toLowerCase();
 
+  const candidatos = await carregarTodosCandidatos();
+
   const candidatosEncontrados = termo
-    ? candidatos.filter(
-        (c) =>
-          c.nome.toLowerCase().includes(termo) ||
-          c.partido.toLowerCase().includes(termo) ||
-          c.cargo.toLowerCase().includes(termo) ||
-          c.numero.includes(termo) ||
-          (nomesEstados[c.estadoId] ?? "")
-            .toLowerCase()
-            .includes(termo)
-      )
+    ? candidatos
+        .filter(
+          (c) =>
+            c.nome.toLowerCase().includes(termo) ||
+            (c.nomeUrna && c.nomeUrna.toLowerCase().includes(termo)) ||
+            c.partido.toLowerCase().includes(termo) ||
+            c.cargo.toLowerCase().includes(termo) ||
+            c.numero.includes(termo) ||
+            (nomesEstados[c.estadoId] ?? "").toLowerCase().includes(termo)
+        )
+        .slice(0, 60) // limita para não travar
     : [];
 
   const noticiasEncontradas = termo
@@ -45,7 +69,6 @@ export default async function BuscaPage({ searchParams }: PageProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
-      {/* Cabeçalho */}
       <header className="mb-10">
         <div className="inline-flex items-center gap-2 text-verde mb-3">
           <Search size={18} />
@@ -74,13 +97,9 @@ export default async function BuscaPage({ searchParams }: PageProps) {
         )}
       </header>
 
-      {/* Nada encontrado */}
       {termo && total === 0 && (
         <div className="text-center py-16 bg-cinza-claro dark:bg-azul-light/10 rounded-2xl animate-in fade-in">
-          <Search
-            size={40}
-            className="mx-auto text-cinza-escuro mb-3"
-          />
+          <Search size={40} className="mx-auto text-cinza-escuro mb-3" />
           <p className="text-lg font-semibold text-azul dark:text-white mb-2">
             Nenhum resultado encontrado
           </p>
@@ -104,7 +123,6 @@ export default async function BuscaPage({ searchParams }: PageProps) {
         </div>
       )}
 
-      {/* Candidatos */}
       {candidatosEncontrados.length > 0 && (
         <section className="mb-12">
           <div className="flex items-center gap-2 mb-5">
@@ -119,18 +137,22 @@ export default async function BuscaPage({ searchParams }: PageProps) {
                 key={c.id}
                 href={`/candidatos/${c.id}`}
                 className="group bg-white dark:bg-azul-light/20 rounded-xl border border-cinza-medio dark:border-azul-light p-4 hover:border-verde hover:shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-300"
-                style={{ animationDelay: `${i * 40}ms`, animationFillMode: "backwards" }}
+                style={{
+                  animationDelay: `${i * 40}ms`,
+                  animationFillMode: "backwards",
+                }}
               >
                 <div className="flex items-center gap-3">
-                  <img
-                    src={c.foto}
-                    alt={`Foto de ${c.nome}`}
-                    className="w-12 h-12 rounded-full object-cover"
-                    loading="lazy"
-                  />
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-cinza-medio dark:bg-azul-light flex-shrink-0">
+                    <FotoCandidato
+                      src={c.foto}
+                      alt={`Foto de ${c.nome}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <div className="min-w-0">
                     <p className="font-bold text-azul dark:text-white truncate group-hover:text-verde transition-colors">
-                      {c.nome}
+                      {c.nomeUrna || c.nome}
                     </p>
                     <p className="text-xs text-cinza-escuro dark:text-cinza-medio truncate">
                       {c.cargo} · {c.partido} · Nº {c.numero}
@@ -146,7 +168,6 @@ export default async function BuscaPage({ searchParams }: PageProps) {
         </section>
       )}
 
-      {/* Notícias */}
       {noticiasEncontradas.length > 0 && (
         <section>
           <div className="flex items-center gap-2 mb-5">
@@ -161,7 +182,10 @@ export default async function BuscaPage({ searchParams }: PageProps) {
                 key={n.id}
                 href={`/noticias/${n.id}`}
                 className="group bg-white dark:bg-azul-light/20 rounded-xl border border-cinza-medio dark:border-azul-light p-4 hover:border-verde hover:shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-300"
-                style={{ animationDelay: `${i * 40}ms`, animationFillMode: "backwards" }}
+                style={{
+                  animationDelay: `${i * 40}ms`,
+                  animationFillMode: "backwards",
+                }}
               >
                 <span className="text-xs font-semibold text-verde uppercase tracking-wider">
                   {n.categoria}
