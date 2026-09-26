@@ -22,6 +22,12 @@ export const metadata: Metadata = {
     default: "Pauta Brasil — Informação, transparência e democracia",
     template: "%s | Pauta Brasil",
   },
+  icons: {
+    icon: [
+      {url: "/icon.svg", type: "image/svg+xml"},
+    ],
+    apple: "/icon.svg",
+  },
   description:
     "Acompanhe candidatos, propostas e o cenário político do Brasil. Mapa interativo, comparador de propostas, ranking de popularidade e notícias.",
   keywords: [
@@ -69,10 +75,6 @@ export const metadata: Metadata = {
     description:
       "Acompanhe candidatos, propostas e o cenário político do Brasil em um só lugar.",
     images: ["/og-image.png"],
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
   },
 };
 

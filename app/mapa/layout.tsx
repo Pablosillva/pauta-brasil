@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comparador de propostas",
+  title: "Mapa Eleitoral",
   description:
-    "Compare lado a lado as propostas de até 4 candidatos por tema: Saúde, Educação, Economia e mais.",
+    "Explore os candidatos por estado.",
 };
 
 export default function ComparadorLayout({

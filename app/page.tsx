@@ -5,7 +5,9 @@ import { Ferramentas } from "@/components/home/Ferramentas";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Início",
+  title: {
+    absolute: "Pauta Brasil",
+  },
   description:
     "Explore o mapa eleitoral do Brasil. Descubra quem disputa o poder em cada estado.",
 };
