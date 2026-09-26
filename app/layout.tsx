@@ -14,8 +14,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  alternates: {
-    canonical: "/",
+  alternates: {canonical: "/"},
+  verification: {
+    google: "JGTBz0Q25olmwGq1mocPS0OO5XMBGrtLMhunmHwdUfs",
   },
   title: {
     default: "Pauta Brasil — Informação, transparência e democracia",
