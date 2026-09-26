@@ -1,12 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  Share2,
-  GitCompare,
-  FileText,
-  Mail,
-} from "lucide-react";
+import { ArrowLeft, Share2, GitCompare, FileText, Mail } from "lucide-react";
 import { candidatos, nomesEstados, type Candidato } from "@/data/candidatos";
 import {
   InstagramIcon,
@@ -15,7 +9,7 @@ import {
 } from "@/components/icons/BrandIcons";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
+import { jsonLdCandidato, jsonLdBreadcrumb } from "@/lib/seo";
 
 const ABAS = [
   { id: "propostas", label: "Propostas" },
@@ -41,8 +35,7 @@ async function buscarCandidato(id: string): Promise<Candidato | null> {
 
   // 2ª tentativa: TSE via API interna
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
     const res = await fetch(`${baseUrl}/api/candidato/${id}`, {
       cache: "force-cache",
     });
@@ -61,10 +54,16 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: candidato.nome,
     description: `${candidato.nome} — ${candidato.cargo} pelo ${candidato.partido}`,
+    alternates: {
+      canonical: `/candidatos/${id}`,
+    },
   };
 }
 
-export default async function CandidatoPage({ params, searchParams }: PageProps) {
+export default async function CandidatoPage({
+  params,
+  searchParams,
+}: PageProps) {
   const { id } = await params;
   const { aba } = await searchParams;
   const abaAtiva = (aba as AbaId) || "propostas";
@@ -76,8 +75,30 @@ export default async function CandidatoPage({ params, searchParams }: PageProps)
     nomesEstados[candidato.estadoId] ??
     candidato.estadoId.replace("br-", "").toUpperCase();
 
+  const jsonLd = [
+    jsonLdCandidato(candidato),
+    jsonLdBreadcrumb([
+      { name: "Início", url: "/" },
+      { name: "Candidatos", url: "/candidatos" },
+      { name: candidato.nome, url: `/candidatos/${candidato.id}` },
+    ]),
+  ];
+
   return (
     <div className="bg-cinza-claro dark:bg-azul-dark min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            jsonLdCandidato(candidato),
+            jsonLdBreadcrumb([
+              { name: "Início", url: "/" },
+              { name: "Candidatos", url: "/candidatos" },
+              { name: candidato.nome, url: `/candidatos/${candidato.id}` },
+            ]),
+          ]),
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 pt-8">
         <Link
           href="/mapa"
@@ -106,7 +127,8 @@ export default async function CandidatoPage({ params, searchParams }: PageProps)
                 {candidato.nome}
               </h1>
               <p className="text-lg text-white/80">
-                <span className="font-semibold">{candidato.cargo}</span> · {estado}
+                <span className="font-semibold">{candidato.cargo}</span> ·{" "}
+                {estado}
               </p>
               <div className="flex flex-wrap items-center gap-4 mt-4">
                 <span className="flex items-center gap-2 text-white/90">
@@ -157,7 +179,7 @@ export default async function CandidatoPage({ params, searchParams }: PageProps)
                   "px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-colors",
                   abaAtiva === a.id
                     ? "border-verde text-verde"
-                    : "border-transparent text-cinza-escuro dark:text-cinza-medio hover:text-azul dark:hover:text-white"
+                    : "border-transparent text-cinza-escuro dark:text-cinza-medio hover:text-azul dark:hover:text-white",
                 )}
               >
                 {a.label}

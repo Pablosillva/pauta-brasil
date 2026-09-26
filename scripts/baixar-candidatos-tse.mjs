@@ -5,9 +5,8 @@ import AdmZip from "adm-zip";
 import { parse } from "csv-parse/sync";
 
 // ============ CONFIGURAÇÃO ============
-const ANO = 2022;
+const ANO = 2026;
 const BASE_URL = `https://cdn.tse.jus.br/estatistica/sead/odsele`;
-const OUTPUT_DIR = path.join(process.cwd(), "src/data/tse");
 
 const DATASETS = {
   candidatos: {
@@ -21,7 +20,7 @@ const DATASETS = {
 };
 
 const TMP_DIR = path.join(process.cwd(), ".tmp-tse");
-const OUTPUT_FILE = path.join(process.cwd(), "src/data/candidatos-tse.json");
+const OUTPUT_DIR = path.join(process.cwd(), "src/data/tse");
 
 // ============ HELPERS ============
 function normalizarCargo(cargoOriginal) {
@@ -43,7 +42,11 @@ function normalizarStatus(situacao) {
 }
 
 function normalizarGenero(codigo) {
-  return codigo === "2" ? "F" : "M";
+  // TSE: 2 = Masculino, 4 = Feminino
+  // (códigos conforme padrão do TSE)
+  if (codigo === "2") return "M";
+  if (codigo === "4") return "F";
+  return "M"; // fallback
 }
 
 function gerarId(candidato, uf, cargo) {
@@ -55,7 +58,16 @@ function gerarId(candidato, uf, cargo) {
     "Deputado Federal": "df",
     "Deputado Estadual": "de",
   }[cargo] || "outro";
-  return `${ufLower}-${cargoAbrev}-${candidato.NR_CANDIDATO}`;
+
+  // Inclui o SQ_CANDIDATO para garantir unicidade
+  return `${ufLower}-${cargoAbrev}-${candidato.SQ_CANDIDATO}`;
+}
+
+function formatarValor(valor) {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(valor);
 }
 
 // ============ DOWNLOAD ============
@@ -78,7 +90,6 @@ async function extrairZip(zipPath, destinoDir) {
 async function processarCandidatos() {
   const dir = path.join(TMP_DIR, DATASETS.candidatos.file);
   const arquivos = await readdir(dir);
-
   const resultado = [];
 
   for (const arquivo of arquivos) {
@@ -100,27 +111,117 @@ async function processarCandidatos() {
       if (!cargo) continue;
 
       const id = gerarId(r, r.SG_UF, cargo);
+
+      let idade = 0;
+      if (r.DT_NASCIMENTO) {
+        const [dia, mes, ano] = r.DT_NASCIMENTO.split("/").map(Number);
+        const nascimento = new Date(ano, mes - 1, dia);
+        const hoje = new Date();
+        idade = Math.floor(
+          (hoje - nascimento) / (365.25 * 24 * 60 * 60 * 1000)
+        );
+      }
+
       resultado.push({
         id,
         nome: r.NM_CANDIDATO,
+        nomeUrna: r.NM_URNA_CANDIDATO || r.NM_CANDIDATO,
         numero: r.NR_CANDIDATO,
         partido: r.SG_PARTIDO,
         cargo,
         estadoId: `br-${r.SG_UF.toLowerCase()}`,
-        foto: `https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/${ANO}/${r.SQ_CANDIDATO}`,
-        idade: 0,
+        foto: `/fotos/${r.SG_UF.toUpperCase()}/${r.SQ_CANDIDATO}.webp`,
+        idade,
         genero: normalizarGenero(r.CD_GENERO),
         status: normalizarStatus(r.CD_SITUACAO_CANDIDATURA),
+        situacaoDetalhada: r.DS_SITUACAO_CANDIDATURA || "",
+        ocupacao: r.DS_OCUPACAO || "",
+        grauInstrucao: r.DS_GRAU_INSTRUCAO || "",
         bio: "",
         propostas: [],
         historico: [],
         patrimonio: [],
         redesSociais: [],
+        _sqCandidato: r.SQ_CANDIDATO,
+        _uf: r.SG_UF,
       });
     }
   }
 
+  // Remove duplicatas por ID (mantém o primeiro)
+  const vistos = new Set();
+  const semDuplicatas = [];
+  for (const c of resultado) {
+    if (vistos.has(c.id)) {
+      console.log(`⚠️  Duplicata removida: ${c.id} (${c.nome})`);
+      continue;
+    }
+    vistos.add(c.id);
+    semDuplicatas.push(c);
+  }
+
+  console.log(`✅ ${resultado.length - semDuplicatas.length} duplicatas removidas`);
+  return semDuplicatas;
+
   return resultado;
+}
+
+async function processarBens() {
+  const dir = path.join(TMP_DIR, DATASETS.bens.file);
+  const arquivos = await readdir(dir);
+  const bensPorCandidato = new Map();
+
+  for (const arquivo of arquivos) {
+    if (!arquivo.endsWith(".csv")) continue;
+
+    const conteudo = await readFile(path.join(dir, arquivo), "latin1");
+    const registros = parse(conteudo, {
+      columns: true,
+      delimiter: ";",
+      skip_empty_lines: true,
+      relax_column_count: true,
+    });
+
+    for (const r of registros) {
+      const sq = r.SQ_CANDIDATO;
+      if (!sq) continue;
+
+      if (!bensPorCandidato.has(sq)) {
+        bensPorCandidato.set(sq, []);
+      }
+
+      const valor = parseFloat(
+        (r.VR_BEM_CANDIDATO || "0").replace(",", ".")
+      );
+
+      bensPorCandidato.get(sq).push({
+        bem: r.DS_BEM_CANDIDATO || "Bem não especificado",
+        valor: formatarValor(valor),
+      });
+    }
+  }
+
+  // === DEDUPLICAÇÃO ===
+  // Remove bens duplicados (mesmo nome + mesmo valor) de cada candidato
+  let totalDuplicatasRemovidas = 0;
+  for (const [sq, bens] of bensPorCandidato.entries()) {
+    const vistos = new Set();
+    const unicos = [];
+    for (const b of bens) {
+      const chave = `${b.bem.trim()}|${b.valor}`;
+      if (vistos.has(chave)) {
+        totalDuplicatasRemovidas++;
+        continue;
+      }
+      vistos.add(chave);
+      unicos.push(b);
+    }
+    bensPorCandidato.set(sq, unicos);
+  }
+
+  console.log(`💰 Bens processados para ${bensPorCandidato.size} candidatos`);
+  console.log(`🧹 ${totalDuplicatasRemovidas} bens duplicados removidos`);
+  return bensPorCandidato;
 }
 
 // ============ MAIN ============
@@ -139,7 +240,23 @@ async function main() {
     const candidatos = await processarCandidatos();
     console.log(`✅ ${candidatos.length} candidatos processados`);
 
-    // Agrupa por estado
+    console.log("💰 Processando bens...");
+    const bens = await processarBens();
+
+    console.log("🔗 Pulando redes sociais (dataset indisponível)");
+    const redes = new Map();
+
+    for (const c of candidatos) {
+      if (bens.has(c._sqCandidato)) {
+        c.patrimonio = bens.get(c._sqCandidato);
+      }
+      if (redes.has(c._sqCandidato)) {
+        c.redesSociais = redes.get(c._sqCandidato);
+      }
+      delete c._sqCandidato;
+      delete c._uf;
+    }
+
     const porEstado = {};
     for (const c of candidatos) {
       const uf = c.estadoId.replace("br-", "").toUpperCase();
@@ -147,18 +264,15 @@ async function main() {
       porEstado[uf].push(c);
     }
 
-    // Cria pasta de saída
     if (existsSync(OUTPUT_DIR)) await rm(OUTPUT_DIR, { recursive: true });
     await mkdir(OUTPUT_DIR, { recursive: true });
 
-    // Salva um arquivo por estado
     for (const [uf, lista] of Object.entries(porEstado)) {
       const arquivo = path.join(OUTPUT_DIR, `${uf.toLowerCase()}.json`);
       await writeFile(arquivo, JSON.stringify(lista), "utf-8");
       console.log(`💾 ${uf}: ${lista.length} candidatos`);
     }
 
-    // Salva um índice com o total por estado (útil para previews)
     const indice = Object.fromEntries(
       Object.entries(porEstado).map(([uf, lista]) => [uf, lista.length])
     );
@@ -169,7 +283,6 @@ async function main() {
     );
 
     console.log(`✅ ${Object.keys(porEstado).length} arquivos gerados`);
-
     await rm(TMP_DIR, { recursive: true });
     console.log("🧹 Temporários limpos");
   } catch (err) {

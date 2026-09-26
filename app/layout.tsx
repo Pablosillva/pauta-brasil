@@ -3,6 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { jsonLdSite, jsonLdOrganization } from "@/lib/seo";
+import type { Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next"
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -10,6 +14,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Pauta Brasil — Informação, transparência e democracia",
     template: "%s | Pauta Brasil",
@@ -68,19 +75,38 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A2540" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = [jsonLdSite(), jsonLdOrganization()];
   return (
-    <html lang="pt-BR" className={inter.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang="pt-BR"
+      className={inter.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body className="font-sans bg-white text-azul dark:bg-azul-dark dark:text-white flex flex-col min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Header />
-        <main className="flex-1 pt-[64px] lg:pt-[104px]">
-          {children}
-        </main>
+        <main className="flex-1 pt-[64px] lg:pt-[104px]">{children}</main>
         <Footer />
+        <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   );

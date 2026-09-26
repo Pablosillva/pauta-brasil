@@ -2,10 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { noticias } from "@/data/noticias";
-import {
-  TwitterIcon,
-  FacebookIcon,
-} from "@/components/icons/BrandIcons";
+import { TwitterIcon, FacebookIcon } from "@/components/icons/BrandIcons";
+import { jsonLdNewsArticle, jsonLdBreadcrumb } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -18,6 +16,9 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${noticia.titulo} — Pauta Brasil`,
     description: noticia.resumo,
+    alternates: {
+      canonical: `/noticias/${id}`,
+    },
   };
 }
 
@@ -30,13 +31,36 @@ export default async function NoticiaPage({ params }: PageProps) {
     .filter((n) => n.id !== noticia.id && n.categoria === noticia.categoria)
     .slice(0, 3);
 
-  const outras = relacionadas.length > 0
-    ? relacionadas
-    : noticias.filter((n) => n.id !== noticia.id).slice(0, 3);
+  const outras =
+    relacionadas.length > 0
+      ? relacionadas
+      : noticias.filter((n) => n.id !== noticia.id).slice(0, 3);
+
+  const jsonLd = [
+    jsonLdNewsArticle(noticia),
+    jsonLdBreadcrumb([
+      { name: "Início", url: "/" },
+      { name: "Notícias", url: "/noticias" },
+      { name: noticia.titulo, url: `/noticias/${noticia.id}` },
+    ]),
+  ];
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
       {/* Breadcrumb */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            jsonLdNewsArticle(noticia),
+            jsonLdBreadcrumb([
+              { name: "Início", url: "/" },
+              { name: "Notícias", url: "/noticias" },
+              { name: noticia.titulo, url: `/noticias/${noticia.id}` },
+            ]),
+          ]),
+        }}
+      />
       <Link
         href="/noticias"
         className="inline-flex items-center gap-2 text-sm font-medium text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors mb-8"
@@ -66,7 +90,9 @@ export default async function NoticiaPage({ params }: PageProps) {
           </header>
 
           {/* Imagem placeholder */}
-          <div className={`h-72 lg:h-96 ${noticia.cor} rounded-2xl mb-8 opacity-90`} />
+          <div
+            className={`h-72 lg:h-96 ${noticia.cor} rounded-2xl mb-8 opacity-90`}
+          />
 
           {/* Resumo */}
           <p className="text-xl text-azul dark:text-white font-medium leading-relaxed mb-8">
