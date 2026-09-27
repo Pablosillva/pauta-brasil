@@ -5,16 +5,7 @@ import {
   InstagramIcon,
   TwitterIcon,
   YoutubeIcon,
-} from "../icons/BrandIcons";
-
-const parceiros = [
-  { nome: "Google News", href: "#" },
-  { nome: "TSE", href: "#" },
-  { nome: "Globo", href: "#" },
-  { nome: "Folha de S.Paulo", href: "#" },
-  { nome: "UOL", href: "#" },
-  { nome: "BAND", href: "#" },
-];
+} from "@/components/icons/BrandIcons";
 
 const linksInstitucionais = [
   { label: "Sobre", href: "/sobre" },
@@ -40,26 +31,6 @@ const redesSociais = [
 export function Footer() {
   return (
     <footer className="bg-azul dark:bg-azul-dark text-white mt-16">
-      {/* Faixa de parceiros */}
-      <div className="border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <p className="text-xs uppercase tracking-wider text-white/50 mb-4">
-            Nossos parceiros
-          </p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-            {parceiros.map((p) => (
-              <Link
-                key={p.nome}
-                href={p.href}
-                className="text-sm font-semibold text-white/70 hover:text-verde-light transition-colors"
-              >
-                {p.nome}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Conteúdo principal */}
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Marca */}
