@@ -4,41 +4,57 @@ import path from "path";
 
 const RAIZ = process.cwd();
 const fotosDir = path.join(RAIZ, "public/fotos");
+const planosDir = path.join(RAIZ, "public/planos");
 
-// Só baixa na Vercel (não roda no npm install local)
+// Só baixa na Vercel
 if (!process.env.VERCEL) {
-  console.log("⏭️  postinstall: local, pulando download de fotos");
-  console.log("💡 Rode `npm run fotos:principais` quando precisar");
+  console.log("⏭️  postinstall: local, pulando download");
   process.exit(0);
 }
 
-// Estados que vão ser baixados no build da Vercel
-const PRINCIPAIS = ["BR", "SP", "RJ", "MG"];
+// Fotos dos 4 principais
+const UFS_FOTOS = ["BR", "SP", "RJ", "MG"];
 
-// Se já tem as fotos principais, pula
-const temTodas = PRINCIPAIS.every(
+console.log("📸 postinstall: verificando fotos...");
+const temTodasFotos = UFS_FOTOS.every(
   (uf) =>
     existsSync(path.join(fotosDir, uf)) &&
     readdirSync(path.join(fotosDir, uf)).length > 10
 );
 
-if (temTodas) {
-  console.log("✅ postinstall: fotos já baixadas, pulando");
-  process.exit(0);
+if (temTodasFotos) {
+  console.log("✅ postinstall: fotos já baixadas");
+} else {
+  console.log("📸 postinstall: baixando fotos principais...");
+  try {
+    for (const uf of UFS_FOTOS) {
+      execSync(`node scripts/baixar-fotos-tse.mjs ${uf}`, {
+        stdio: "inherit",
+        cwd: RAIZ,
+      });
+    }
+    console.log("✅ postinstall: fotos baixadas");
+  } catch (err) {
+    console.error("⚠️  postinstall: falha ao baixar fotos, continuando...");
+  }
 }
 
-console.log("📸 postinstall: baixando fotos principais...");
+// Planos apenas de presidentes (BR)
+console.log("📄 postinstall: verificando planos de governo...");
+const temPlanos = existsSync(path.join(planosDir, "BR")) &&
+  readdirSync(path.join(planosDir, "BR")).length > 0;
 
-try {
-  for (const uf of PRINCIPAIS) {
-    execSync(`node scripts/baixar-fotos-tse.mjs ${uf}`, {
+if (temPlanos) {
+  console.log("✅ postinstall: planos já baixados");
+} else {
+  console.log("📄 postinstall: baixando planos dos presidentes...");
+  try {
+    execSync("node scripts/baixar-planos-tse.mjs BR", {
       stdio: "inherit",
       cwd: RAIZ,
     });
+    console.log("✅ postinstall: planos baixados");
+  } catch (err) {
+    console.error("⚠️  postinstall: falha nos planos, continuando...");
   }
-  console.log("✅ postinstall: fotos baixadas com sucesso");
-} catch (err) {
-  console.error("⚠️  postinstall: falha ao baixar fotos, continuando build...");
-  // Não falha o build por causa das fotos
-  process.exit(0);
 }

@@ -137,6 +137,9 @@ async function processarCandidatos() {
         situacaoDetalhada: r.DS_SITUACAO_CANDIDATURA || "",
         ocupacao: r.DS_OCUPACAO || "",
         grauInstrucao: r.DS_GRAU_INSTRUCAO || "",
+        planoGovernoUrl: ["Presidente", "Governador", "Senador"].includes(cargo)
+          ? `/planos/${r.SG_UF.toUpperCase()}/${r.SQ_CANDIDATO}.pdf`
+          : null,
         bio: "",
         propostas: [],
         historico: [],

@@ -44,3 +44,4 @@ next-env.d.ts
 
 # Fotos dos candidatos (baixadas via script)
 public/fotos/
+public/planos/
