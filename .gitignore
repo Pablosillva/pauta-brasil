@@ -46,3 +46,4 @@ next-env.d.ts
 public/fotos/
 public/planos/
 .vercel
+.env*
