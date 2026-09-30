@@ -7,9 +7,7 @@ interface Votacao {
   parlamentar: string;
   cargo: string;
   partido: string;
-  votacoes: [
-    { pauta: string; voto: string; data: string }
-  ];
+  votacoes: { pauta: string; voto: string; data: string }[];
 }
 
 const votacoes: Votacao[] = [
