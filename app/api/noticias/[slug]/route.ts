@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, unlink, readFile } from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
-import matter from "gray-matter";
 import { put } from "@vercel/blob";
 import { getSession } from "@/lib/auth";
-
-const NOTICIAS_DIR = path.join(process.cwd(), "content/noticias");
+import { atualizarNoticia, deletarNoticia, buscarNoticia } from "@/lib/noticias";
 
 interface Params {
   params: Promise<{ slug: string }>;
@@ -21,32 +16,35 @@ export async function PUT(request: NextRequest, { params }: Params) {
   const { slug } = await params;
 
   try {
-    const formData = await request.formData();
-    const titulo = formData.get("titulo") as string;
-    const resumo = formData.get("resumo") as string;
-    const categoria = formData.get("categoria") as string;
-    const conteudo = formData.get("conteudo") as string;
-    const tagsInput = formData.get("tags") as string;
-    const destaque = formData.get("destaque") === "on";
-    const imagemFile = formData.get("imagem") as File | null;
-
-    const filePath = path.join(NOTICIAS_DIR, `${slug}.mdx`);
-    if (!existsSync(filePath)) {
+    const existente = await buscarNoticia(slug);
+    if (!existente) {
       return NextResponse.json(
         { error: "Notícia não encontrada" },
         { status: 404 }
       );
     }
 
-    const existingContent = await readFile(filePath, "utf-8");
-    const { data: existingData } = matter(existingContent);
+    const formData = await request.formData();
+    const titulo = (formData.get("titulo") as string)?.trim();
+    const resumo = (formData.get("resumo") as string)?.trim();
+    const categoria = formData.get("categoria") as string;
+    const conteudo = (formData.get("conteudo") as string) ?? existente.conteudo;
+    const tagsInput = (formData.get("tags") as string) ?? "";
+    const destaque = formData.get("destaque") === "on";
+    const imagemFile = formData.get("imagem") as File | null;
 
-    let imagemCapa = existingData.imagemCapa || "";
+    if (!titulo || !resumo) {
+      return NextResponse.json(
+        { error: "Título e resumo são obrigatórios" },
+        { status: 400 }
+      );
+    }
 
+    let imagemCapa = existente.imagemCapa;
     if (imagemFile && imagemFile.size > 0) {
       try {
         const blob = await put(
-          `noticias/${slug}-${imagemFile.name}`,
+          `noticias/${Date.now()}-${imagemFile.name}`,
           imagemFile,
           { access: "public" }
         );
@@ -56,21 +54,18 @@ export async function PUT(request: NextRequest, { params }: Params) {
       }
     }
 
-    const tags = tagsInput
-      ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean)
-      : [];
-
-    const novoFrontmatter = matter.stringify(conteudo, {
-      ...existingData,
+    await atualizarNoticia(slug, {
       titulo,
       resumo,
       categoria,
+      conteudo,
       imagemCapa,
-      tags,
+      tags: tagsInput
+        ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean)
+        : [],
       destaque,
+      publicado: existente.publicado,
     });
-
-    await writeFile(filePath, novoFrontmatter, "utf-8");
 
     return NextResponse.json({ success: true });
   } catch (err) {
@@ -91,15 +86,13 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
   const { slug } = await params;
 
   try {
-    const filePath = path.join(NOTICIAS_DIR, `${slug}.mdx`);
-    if (!existsSync(filePath)) {
+    const deletada = await deletarNoticia(slug);
+    if (!deletada) {
       return NextResponse.json(
         { error: "Notícia não encontrada" },
         { status: 404 }
       );
     }
-
-    await unlink(filePath);
 
     return NextResponse.json({ success: true });
   } catch (err) {

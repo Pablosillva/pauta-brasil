@@ -1,83 +1,79 @@
 import { put } from "@vercel/blob";
-import { writeFile, mkdir } from "fs/promises";
-import { existsSync } from "fs";
-import path from "path";
 import { redirect } from "next/navigation";
-import matter from "gray-matter";
 import Link from "next/link";
-import { ArrowLeft, Eye, Edit3 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getSession } from "@/lib/auth";
+import { criarNoticia } from "@/lib/noticias";
 
-const NOTICIAS_DIR = path.join(process.cwd(), "content/noticias");
-
-function slugify(texto: string) {
-  return texto
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .substring(0, 60);
-}
-
-async function criarNoticia(formData: FormData) {
+async function salvar(formData: FormData) {
   "use server";
 
   const session = await getSession();
   if (!session) redirect("/batata/login");
 
-  const titulo = formData.get("titulo") as string;
-  const resumo = formData.get("resumo") as string;
+  const titulo = (formData.get("titulo") as string)?.trim();
+  const resumo = (formData.get("resumo") as string)?.trim();
   const categoria = formData.get("categoria") as string;
-  const conteudo = formData.get("conteudo") as string;
-  const imagemFile = formData.get("imagem") as File | null;
-  const tagsInput = formData.get("tags") as string;
-  const slug = slugify(titulo);
+  const conteudo = (formData.get("conteudo") as string) ?? "";
+  const tagsInput = (formData.get("tags") as string) ?? "";
   const destaque = formData.get("destaque") === "on";
+  const imagemFile = formData.get("imagem") as File | null;
 
-  let imagemCapa = "";
+  if (!titulo || !resumo) redirect("/batata/noticias/nova?erro=campos");
+
+  let imagemCapa: string | null = null;
   if (imagemFile && imagemFile.size > 0) {
     try {
       const blob = await put(
-        `noticias/${slug}-${imagemFile.name}`,
+        `noticias/${Date.now()}-${imagemFile.name}`,
         imagemFile,
-        {
-          access: "public",
-        },
+        { access: "public" }
       );
       imagemCapa = blob.url;
     } catch (err) {
-      console.error("Erro ao fazer upload:", err);
+      console.error("Erro ao fazer upload da imagem:", err);
     }
   }
 
-  const frontmatter = matter.stringify(conteudo, {
-    titulo,
-    resumo,
-    data: new Date().toISOString().split("T")[0],
-    autor: "Redação Pauta Brasil",
-    categoria,
-    imagemCapa,
-    tags: tagsInput
-      ? tagsInput
-          .split(",")
-          .map((t) => t.trim())
-          .filter(Boolean)
-      : [],
-    destaque,
-  });
-
-  if (!existsSync(NOTICIAS_DIR)) {
-    await mkdir(NOTICIAS_DIR, { recursive: true });
+  try {
+    await criarNoticia({
+      titulo,
+      resumo,
+      categoria,
+      conteudo,
+      imagemCapa,
+      tags: tagsInput
+        ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean)
+        : [],
+      destaque,
+    });
+  } catch (err) {
+    console.error("Erro ao criar notícia:", err);
+    redirect("/batata/noticias/nova?erro=db");
   }
-
-  await writeFile(path.join(NOTICIAS_DIR, `${slug}.mdx`), frontmatter, "utf-8");
 
   redirect("/batata");
 }
 
-export default function NovaNoticiaPage() {
+const CATEGORIAS = [
+  "Política",
+  "Economia",
+  "Justiça",
+  "Eleições",
+  "Sociedade",
+  "Internacional",
+];
+
+const inputClass =
+  "w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde";
+
+export default async function NovaNoticiaPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ erro?: string }>;
+}) {
+  const { erro } = await searchParams;
+
   return (
     <div className="max-w-3xl mx-auto">
       <Link
@@ -91,46 +87,39 @@ export default function NovaNoticiaPage() {
         Criar Nova Notícia
       </h1>
 
-      <form action={criarNoticia} className="space-y-5">
+      {erro && (
+        <div className="mb-6 p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-sm">
+          {erro === "campos"
+            ? "Preencha o título e o resumo."
+            : "Não foi possível salvar a notícia no banco de dados. Verifique os logs."}
+        </div>
+      )}
+
+      <form action={salvar} className="space-y-5">
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Título
           </label>
-          <input
-            name="titulo"
-            required
-            placeholder="Ex: Congresso aprova nova lei..."
-            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-          />
+          <input name="titulo" required placeholder="Ex: Congresso aprova nova lei..." className={inputClass} />
         </div>
 
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Resumo (1-2 frases)
           </label>
-          <input
-            name="resumo"
-            required
-            placeholder="Resumo curto da notícia"
-            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-          />
+          <input name="resumo" required placeholder="Resumo curto da notícia" className={inputClass} />
         </div>
 
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Categoria
           </label>
-          <select
-            name="categoria"
-            required
-            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-          >
-            <option value="Política">Política</option>
-            <option value="Economia">Economia</option>
-            <option value="Justiça">Justiça</option>
-            <option value="Eleições">Eleições</option>
-            <option value="Sociedade">Sociedade</option>
-            <option value="Internacional">Internacional</option>
+          <select name="categoria" required className={inputClass}>
+            {CATEGORIAS.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -138,13 +127,9 @@ export default function NovaNoticiaPage() {
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Tags
           </label>
-          <input
-            name="tags"
-            placeholder="Ex: Congresso, Licitações, Obras Públicas"
-            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-          />
+          <input name="tags" placeholder="Ex: Congresso, Licitações, Obras Públicas" className={inputClass} />
           <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
-            Separe por vírgula. Ex: Eleições, Congresso, Economia
+            Separe por vírgula.
           </p>
         </div>
 
@@ -159,9 +144,6 @@ export default function NovaNoticiaPage() {
               Marcar como destaque
             </span>
           </label>
-          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1 ml-7">
-            Notícias em destaque aparecem em seções especiais do site
-          </p>
         </div>
 
         <div>
@@ -185,20 +167,18 @@ export default function NovaNoticiaPage() {
           </label>
           <textarea
             name="conteudo"
-            required
             rows={20}
-            placeholder="## Introdução&#10;&#10;Escreva o conteúdo aqui...&#10;&#10;## Próximos passos&#10;&#10;Continue o texto..."
-            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-verde"
+            placeholder={"## Introdução\n\nEscreva o conteúdo aqui...\n\n## Próximos passos\n\nContinue o texto..."}
+            className={`${inputClass} font-mono text-sm`}
           />
           <div className="mt-2 p-3 rounded-lg bg-cinza-claro dark:bg-azul-light/20 text-xs text-cinza-escuro dark:text-cinza-medio">
             <p className="font-semibold mb-1">Formatação Markdown:</p>
             <ul className="list-disc list-inside space-y-0.5">
-              <li><code>## Título</code> para seções</li>
-              <li><code>**texto**</code> para negrito</li>
-              <li><code>*texto*</code> para itálico</li>
-              <li><code>- item</code> para listas</li>
-              <li><code>1. item</code> para listas numeradas</li>
-              <li><code>&gt; citação</code> para citações</li>
+              <li><code>## Título</code> — seções</li>
+              <li><code>**texto**</code> — negrito</li>
+              <li><code>*texto*</code> — itálico</li>
+              <li><code>- item</code> — listas</li>
+              <li><code>&gt; citação</code> — citações</li>
             </ul>
           </div>
         </div>
