@@ -4,6 +4,9 @@ import { UltimasNoticias } from "@/components/home/UltimasNoticias";
 import { Ferramentas } from "@/components/home/Ferramentas";
 import type { Metadata } from "next";
 
+// A home mostra as últimas notícias do banco — precisa refletir publicações novas
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: {
     absolute: "Pauta Brasil",

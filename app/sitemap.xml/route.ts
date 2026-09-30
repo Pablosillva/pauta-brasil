@@ -1,5 +1,5 @@
 import { candidatos } from "@/data/candidatos";
-import { noticias } from "@/data/noticias";
+import { listarNoticias } from "@/lib/noticias";
 
 export const dynamic = "force-dynamic";
 
@@ -16,6 +16,8 @@ function escapeXml(value: string) {
 }
 
 export async function GET() {
+  const noticias = await listarNoticias();
+
   const urls = [
     { loc: "/", changefreq: "daily", priority: "1.0" },
     { loc: "/portal", changefreq: "daily", priority: "0.9" },
@@ -32,7 +34,7 @@ export async function GET() {
       priority: "0.7",
     })),
     ...noticias.map((n) => ({
-      loc: `/noticias/${n.id}`,
+      loc: `/noticias/${n.slug}`,
       changefreq: "monthly",
       priority: "0.6",
     })),

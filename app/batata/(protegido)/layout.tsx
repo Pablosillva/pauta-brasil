@@ -1,6 +1,7 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { logout } from "@/actions/auth";
 
 export default async function ProtegidoLayout({
   children,
@@ -26,7 +27,7 @@ export default async function ProtegidoLayout({
           <Link href="/batata/noticias/nova" className="hover:underline">
             + Nova notícia
           </Link>
-          <form action="/api/auth/logout" method="POST">
+          <form action={logout}>
             <button type="submit" className="hover:underline">
               Sair
             </button>

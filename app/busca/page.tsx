@@ -3,8 +3,10 @@ import { Search, User, Newspaper, Filter } from "lucide-react";
 import { readFile, readdir } from "fs/promises";
 import path from "path";
 import { nomesEstados, type Candidato } from "@/data/candidatos";
-import { noticias } from "@/data/noticias";
+import { listarNoticias } from "@/lib/noticias";
 import { FotoCandidato } from "@/components/ui/FotoCandidato";
+
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   searchParams: Promise<{ q?: string; estado?: string; cargo?: string }>;
@@ -41,6 +43,7 @@ export default async function BuscaPage({ searchParams }: PageProps) {
   const termo = (q ?? "").trim().toLowerCase();
 
   const candidatos = await carregarTodosCandidatos();
+  const noticias = await listarNoticias();
 
   const candidatosFiltrados = candidatos
     .filter((c) => {
@@ -65,7 +68,7 @@ export default async function BuscaPage({ searchParams }: PageProps) {
           n.titulo.toLowerCase().includes(termo) ||
           n.categoria.toLowerCase().includes(termo) ||
           n.resumo.toLowerCase().includes(termo) ||
-          n.tags.some((t) => t.toLowerCase().includes(termo))
+          (n.tags ?? []).some((t) => t.toLowerCase().includes(termo))
       )
     : [];
 
@@ -249,8 +252,8 @@ export default async function BuscaPage({ searchParams }: PageProps) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {noticiasEncontradas.map((n, i) => (
               <Link
-                key={n.id}
-                href={`/noticias/${n.id}`}
+                key={n.slug}
+                href={`/noticias/${n.slug}`}
                 className="group bg-white dark:bg-azul-light/20 rounded-xl border border-cinza-medio dark:border-azul-light p-4 hover:border-verde hover:shadow-lg transition-all animate-in fade-in slide-in-from-bottom-2 duration-300"
                 style={{
                   animationDelay: `${i * 40}ms`,
@@ -264,7 +267,7 @@ export default async function BuscaPage({ searchParams }: PageProps) {
                   {n.titulo}
                 </h3>
                 <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-2">
-                  {n.autor} · {n.data}
+                  {n.autor} · {new Date(n.createdAt).toLocaleDateString("pt-BR")}
                 </p>
               </Link>
             ))}

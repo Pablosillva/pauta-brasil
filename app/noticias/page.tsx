@@ -2,6 +2,9 @@ import Link from "next/link";
 import { Newspaper } from "lucide-react";
 import { listarNoticias } from "@/lib/noticias";
 
+// Sempre busca do banco — sem cache de build, para refletir publicações novas
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Notícias",
   description:

@@ -12,6 +12,11 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+// Notícias criadas após o build não estão em generateStaticParams.
+// Sem isto, o Next.js responderia 404 para qualquer notícia nova.
+export const dynamicParams = true;
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const noticia = await buscarNoticia(slug);
