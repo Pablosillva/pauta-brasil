@@ -1,16 +1,29 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 export default async function BatataLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") || "";
 
-  if (!session) {
-    redirect("/batata/login");
+  // Não verificar sessão na página de login
+  const isLoginPage = pathname.includes("/batata/login");
+
+  if (!isLoginPage) {
+    const session = await getSession();
+    if (!session) {
+      redirect("/batata/login");
+    }
+  }
+
+  // Se estiver na página de login, não mostrar o layout protegido
+  if (isLoginPage) {
+    return <>{children}</>;
   }
 
   return (
