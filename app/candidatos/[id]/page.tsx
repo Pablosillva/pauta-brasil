@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Share2, GitCompare, FileText, Mail } from "lucide-react";
-import { candidatos, nomesEstados, type Candidato } from "@/data/candidatos";
+import { nomesEstados, type Candidato } from "@/data/candidatos";
 import {
   InstagramIcon,
   TwitterIcon,
@@ -29,19 +29,13 @@ interface PageProps {
 export const dynamicParams = true;
 
 async function buscarCandidato(id: string): Promise<Candidato | null> {
-  // 1ª tentativa: mockados
-  const mockado = candidatos.find((c) => c.id === id);
-  if (mockado) return mockado;
-
-  // 2ª tentativa: TSE via API interna
+  // Busca diretamente nos arquivos JSON do TSE
+  const uf = id.split("-")[0].toLowerCase();
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/candidato/${id}`, {
-      cache: "force-cache",
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data as Candidato;
+    const filePath = `src/data/tse/${uf}.json`;
+    const mod = await import(`@/data/tse/${uf}.json`);
+    const lista = ((mod as any).default ?? mod) as Candidato[];
+    return lista.find((c) => c.id === id) ?? null;
   } catch {
     return null;
   }

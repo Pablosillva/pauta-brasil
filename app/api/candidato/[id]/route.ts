@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { candidatos as mockados } from "@/data/candidatos";
+import { readFile } from "fs/promises";
+import path from "path";
 
 export const dynamic = "force-dynamic";
 
@@ -10,17 +11,12 @@ interface Params {
 export async function GET(_request: NextRequest, { params }: Params) {
   const { id } = await params;
 
-  // 1ª tentativa: candidato mockado
-  const mockado = mockados.find((c) => c.id === id);
-  if (mockado) {
-    return NextResponse.json(mockado);
-  }
-
-  // 2ª tentativa: candidato do TSE
+  // Busca o candidato nos arquivos JSON do TSE
   const uf = id.split("-")[0].toLowerCase();
   try {
-    const mod = await import(`@/data/tse/${uf}.json`);
-    const lista = ((mod as any).default ?? mod) as any[];
+    const filePath = path.join(process.cwd(), "src/data/tse", `${uf}.json`);
+    const conteudo = await readFile(filePath, "utf-8");
+    const lista = JSON.parse(conteudo);
     const candidato = lista.find((c: any) => c.id === id);
 
     if (!candidato) {
