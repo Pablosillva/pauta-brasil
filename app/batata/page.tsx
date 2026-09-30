@@ -1,11 +1,11 @@
 import Link from "next/link";
+import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 import { listarNoticias } from "@/lib/noticias";
 
-export default async function AdminDashboard() {
-  const session = await auth();
-  if (!session) redirect("/admin/login");
+export default async function BatataDashboard() {
+  const session = await getSession();
+  if (!session) redirect("/batata/login");
 
   const noticias = await listarNoticias();
 
@@ -15,7 +15,7 @@ export default async function AdminDashboard() {
         Notícias ({noticias.length})
       </h1>
       <Link
-        href="/admin/noticias/nova"
+        href="/batata/noticias/nova"
         className="inline-block mb-6 px-4 py-2 bg-verde text-white rounded-lg hover:bg-verde-dark transition-colors"
       >
         + Criar nova notícia
@@ -28,7 +28,7 @@ export default async function AdminDashboard() {
           >
             <span className="text-azul dark:text-white">{n.titulo}</span>
             <Link
-              href={`/admin/noticias/${n.slug}`}
+              href={`/batata/noticias/${n.slug}`}
               className="text-verde hover:underline"
             >
               Editar

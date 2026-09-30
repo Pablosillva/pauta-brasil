@@ -3,12 +3,17 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink, Trash2 } from "lucide-react";
 import { buscarNoticia } from "@/lib/noticias";
 import { EditarNoticiaForm } from "./EditarNoticiaForm";
+import { getSession } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export default async function EditarNoticiaPage({ params }: PageProps) {
+  const session = await getSession();
+  if (!session) redirect("/batata/login");
+
   const { slug } = await params;
   const noticia = await buscarNoticia(slug);
   if (!noticia) return notFound();
@@ -17,7 +22,7 @@ export default async function EditarNoticiaPage({ params }: PageProps) {
     <div className="max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <Link
-          href="/admin"
+          href="/batata"
           className="inline-flex items-center gap-2 text-sm text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors"
         >
           <ArrowLeft size={16} /> Voltar ao dashboard

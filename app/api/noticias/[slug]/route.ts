@@ -4,7 +4,7 @@ import { existsSync } from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { put } from "@vercel/blob";
-import { auth } from "@/auth";
+import { getSession } from "@/lib/auth";
 
 const NOTICIAS_DIR = path.join(process.cwd(), "content/noticias");
 
@@ -13,7 +13,7 @@ interface Params {
 }
 
 export async function PUT(request: NextRequest, { params }: Params) {
-  const session = await auth();
+  const session = await getSession();
   if (!session) {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   }
@@ -83,7 +83,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
 }
 
 export async function DELETE(_request: NextRequest, { params }: Params) {
-  const session = await auth();
+  const session = await getSession();
   if (!session) {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   }

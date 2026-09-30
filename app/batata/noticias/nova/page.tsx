@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import matter from "gray-matter";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { getSession } from "@/lib/auth";
 
 const NOTICIAS_DIR = path.join(process.cwd(), "content/noticias");
 
@@ -23,6 +24,9 @@ function slugify(texto: string) {
 async function criarNoticia(formData: FormData) {
   "use server";
 
+  const session = await getSession();
+  if (!session) redirect("/batata/login");
+
   const titulo = formData.get("titulo") as string;
   const resumo = formData.get("resumo") as string;
   const categoria = formData.get("categoria") as string;
@@ -30,7 +34,7 @@ async function criarNoticia(formData: FormData) {
   const imagemFile = formData.get("imagem") as File | null;
   const tagsInput = formData.get("tags") as string;
   const slug = slugify(titulo);
-  const destaque = formData.get("destaque") === "on"; 
+  const destaque = formData.get("destaque") === "on";
 
   let imagemCapa = "";
   if (imagemFile && imagemFile.size > 0) {
@@ -70,14 +74,14 @@ async function criarNoticia(formData: FormData) {
 
   await writeFile(path.join(NOTICIAS_DIR, `${slug}.mdx`), frontmatter, "utf-8");
 
-  redirect("/admin");
+  redirect("/batata");
 }
 
 export default function NovaNoticiaPage() {
   return (
     <div className="max-w-3xl mx-auto">
       <Link
-        href="/admin"
+        href="/batata"
         className="inline-flex items-center gap-2 text-sm text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors mb-6"
       >
         <ArrowLeft size={16} /> Voltar ao dashboard
@@ -129,6 +133,7 @@ export default function NovaNoticiaPage() {
             <option value="Internacional">Internacional</option>
           </select>
         </div>
+
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Tags
@@ -142,6 +147,7 @@ export default function NovaNoticiaPage() {
             Separe por vírgula. Ex: Eleições, Congresso, Economia
           </p>
         </div>
+
         <div>
           <label className="flex items-center gap-3 cursor-pointer">
             <input
@@ -157,6 +163,7 @@ export default function NovaNoticiaPage() {
             Notícias em destaque aparecem em seções especiais do site
           </p>
         </div>
+
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Imagem de capa
@@ -193,7 +200,7 @@ export default function NovaNoticiaPage() {
             Publicar notícia
           </button>
           <Link
-            href="/admin"
+            href="/batata"
             className="px-6 py-3 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white hover:bg-cinza-claro dark:hover:bg-azul-light transition-colors"
           >
             Cancelar

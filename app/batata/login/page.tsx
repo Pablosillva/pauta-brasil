@@ -1,9 +1,40 @@
-import { signIn, auth } from "@/auth";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function LoginPage() {
-  const session = await auth();
-  if (session) redirect("/admin");
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+export default function BatataLoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [erro, setErro] = useState("");
+  const [carregando, setCarregando] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setErro("");
+    setCarregando(true);
+
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (res.ok) {
+        router.push("/batata");
+        router.refresh();
+      } else {
+        const data = await res.json();
+        setErro(data.error || "Erro ao fazer login");
+      }
+    } catch {
+      setErro("Erro ao fazer login");
+    } finally {
+      setCarregando(false);
+    }
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cinza-claro dark:bg-azul-dark px-4">
@@ -18,7 +49,7 @@ export default async function LoginPage() {
             </span>
           </div>
           <h1 className="text-2xl font-bold text-azul dark:text-white mb-2">
-            Painel Admin
+            Acesso Restrito
           </h1>
           <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
             Faça login para gerenciar o conteúdo
@@ -26,23 +57,15 @@ export default async function LoginPage() {
         </div>
 
         <form
-          action={async (formData) => {
-            "use server";
-            try {
-              await signIn("credentials", {
-                email: formData.get("email"),
-                password: formData.get("password"),
-                redirectTo: "/admin",
-              });
-            } catch (error) {
-              if ((error as Error).message.includes("NEXT_REDIRECT")) {
-                throw error;
-              }
-              redirect("/admin/login?error=CredentialsSignin");
-            }
-          }}
+          onSubmit={handleSubmit}
           className="bg-white dark:bg-azul-light p-8 rounded-2xl shadow-xl space-y-4"
         >
+          {erro && (
+            <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-sm">
+              {erro}
+            </div>
+          )}
+
           <div>
             <label
               htmlFor="email"
@@ -52,8 +75,9 @@ export default async function LoginPage() {
             </label>
             <input
               id="email"
-              name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="seu@email.com"
               className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-dark bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
@@ -69,8 +93,9 @@ export default async function LoginPage() {
             </label>
             <input
               id="password"
-              name="password"
               type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
               className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-dark bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
@@ -79,9 +104,10 @@ export default async function LoginPage() {
 
           <button
             type="submit"
-            className="w-full p-3 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors"
+            disabled={carregando}
+            className="w-full p-3 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors disabled:opacity-50"
           >
-            Entrar
+            {carregando ? "Entrando..." : "Entrar"}
           </button>
         </form>
 
