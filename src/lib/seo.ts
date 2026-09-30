@@ -25,7 +25,7 @@ export function jsonLdOrganization() {
     "@type": "Organization",
     name: "Pauta Brasil",
     url: SITE_URL,
-    logo: `${SITE_URL}/icon.svg`,
+    logo: `${SITE_URL}/favicon.png`,
   };
 }
 
@@ -88,7 +88,7 @@ export function jsonLdNewsArticle(noticia: {
     publisher: {
       "@type": "Organization",
       name: "Pauta Brasil",
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/icon.svg` },
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.png` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
