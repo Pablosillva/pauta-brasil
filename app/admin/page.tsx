@@ -7,7 +7,7 @@ export default async function AdminDashboard() {
   const session = await auth();
   if (!session) redirect("/admin/login");
 
-  const noticias = listarNoticias();
+  const noticias = await listarNoticias();
 
   return (
     <div>

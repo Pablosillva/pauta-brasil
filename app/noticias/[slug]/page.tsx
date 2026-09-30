@@ -14,7 +14,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const noticia = buscarNoticia(slug);
+  const noticia = await buscarNoticia(slug);
   if (!noticia) return { title: "Notícia não encontrada" };
   return {
     title: noticia.titulo,
@@ -24,29 +24,31 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
-  return listarNoticias().map((n) => ({ slug: n.slug }));
+  const noticias = await listarNoticias();
+  return noticias.map((n) => ({ slug: n.slug }));
 }
 
 export default async function NoticiaPage({ params }: PageProps) {
   const { slug } = await params;
-  const noticia = buscarNoticia(slug);
+  const noticia = await buscarNoticia(slug);
   if (!noticia) return notFound();
 
-  const relacionadas = listarNoticias()
+  const todasNoticias = await listarNoticias();
+  const relacionadas = todasNoticias
     .filter((n) => n.slug !== slug && n.categoria === noticia.categoria)
     .slice(0, 3);
 
   const outras =
     relacionadas.length > 0
       ? relacionadas
-      : listarNoticias().filter((n) => n.slug !== slug).slice(0, 3);
+      : todasNoticias.filter((n) => n.slug !== slug).slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: noticia.titulo,
     description: noticia.resumo,
-    datePublished: noticia.data,
+    datePublished: noticia.createdAt,
     author: { "@type": "Person", name: noticia.autor },
   };
 
@@ -79,7 +81,7 @@ export default async function NoticiaPage({ params }: PageProps) {
               </span>
               <span className="flex items-center gap-2">
                 <Calendar size={14} />{" "}
-                {new Date(noticia.data).toLocaleDateString("pt-BR", {
+                {new Date(noticia.createdAt).toLocaleDateString("pt-BR", {
                   day: "2-digit",
                   month: "long",
                   year: "numeric",
@@ -104,7 +106,7 @@ export default async function NoticiaPage({ params }: PageProps) {
 
           <NoticiaConteudo conteudo={noticia.conteudo} />
 
-          {noticia.tags.length > 0 && (
+          {noticia.tags && noticia.tags.length > 0 && (
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Tag size={16} className="text-cinza-escuro" />
               {noticia.tags.map((t) => (
@@ -163,7 +165,7 @@ export default async function NoticiaPage({ params }: PageProps) {
                   {n.titulo}
                 </h3>
                 <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-2">
-                  {new Date(n.data).toLocaleDateString("pt-BR")}
+                  {new Date(n.createdAt).toLocaleDateString("pt-BR")}
                 </p>
               </Link>
             ))}

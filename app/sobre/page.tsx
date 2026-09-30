@@ -85,18 +85,6 @@ export default function SobrePage() {
             </p>
           </div>
         </div>
-
-        <div className="p-6 rounded-2xl bg-verde/10 border border-verde/30">
-          <h3 className="font-bold text-azul dark:text-white mb-2">
-            Aviso legal
-          </h3>
-          <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-            Este é um projeto de demonstração. Os dados exibidos são
-            fictícios ou adaptados de fontes públicas para fins educacionais.
-            Consulte sempre o site oficial do TSE para informações oficiais
-            sobre candidatos e eleições.
-          </p>
-        </div>
       </section>
 
       <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light">

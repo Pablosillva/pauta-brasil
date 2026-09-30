@@ -8,8 +8,8 @@ export const metadata = {
     "Últimas notícias sobre política, eleições e o cenário brasileiro.",
 };
 
-export default function NoticiasPage() {
-  const noticias = listarNoticias();
+export default async function NoticiasPage() {
+  const noticias = await listarNoticias();
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
@@ -65,7 +65,7 @@ export default function NoticiasPage() {
                 </h3>
                 <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
                   {n.autor} ·{" "}
-                  {new Date(n.data).toLocaleDateString("pt-BR", {
+                  {new Date(n.createdAt).toLocaleDateString("pt-BR", {
                     day: "2-digit",
                     month: "long",
                     year: "numeric",

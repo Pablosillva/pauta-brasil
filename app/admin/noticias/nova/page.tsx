@@ -28,15 +28,20 @@ async function criarNoticia(formData: FormData) {
   const categoria = formData.get("categoria") as string;
   const conteudo = formData.get("conteudo") as string;
   const imagemFile = formData.get("imagem") as File | null;
-
+  const tagsInput = formData.get("tags") as string;
   const slug = slugify(titulo);
+  const destaque = formData.get("destaque") === "on"; 
 
   let imagemCapa = "";
   if (imagemFile && imagemFile.size > 0) {
     try {
-      const blob = await put(`noticias/${slug}-${imagemFile.name}`, imagemFile, {
-        access: "public",
-      });
+      const blob = await put(
+        `noticias/${slug}-${imagemFile.name}`,
+        imagemFile,
+        {
+          access: "public",
+        },
+      );
       imagemCapa = blob.url;
     } catch (err) {
       console.error("Erro ao fazer upload:", err);
@@ -50,8 +55,13 @@ async function criarNoticia(formData: FormData) {
     autor: "Redação Pauta Brasil",
     categoria,
     imagemCapa,
-    tags: [],
-    destaque: false,
+    tags: tagsInput
+      ? tagsInput
+          .split(",")
+          .map((t) => t.trim())
+          .filter(Boolean)
+      : [],
+    destaque,
   });
 
   if (!existsSync(NOTICIAS_DIR)) {
@@ -119,7 +129,34 @@ export default function NovaNoticiaPage() {
             <option value="Internacional">Internacional</option>
           </select>
         </div>
-
+        <div>
+          <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
+            Tags
+          </label>
+          <input
+            name="tags"
+            placeholder="Ex: Congresso, Licitações, Obras Públicas"
+            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+          />
+          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
+            Separe por vírgula. Ex: Eleições, Congresso, Economia
+          </p>
+        </div>
+        <div>
+          <label className="flex items-center gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              name="destaque"
+              className="w-4 h-4 rounded border-cinza-medio dark:border-azul-light text-verde focus:ring-verde"
+            />
+            <span className="text-sm font-semibold text-azul dark:text-white">
+              Marcar como destaque
+            </span>
+          </label>
+          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1 ml-7">
+            Notícias em destaque aparecem em seções especiais do site
+          </p>
+        </div>
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
             Imagem de capa
