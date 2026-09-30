@@ -5,7 +5,7 @@ import path from "path";
 import { redirect } from "next/navigation";
 import matter from "gray-matter";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, Edit3 } from "lucide-react";
 import { getSession } from "@/lib/auth";
 
 const NOTICIAS_DIR = path.join(process.cwd(), "content/noticias");
@@ -186,10 +186,21 @@ export default function NovaNoticiaPage() {
           <textarea
             name="conteudo"
             required
-            rows={15}
+            rows={20}
             placeholder="## Introdução&#10;&#10;Escreva o conteúdo aqui...&#10;&#10;## Próximos passos&#10;&#10;Continue o texto..."
             className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-verde"
           />
+          <div className="mt-2 p-3 rounded-lg bg-cinza-claro dark:bg-azul-light/20 text-xs text-cinza-escuro dark:text-cinza-medio">
+            <p className="font-semibold mb-1">Formatação Markdown:</p>
+            <ul className="list-disc list-inside space-y-0.5">
+              <li><code>## Título</code> para seções</li>
+              <li><code>**texto**</code> para negrito</li>
+              <li><code>*texto*</code> para itálico</li>
+              <li><code>- item</code> para listas</li>
+              <li><code>1. item</code> para listas numeradas</li>
+              <li><code>&gt; citação</code> para citações</li>
+            </ul>
+          </div>
         </div>
 
         <div className="flex gap-3">
