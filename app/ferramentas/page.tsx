@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { GitCompare, TrendingUp, FileText, BarChart3, Search, Shield } from "lucide-react";
+import { GitCompare, TrendingUp, FileText, BarChart3, Search, Shield, FileText as FileTextIcon, Map } from "lucide-react";
 
 export const metadata = {
-  title: "Ferramentas — Pauta Brasil",
-  description: "Ferramentas de análise política: comparador, ranking, histórico de votação e mais.",
+  title: "Ferramentas",
+  description: "Ferramentas de análise política: comparador, ranking, histórico de votação, colinha eleitoral e mais.",
 };
 
 const ferramentas = [
@@ -24,7 +24,7 @@ const ferramentas = [
   {
     titulo: "Histórico de votação",
     descricao: "Como cada parlamentar votou nas principais pautas.",
-    href: "/ferramentas/historico",
+    href: "/ferramentas/historico-votacao",
     icon: FileText,
     cor: "bg-verde-dark",
   },
@@ -47,6 +47,20 @@ const ferramentas = [
     descricao: "Dados abertos de gastos públicos e emendas.",
     href: "/ferramentas/transparencia",
     icon: Shield,
+    cor: "bg-azul",
+  },
+  {
+    titulo: "Colinha Eleitoral",
+    descricao: "Monte sua colinha digital com os números dos candidatos.",
+    href: "/ferramentas/colinha",
+    icon: FileTextIcon,
+    cor: "bg-verde",
+  },
+  {
+    titulo: "Mapa de Calor",
+    descricao: "Visualize a aprovação dos governadores por estado.",
+    href: "/ferramentas/mapa-calor",
+    icon: Map,
     cor: "bg-azul",
   },
 ];
