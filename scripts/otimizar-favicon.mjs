@@ -1,27 +1,38 @@
 import sharp from "sharp";
+import { statSync, renameSync, unlinkSync } from "fs";
 import path from "path";
 
-const input = path.join(process.cwd(), "public/favicon.png");
-const output = path.join(process.cwd(), "public/favicon.png");
+const file = path.join(process.cwd(), "public/favicon.png");
+const temp = path.join(process.cwd(), "public/favicon.tmp.png");
 
 async function main() {
-  // Corta as bordas brancas e gera um favicon quadrado compacto
-  const buffer = await sharp(input)
-    .trim({ threshold: 10 })
-    .resize(512, 512, {
-      fit: "contain",
-      background: { r: 255, g: 255, b: 255, alpha: 1 },
-    })
-    .png({ quality: 90, compressionLevel: 9 })
+  const antes = statSync(file).size;
+
+  // Reduz para 512x512 e comprime o PNG.
+  // Mantém as bordas para preservar o fundo azul-marinho e o respiro visual.
+  const buffer = await sharp(file)
+    .resize(512, 512, { fit: "contain" })
+    .png({ compressionLevel: 9, effort: 10, palette: true })
     .toBuffer();
 
-  const { writeFile } = await import("fs/promises");
-  await writeFile(output, buffer);
+  const { writeFileSync } = await import("fs");
+  writeFileSync(temp, buffer);
 
-  const meta = await sharp(output).metadata();
-  const { statSync } = await import("fs");
+  // Substitui o arquivo original
+  try {
+    unlinkSync(file);
+  } catch {
+    // ignora se estiver bloqueado momentarily
+  }
+  renameSync(temp, file);
+
+  const meta = await sharp(file).metadata();
+  const depois = statSync(file).size;
+
+  console.log(`✅ favicon.png otimizado`);
+  console.log(`   ${meta.width}x${meta.height}`);
   console.log(
-    `✅ favicon.png otimizado: ${meta.width}x${meta.height}, ${(statSync(output).size / 1024).toFixed(1)} KB`
+    `   ${(antes / 1024).toFixed(1)} KB → ${(depois / 1024).toFixed(1)} KB`
   );
 }
 
