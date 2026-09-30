@@ -14,7 +14,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  alternates: {canonical: "/"},
+  alternates: { canonical: "/" },
   verification: {
     google: "JGTBz0Q25olmwGq1mocPS0OO5XMBGrtLMhunmHwdUfs",
   },
@@ -23,20 +23,20 @@ export const metadata: Metadata = {
     template: "%s | Pauta Brasil",
   },
   icons: {
-  icon: [
-    { url: "/favicon.ico", sizes: "any" },
-    { url: "/icon.svg", type: "image/svg+xml" },
-    { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-  ],
-  apple: "/apple-touch-icon.png",
-  other: [
-    {
-      rel: "manifest",
-      url: "/site.webmanifest",
-    },
-  ],
-},
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "manifest",
+        url: "/site.webmanifest",
+      },
+    ],
+  },
   description:
     "Acompanhe candidatos, propostas e o cenário político do Brasil. Mapa interativo, comparador de propostas, ranking de popularidade e notícias.",
   keywords: [
@@ -47,6 +47,10 @@ export const metadata: Metadata = {
     "propostas",
     "mapa eleitoral",
     "comparador de propostas",
+    "ranking de popularidade",
+    "notícias política",
+    "transparência",
+    "democracia",
   ],
   authors: [{ name: "Pauta Brasil" }],
   creator: "Pauta Brasil",

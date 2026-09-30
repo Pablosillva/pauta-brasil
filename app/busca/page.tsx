@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Search, User, Newspaper } from "lucide-react";
+import { Search, User, Newspaper, Filter } from "lucide-react";
 import { readFile, readdir } from "fs/promises";
 import path from "path";
 import { nomesEstados, type Candidato } from "@/data/candidatos";
@@ -7,13 +7,14 @@ import { noticias } from "@/data/noticias";
 import { FotoCandidato } from "@/components/ui/FotoCandidato";
 
 interface PageProps {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; estado?: string; cargo?: string }>;
 }
 
 export async function generateMetadata({ searchParams }: PageProps) {
   const { q } = await searchParams;
   return {
     title: q ? `Busca: "${q}"` : "Busca",
+    description: "Busque candidatos por nome, partido, cargo ou estado.",
   };
 }
 
@@ -36,24 +37,27 @@ async function carregarTodosCandidatos(): Promise<Candidato[]> {
 }
 
 export default async function BuscaPage({ searchParams }: PageProps) {
-  const { q } = await searchParams;
+  const { q, estado, cargo } = await searchParams;
   const termo = (q ?? "").trim().toLowerCase();
 
   const candidatos = await carregarTodosCandidatos();
 
-  const candidatosEncontrados = termo
-    ? candidatos
-        .filter(
-          (c) =>
-            c.nome.toLowerCase().includes(termo) ||
-            (c.nomeUrna && c.nomeUrna.toLowerCase().includes(termo)) ||
-            c.partido.toLowerCase().includes(termo) ||
-            c.cargo.toLowerCase().includes(termo) ||
-            c.numero.includes(termo) ||
-            (nomesEstados[c.estadoId] ?? "").toLowerCase().includes(termo)
-        )
-        .slice(0, 60) // limita para não travar
-    : [];
+  const candidatosFiltrados = candidatos
+    .filter((c) => {
+      if (!termo) return true;
+      return (
+        c.nome.toLowerCase().includes(termo) ||
+        (c.nomeUrna && c.nomeUrna.toLowerCase().includes(termo)) ||
+        c.partido.toLowerCase().includes(termo) ||
+        c.cargo.toLowerCase().includes(termo) ||
+        c.numero.includes(termo) ||
+        (nomesEstados[c.estadoId] ?? "").toLowerCase().includes(termo)
+      );
+    })
+    .filter((c) => !estado || c.estadoId === estado)
+    .filter((c) => !cargo || c.cargo === cargo);
+
+  const candidatosEncontrados = candidatosFiltrados.slice(0, 100);
 
   const noticiasEncontradas = termo
     ? noticias.filter(
@@ -66,6 +70,9 @@ export default async function BuscaPage({ searchParams }: PageProps) {
     : [];
 
   const total = candidatosEncontrados.length + noticiasEncontradas.length;
+
+  const estados = Object.entries(nomesEstados).map(([id, nome]) => ({ id, nome }));
+  const cargos = ["Presidente", "Governador", "Senador", "Deputado Federal", "Deputado Estadual"];
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
@@ -87,15 +94,78 @@ export default async function BuscaPage({ searchParams }: PageProps) {
         </h1>
         {termo ? (
           <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-            {total} resultado{total === 1 ? "" : "s"} encontrado
-            {total === 1 ? "" : "s"}
+            {total} resultado{total === 1 ? "" : "s"} encontrado{total === 1 ? "" : "s"}
           </p>
         ) : (
           <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-            Digite algo no campo de busca do topo para começar.
+            Busque candidatos por nome, partido, cargo ou estado.
           </p>
         )}
       </header>
+
+      {/* Filtros */}
+      <div className="flex flex-wrap gap-3 items-center bg-white dark:bg-azul-light/20 p-4 rounded-xl border border-cinza-medio dark:border-azul-light mb-8">
+        <div className="flex items-center gap-2 text-cinza-escuro dark:text-cinza-medio">
+          <Filter size={16} />
+          <span className="text-sm font-semibold">Filtros</span>
+        </div>
+
+        <select
+          value={estado ?? ""}
+          onChange={(e) => {
+            const params = new URLSearchParams(window.location.search);
+            if (e.target.value) {
+              params.set("estado", e.target.value);
+            } else {
+              params.delete("estado");
+            }
+            window.location.href = `/busca?${params.toString()}`;
+          }}
+          className="text-sm px-3 py-1.5 rounded-md border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+        >
+          <option value="">Todos os estados</option>
+          {estados.map((e) => (
+            <option key={e.id} value={e.id}>
+              {e.nome}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={cargo ?? ""}
+          onChange={(e) => {
+            const params = new URLSearchParams(window.location.search);
+            if (e.target.value) {
+              params.set("cargo", e.target.value);
+            } else {
+              params.delete("cargo");
+            }
+            window.location.href = `/busca?${params.toString()}`;
+          }}
+          className="text-sm px-3 py-1.5 rounded-md border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+        >
+          <option value="">Todos os cargos</option>
+          {cargos.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+
+        {(estado || cargo) && (
+          <button
+            onClick={() => {
+              const params = new URLSearchParams(window.location.search);
+              params.delete("estado");
+              params.delete("cargo");
+              window.location.href = `/busca?${params.toString()}`;
+            }}
+            className="ml-auto text-xs font-semibold text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors"
+          >
+            Limpar filtros
+          </button>
+        )}
+      </div>
 
       {termo && total === 0 && (
         <div className="text-center py-16 bg-cinza-claro dark:bg-azul-light/10 rounded-2xl animate-in fade-in">
