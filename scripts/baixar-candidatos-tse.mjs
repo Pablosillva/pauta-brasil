@@ -36,7 +36,8 @@ function normalizarCargo(cargoOriginal) {
 }
 
 function normalizarStatus(situacao) {
-  const deferidos = ["2", "12", "16", "17"];
+  // Códigos TSE para candidaturas deferidas/oficiais
+  const deferidos = ["2", "12", "16", "17", "18", "19", "20", "21", "22"];
   if (deferidos.includes(situacao)) return "Candidato oficial";
   return "Pré-candidato";
 }
