@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#0A2540"/>
+  <text
+    x="50%"
+    y="54%"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="240"
+    font-weight="800"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="#009B3A"
+  >
+    PB
+  </text>
+</svg>

@@ -55,6 +55,22 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
 
   const temFiltro = !!estado || !!cargo || !!partido;
 
+  // Extrair estados e partidos disponíveis dos dados reais
+  const estadosDisponiveis = Array.from(
+    new Set(todosCandidatos.map((c) => c.estadoId))
+  ).sort((a, b) =>
+    (nomesEstados[a] ?? a).localeCompare(nomesEstados[b] ?? b)
+  );
+
+  const partidosDisponiveis = Array.from(
+    new Set(todosCandidatos.map((c) => c.partido))
+  ).sort();
+
+  const estadosMap: Record<string, string> = {};
+  for (const id of estadosDisponiveis) {
+    estadosMap[id] = nomesEstados[id] ?? id.toUpperCase();
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <header className="mb-8">
@@ -75,7 +91,10 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
       </header>
 
       <Suspense fallback={<div className="h-20" />}>
-        <FiltrosCandidatos />
+        <FiltrosCandidatos
+          estados={estadosMap}
+          partidos={partidosDisponiveis}
+        />
       </Suspense>
 
       {filtrados.length === 0 ? (

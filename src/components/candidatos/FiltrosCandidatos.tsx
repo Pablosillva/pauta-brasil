@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Filter, X } from "lucide-react";
-import { candidatos, nomesEstados } from "@/data/candidatos";
+import { useEffect, useState } from "react";
 
 const CARGOS = [
   "Presidente",
@@ -12,25 +12,18 @@ const CARGOS = [
   "Deputado Estadual",
 ] as const;
 
-export function FiltrosCandidatos() {
+interface FiltrosCandidatosProps {
+  estados: Record<string, string>;
+  partidos: string[];
+}
+
+export function FiltrosCandidatos({ estados, partidos }: FiltrosCandidatosProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const estadoAtivo = searchParams.get("estado") ?? "todos";
   const cargoAtivo = searchParams.get("cargo") ?? "todos";
   const partidoAtivo = searchParams.get("partido") ?? "todos";
-
-  // Estados disponíveis (só os que têm candidatos)
-  const estadosDisponiveis = Array.from(
-    new Set(candidatos.map((c) => c.estadoId))
-  ).sort((a, b) =>
-    (nomesEstados[a] ?? a).localeCompare(nomesEstados[b] ?? b)
-  );
-
-  // Partidos disponíveis (só os que têm candidatos)
-  const partidosDisponiveis = Array.from(
-    new Set(candidatos.map((c) => c.partido))
-  ).sort();
 
   function atualizar(chave: string, valor: string) {
     const params = new URLSearchParams(searchParams.toString());
@@ -69,9 +62,9 @@ export function FiltrosCandidatos() {
         className="text-sm px-3 py-1.5 rounded-md border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
       >
         <option value="todos">Todos os estados</option>
-        {estadosDisponiveis.map((e) => (
-          <option key={e} value={e}>
-            {nomesEstados[e] ?? e.toUpperCase()}
+        {Object.entries(estados).map(([id, nome]) => (
+          <option key={id} value={id}>
+            {nome}
           </option>
         ))}
       </select>
@@ -99,7 +92,7 @@ export function FiltrosCandidatos() {
         className="text-sm px-3 py-1.5 rounded-md border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
       >
         <option value="todos">Todos os partidos</option>
-        {partidosDisponiveis.map((p) => (
+        {partidos.map((p) => (
           <option key={p} value={p}>
             {p}
           </option>
