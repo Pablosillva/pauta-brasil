@@ -30,7 +30,8 @@ export function Header() {
           Informação, transparência e democracia
         </span>
         <div className="flex items-center gap-4">
-          <Link
+          {/* Links de Entrar e Premium ocultos temporariamente */}
+          {/* <Link
             href="/login"
             className="flex items-center gap-1 text-azul dark:text-white hover:text-verde transition-colors"
           >
@@ -41,7 +42,7 @@ export function Header() {
             className="flex items-center gap-1 font-semibold text-verde hover:text-verde-dark transition-colors"
           >
             <Crown size={14} /> Assine Premium
-          </Link>
+          </Link> */}
         </div>
       </div>
 
@@ -105,12 +106,13 @@ export function Header() {
           </nav>
           <div className="flex items-center justify-between pt-3 border-t border-cinza-medio dark:border-azul-light">
             <ThemeToggle />
-            <div className="flex gap-2">
+            {/* Links de Entrar e Premium ocultos temporariamente */}
+            {/* <div className="flex gap-2">
               <Button variant="outline" size="sm">
                 Entrar
               </Button>
               <Button size="sm">Assine Premium</Button>
-            </div>
+            </div> */}
           </div>
         </div>
       )}

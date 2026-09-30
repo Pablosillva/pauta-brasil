@@ -1,18 +1,48 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { AlertCircle } from "lucide-react";
-import { candidatos, nomesEstados, type Candidato } from "@/data/candidatos";
+import { nomesEstados, type Candidato } from "@/data/candidatos";
 
 interface TabelaComparativaProps {
   ids: string[];
 }
 
 export function TabelaComparativa({ ids }: TabelaComparativaProps) {
-  const selecionados = ids
-    .map((id) => candidatos.find((c) => c.id === id))
-    .filter(Boolean) as Candidato[];
+  const [candidatos, setCandidatos] = useState<Candidato[]>([]);
+  const [carregando, setCarregando] = useState(true);
 
-  if (selecionados.length < 2) {
+  useEffect(() => {
+    async function carregar() {
+      try {
+        const res = await fetch("/api/candidatos");
+        if (res.ok) {
+          const data = await res.json();
+          const selecionados = ids
+            .map((id) => data.find((c: Candidato) => c.id === id))
+            .filter(Boolean) as Candidato[];
+          setCandidatos(selecionados);
+        }
+      } catch (err) {
+        console.error("Erro ao carregar candidatos:", err);
+      } finally {
+        setCarregando(false);
+      }
+    }
+    carregar();
+  }, [ids]);
+
+  if (carregando) {
+    return (
+      <div className="text-center py-16 bg-white dark:bg-azul-light/20 rounded-2xl border border-dashed border-cinza-medio dark:border-azul-light">
+        <p className="text-cinza-escuro dark:text-cinza-medio">
+          Carregando candidatos...
+        </p>
+      </div>
+    );
+  }
+
+  if (candidatos.length < 2) {
     return (
       <div className="text-center py-16 bg-white dark:bg-azul-light/20 rounded-2xl border border-dashed border-cinza-medio dark:border-azul-light">
         <AlertCircle
@@ -29,7 +59,7 @@ export function TabelaComparativa({ ids }: TabelaComparativaProps) {
   // Coletar todas as áreas temáticas únicas entre os selecionados
   const areas = Array.from(
     new Set(
-      selecionados.flatMap((c) => (c.propostas ?? []).map((p) => p.area))
+      candidatos.flatMap((c) => (c.propostas ?? []).map((p) => p.area))
     )
   );
 
@@ -52,7 +82,7 @@ export function TabelaComparativa({ ids }: TabelaComparativaProps) {
             <th className="p-4 text-left text-sm font-semibold w-40">
               Tema
             </th>
-            {selecionados.map((c) => (
+            {candidatos.map((c) => (
               <th key={c.id} className="p-4 text-left align-top">
                 <div className="flex items-center gap-3">
                   <img
@@ -76,7 +106,7 @@ export function TabelaComparativa({ ids }: TabelaComparativaProps) {
         {/* Linhas por tema */}
         <tbody>
           {areas.map((area, i) => {
-            const propostasDaLinha = selecionados.map(
+            const propostasDaLinha = candidatos.map(
               (c) => c.propostas?.find((p) => p.area === area)?.resumo ?? null
             );
 

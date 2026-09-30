@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, X, Search } from "lucide-react";
-import { candidatos, nomesEstados, type Candidato } from "@/data/candidatos";
+import { nomesEstados, type Candidato } from "@/data/candidatos";
 import { cn } from "@/lib/utils";
 
 interface SeletorCandidatosProps {
@@ -17,6 +17,25 @@ export function SeletorCandidatos({
   max = 4,
 }: SeletorCandidatosProps) {
   const [busca, setBusca] = useState("");
+  const [candidatos, setCandidatos] = useState<Candidato[]>([]);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    async function carregar() {
+      try {
+        const res = await fetch("/api/candidatos");
+        if (res.ok) {
+          const data = await res.json();
+          setCandidatos(data);
+        }
+      } catch (err) {
+        console.error("Erro ao carregar candidatos:", err);
+      } finally {
+        setCarregando(false);
+      }
+    }
+    carregar();
+  }, []);
 
   const candidatosSelecionados = selecionados
     .map((id) => candidatos.find((c) => c.id === id))
@@ -38,6 +57,14 @@ export function SeletorCandidatos({
 
   function remover(id: string) {
     onChange(selecionados.filter((s) => s !== id));
+  }
+
+  if (carregando) {
+    return (
+      <div className="flex items-center gap-2 px-4 py-2 rounded-xl border-2 border-dashed border-cinza-medio dark:border-azul-light text-cinza-escuro dark:text-cinza-medio text-sm">
+        Carregando candidatos...
+      </div>
+    );
   }
 
   return (
