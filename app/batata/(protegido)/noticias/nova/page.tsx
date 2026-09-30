@@ -1,9 +1,10 @@
-import { put } from "@vercel/blob";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getSession } from "@/lib/auth";
 import { criarNoticia } from "@/lib/noticias";
+import { EditorConteudo } from "@/components/ui/EditorConteudo";
+import { CampoImagem } from "@/components/ui/CampoImagem";
 
 async function salvar(formData: FormData) {
   "use server";
@@ -16,24 +17,10 @@ async function salvar(formData: FormData) {
   const categoria = formData.get("categoria") as string;
   const conteudo = (formData.get("conteudo") as string) ?? "";
   const tagsInput = (formData.get("tags") as string) ?? "";
+  const imagemCapa = (formData.get("imagemCapa") as string) || null;
   const destaque = formData.get("destaque") === "on";
-  const imagemFile = formData.get("imagem") as File | null;
 
   if (!titulo || !resumo) redirect("/batata/noticias/nova?erro=campos");
-
-  let imagemCapa: string | null = null;
-  if (imagemFile && imagemFile.size > 0) {
-    try {
-      const blob = await put(
-        `noticias/${Date.now()}-${imagemFile.name}`,
-        imagemFile,
-        { access: "public" }
-      );
-      imagemCapa = blob.url;
-    } catch (err) {
-      console.error("Erro ao fazer upload da imagem:", err);
-    }
-  }
 
   try {
     await criarNoticia({
@@ -146,41 +133,17 @@ export default async function NovaNoticiaPage({
           </label>
         </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-            Imagem de capa
-          </label>
-          <input
-            type="file"
-            name="imagem"
-            accept="image/*"
-            className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white"
-          />
-          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
-            Recomendado: 800x400px, JPG ou PNG
-          </p>
-        </div>
+        <CampoImagem name="imagemCapa" />
 
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-            Conteúdo (Markdown)
+            Conteúdo
           </label>
-          <textarea
+          <EditorConteudo
             name="conteudo"
             rows={20}
             placeholder={"## Introdução\n\nEscreva o conteúdo aqui...\n\n## Próximos passos\n\nContinue o texto..."}
-            className={`${inputClass} font-mono text-sm`}
           />
-          <div className="mt-2 p-3 rounded-lg bg-cinza-claro dark:bg-azul-light/20 text-xs text-cinza-escuro dark:text-cinza-medio">
-            <p className="font-semibold mb-1">Formatação Markdown:</p>
-            <ul className="list-disc list-inside space-y-0.5">
-              <li><code>## Título</code> — seções</li>
-              <li><code>**texto**</code> — negrito</li>
-              <li><code>*texto*</code> — itálico</li>
-              <li><code>- item</code> — listas</li>
-              <li><code>&gt; citação</code> — citações</li>
-            </ul>
-          </div>
         </div>
 
         <div className="flex gap-3">

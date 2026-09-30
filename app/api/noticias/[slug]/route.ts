@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { put } from "@vercel/blob";
 import { getSession } from "@/lib/auth";
 import { atualizarNoticia, deletarNoticia, buscarNoticia } from "@/lib/noticias";
 
@@ -31,27 +30,20 @@ export async function PUT(request: NextRequest, { params }: Params) {
     const conteudo = (formData.get("conteudo") as string) ?? existente.conteudo;
     const tagsInput = (formData.get("tags") as string) ?? "";
     const destaque = formData.get("destaque") === "on";
-    const imagemFile = formData.get("imagem") as File | null;
+
+    // A imagem já foi enviada ao Cloudinary por /api/upload.
+    // Campo vazio = manter a imagem atual.
+    const imagemEnviada = formData.get("imagemCapa") as string | null;
+    const imagemCapa =
+      imagemEnviada === null || imagemEnviada === undefined || imagemEnviada === ""
+        ? existente.imagemCapa
+        : imagemEnviada;
 
     if (!titulo || !resumo) {
       return NextResponse.json(
         { error: "Título e resumo são obrigatórios" },
         { status: 400 }
       );
-    }
-
-    let imagemCapa = existente.imagemCapa;
-    if (imagemFile && imagemFile.size > 0) {
-      try {
-        const blob = await put(
-          `noticias/${Date.now()}-${imagemFile.name}`,
-          imagemFile,
-          { access: "public" }
-        );
-        imagemCapa = blob.url;
-      } catch (err) {
-        console.error("Erro ao fazer upload:", err);
-      }
     }
 
     await atualizarNoticia(slug, {

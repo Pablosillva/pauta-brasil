@@ -5,10 +5,24 @@ import { useRouter } from "next/navigation";
 import { Trash2 } from "lucide-react";
 import type { Noticia } from "@/lib/noticias";
 import Link from "next/link";
+import { EditorConteudo } from "@/components/ui/EditorConteudo";
+import { CampoImagem } from "@/components/ui/CampoImagem";
 
 interface EditarNoticiaFormProps {
   noticia: Noticia;
 }
+
+const CATEGORIAS = [
+  "Política",
+  "Economia",
+  "Justiça",
+  "Eleições",
+  "Sociedade",
+  "Internacional",
+];
+
+const inputClass =
+  "w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde";
 
 export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
   const router = useRouter();
@@ -34,7 +48,7 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
         throw new Error(data.error || "Erro ao salvar");
       }
 
-      router.push("/admin");
+      router.push("/batata");
       router.refresh();
     } catch (err) {
       setErro((err as Error).message);
@@ -51,7 +65,7 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
 
       if (!res.ok) throw new Error("Erro ao deletar");
 
-      router.push("/admin");
+      router.push("/batata");
       router.refresh();
     } catch (err) {
       setErro((err as Error).message);
@@ -71,42 +85,26 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
         <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
           Título
         </label>
-        <input
-          name="titulo"
-          required
-          defaultValue={noticia.titulo}
-          className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-        />
+        <input name="titulo" required defaultValue={noticia.titulo} className={inputClass} />
       </div>
 
       <div>
         <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
           Resumo
         </label>
-        <input
-          name="resumo"
-          required
-          defaultValue={noticia.resumo}
-          className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-        />
+        <input name="resumo" required defaultValue={noticia.resumo} className={inputClass} />
       </div>
 
       <div>
         <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
           Categoria
         </label>
-        <select
-          name="categoria"
-          required
-          defaultValue={noticia.categoria}
-          className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
-        >
-          <option value="Política">Política</option>
-          <option value="Economia">Economia</option>
-          <option value="Justiça">Justiça</option>
-          <option value="Eleições">Eleições</option>
-          <option value="Sociedade">Sociedade</option>
-          <option value="Internacional">Internacional</option>
+        <select name="categoria" required defaultValue={noticia.categoria} className={inputClass}>
+          {CATEGORIAS.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -118,7 +116,7 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
           name="tags"
           defaultValue={noticia.tags?.join(", ") ?? ""}
           placeholder="Ex: Congresso, Licitações"
-          className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+          className={inputClass}
         />
         <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
           Separe por vírgula
@@ -139,40 +137,17 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
         </label>
       </div>
 
-      <div>
-        <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-          Nova imagem de capa (opcional)
-        </label>
-        {noticia.imagemCapa && (
-          <div className="mb-3">
-            <img
-              src={noticia.imagemCapa}
-              alt="Capa atual"
-              className="w-32 h-20 object-cover rounded-lg border border-cinza-medio dark:border-azul-light"
-            />
-            <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
-              Imagem atual. Deixe em branco para manter.
-            </p>
-          </div>
-        )}
-        <input
-          type="file"
-          name="imagem"
-          accept="image/*"
-          className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white"
-        />
-      </div>
+      <CampoImagem name="imagemCapa" imagemAtual={noticia.imagemCapa} />
 
       <div>
         <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-          Conteúdo (Markdown)
+          Conteúdo
         </label>
-        <textarea
+        <EditorConteudo
           name="conteudo"
-          required
-          rows={20}
           defaultValue={noticia.conteudo}
-          className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-verde"
+          rows={20}
+          placeholder={"## Introdução\n\nEscreva o conteúdo aqui..."}
         />
       </div>
 
@@ -186,7 +161,7 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
             {carregando ? "Salvando..." : "Salvar alterações"}
           </button>
           <Link
-            href="/admin"
+            href="/batata"
             className="px-6 py-3 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white hover:bg-cinza-claro dark:hover:bg-azul-light transition-colors"
           >
             Cancelar
