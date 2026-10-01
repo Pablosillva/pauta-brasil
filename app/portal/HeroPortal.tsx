@@ -42,7 +42,7 @@ export function HeroPortal() {
           </div>
 
           {/* Estatísticas rápidas */}
-          <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-12 pt-8 border-t border-white/10">
             <div>
               <p className="text-3xl font-bold text-verde-light">27</p>
               <p className="text-sm text-white/60">Governadores monitorados</p>

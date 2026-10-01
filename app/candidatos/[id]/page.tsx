@@ -154,7 +154,7 @@ export default async function CandidatoPage({
                 )}
               </div>
             </div>
-            <div className="flex flex-row md:flex-col gap-3">
+            <div className="flex flex-wrap gap-3">
               <Link
                 href={`/comparador?ids=${candidato.id}`}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-verde hover:bg-verde-dark font-semibold transition-colors"

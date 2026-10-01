@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Info } from "lucide-react";
 import { buscarSenador, temChaveSenado } from "@/lib/senado";
-import { listarGastos, temChavePortalTransparencia } from "@/lib/gastos";
+
 import { TabsSenador } from "@/components/parlamentares/TabsSenador";
 import { jsonLdBreadcrumb } from "@/lib/seo";
 
@@ -33,11 +33,11 @@ export default async function SenadorPage({ params }: PageProps) {
 
   if (!senador) notFound();
 
-  // Os gastos vem da mesma base da Camara (CGU), que tambem exige chave.
-  const gastos = temChavePortalTransparencia()
-    ? await listarGastos(senador.nome).catch(() => null)
-    : null;
-
+  /*
+   * Gastos de senador nao tem fonte publica equivalente. A Camara publica
+   * os delas em CSV aberto; o Senado nao fez o mesmo e a CGU exigiria chave.
+   * A aba declara a ausencia em vez de mostrar zero.
+   */
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
     { name: "Parlamentares", url: "/parlamentares" },
@@ -111,8 +111,8 @@ export default async function SenadorPage({ params }: PageProps) {
 
       <TabsSenador
         senador={senador}
-        gastos={gastos}
-        temChaveGastos={temChavePortalTransparencia()}
+        semFonte
+
         temChaveSenado={temChaveSenado()}
       />
 

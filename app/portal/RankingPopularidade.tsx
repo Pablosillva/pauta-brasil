@@ -31,7 +31,7 @@ export function RankingPopularidade() {
 
   return (
     <section className="max-w-7xl mx-auto px-6 py-12">
-      <div className="flex items-center justify-between gap-4 mb-8">
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="flex items-center gap-2 text-3xl font-bold text-azul dark:text-white">
             <Trophy size={24} className="text-verde" />

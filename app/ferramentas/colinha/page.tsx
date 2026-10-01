@@ -90,7 +90,7 @@ export default function ColinhaPage() {
             return (
               <div
                 key={item.cargo}
-                className="flex items-center gap-4 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/30"
+                className="flex flex-wrap items-center gap-4 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/30"
               >
                 <div className="w-8 h-8 rounded-full bg-verde flex items-center justify-center text-white font-bold text-sm">
                   {index + 1}

@@ -25,11 +25,11 @@ import {
   rotuloVoto,
   type CorVoto,
 } from "@/lib/camara";
-import { listarGastos } from "@/lib/gastos";
-import { temChavePortalTransparencia } from "@/lib/gastos";
+import { gastosDoDeputado } from "@/lib/gastos";
+
 import { BadgeVoto } from "@/components/pautas/BadgeVotacao";
 import { TabsDeputado } from "@/components/parlamentares/TabsDeputado";
-import { AbaGastos } from "@/components/parlamentares/AbaGastos";
+
 import { jsonLdBreadcrumb } from "@/lib/seo";
 
 export const revalidate = 3600;
@@ -71,7 +71,7 @@ export default async function DeputadoPage({ params }: PageProps) {
     votosDoDeputado(deputadoId, 40),
     votacoesDoIndice(),
     projetosDoDeputado(deputado.nome, 30),
-    listarGastos(deputado.nome).catch(() => null),
+    gastosDoDeputado(deputadoId),
   ]);
 
   const resumo = votos.reduce<Record<string, number>>((mapa, v) => {
@@ -169,7 +169,7 @@ export default async function DeputadoPage({ params }: PageProps) {
               )}
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mt-5 pt-5 border-t border-cinza-medio dark:border-azul-light">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-5 pt-5 border-t border-cinza-medio dark:border-azul-light">
               <div>
                 <p className="text-2xl font-bold text-azul dark:text-white">
                   {projetos.length}
@@ -207,7 +207,7 @@ export default async function DeputadoPage({ params }: PageProps) {
         votacoesIndice={votacoesIndice}
         ficha={ficha.map((f) => ({ rotulo: f.rotulo, valor: f.valor }))}
         gastos={gastos}
-        temChaveGastos={temChavePortalTransparencia()}
+
       />
 
       <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light">

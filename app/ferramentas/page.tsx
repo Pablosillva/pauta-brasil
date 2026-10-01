@@ -44,7 +44,7 @@ const ferramentas = [
   },
   {
     titulo: "Transparência",
-    descricao: "Gastos no Portal da Transparência da CGU.",
+    descricao: "Cota e verba de gabinete, pela Câmara.",
     href: "/ferramentas/transparencia",
     icon: Shield,
     cor: "bg-azul",

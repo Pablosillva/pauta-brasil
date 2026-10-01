@@ -1,53 +1,50 @@
 "use client";
 
-import Link from "next/link";
-import { Wallet, KeyRound, AlertTriangle } from "lucide-react";
-import type { Gasto } from "@/lib/gastos";
-import { formatarValor } from "@/lib/gastos";
+import { Wallet, Info, TrendingDown } from "lucide-react";
+import {
+  categoriasOrdenadas,
+  formatarValor,
+  anoDoDado,
+  geradoEm,
+  type GastosDeputado,
+} from "@/lib/gastos";
 
 interface AbaGastosProps {
-  gastos: Gasto[] | null;
-  temChave: boolean;
+  gastos: GastosDeputado | null;
   nome: string;
+  /** Senadores nao tem fonte equivalente; a tela declara a ausencia. */
+  semFonte?: boolean;
 }
 
 /**
- * Aba de gastos parliamentary.
+ * Gastos de gabinete com cota e verba.
  *
- * Mostra o estado real da fonte: se a chave do Portal da Transparencia nao
- * esta configurada, explica o que falta em vez de exibir zeros, que
- * pareceriam "este parlamentar nao gasta".
+ * Antes esta aba consultava o Portal da Transparencia e, sem a chave, mostrava
+ * um aviso. A fonte agora e o CSV aberto da propria Camara, entao o aviso so
+ * aparece para quem realmente nao tem dado: os senadores, para os quais nao
+ * existe fonte publica equivalente.
+ *
+ * Os numeros vem de src/data/gastos-camara.json, gerado por
+ * scripts/gerar-indice-gastos.mjs. O rodape da aba diz o ano e a data do
+ * arquivo, porque o dado nao e do dia.
  */
-export function AbaGastos({ gastos, temChave, nome }: AbaGastosProps) {
-  if (!temChave) {
+export function AbaGastos({ gastos, nome, semFonte }: AbaGastosProps) {
+  if (semFonte) {
     return (
-      <div className="p-6 rounded-2xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:amber-800">
+      <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-cinza-medio dark:border-azul-light">
         <div className="flex items-start gap-3">
-          <KeyRound
+          <Info
             size={20}
-            className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"
+            className="text-cinza-escuro dark:text-cinza-medio shrink-0 mt-0.5"
           />
           <div>
             <h3 className="font-bold text-azul dark:text-white mb-1">
-              Gastos Parliamentary ainda nao disponiveis
+              Gastos de senador sem fonte pública
             </h3>
             <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-              O Portal da Transparencia da CGU exige uma chave de API gratuita
-              para responder. Sem ela, esta aba ficaria vazia — e uma aba
-              vazia parece dizer que o parlamentar nao gasta, o que seria falso.
-            </p>
-            <p className="text-sm text-cinza-escuro dark:text-cinza-medio mt-2">
-              A chave sai de{" "}
-              <a
-                href="https://www.portaldatransparencia.gov.br/api-de-dados/cadastrar-email"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-verde font-semibold hover:underline"
-              >
-                portal transparencia.gov.br
-              </a>
-              , com cadastro por e-mail. Depois basta definir{" "}
-              <code>PORTAL_TRANSPARENCIA_API_KEY</code>.
+              A Câmara publica os gastos dos deputados em CSV aberto, mas não
+              fez o equivalente para o Senado. NãoEstimamos nem preenchemos com
+              zero, porque zero aqui seria mentira.
             </p>
           </div>
         </div>
@@ -55,97 +52,116 @@ export function AbaGastos({ gastos, temChave, nome }: AbaGastosProps) {
     );
   }
 
-  if (gastos === null) {
+  if (!gastos) {
     return (
-      <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-dashed border-cinza-medio dark:border-azul-light text-center">
-        <AlertTriangle
-          size={32}
-          className="mx-auto text-cinza-medio mb-3"
-        />
-        <p className="text-cinza-escuro dark:text-cinza-medio">
-          A consulta ao Portal da Transparencia nao retornou dados agora.
+      <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-cinza-medio dark:border-azul-light">
+        <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
+          O arquivo de gastos de {anoDoDado()} não tem registros para{" "}
+          {nome}. Isso quer dizer que não houve despesa registrada no período
+          coberto, não que o dado esteja faltando.
         </p>
       </div>
     );
   }
 
-  if (gastos.length === 0) {
-    return (
-      <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-dashed border-cinza-medio dark:border-azul-light text-center">
-        <p className="text-cinza-escuro dark:text-cinza-medio">
-          Nenhum registro encontrado para{" "}
-          <strong>{nome}</strong> na base da CGU.
-        </p>
-        <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-2">
-          A base indexa por nome: divergencias de grafia podem impedir o
-          resultado.
-        </p>
-      </div>
-    );
-  }
-
-  const total = gastos.reduce((soma, g) => soma + g.valor, 0);
+  const categorias = categoriasOrdenadas(gastos);
+  const maior = categorias[0]?.valor ?? 0;
 
   return (
-    <div className="space-y-4">
-      <div className="p-4 rounded-2xl bg-verde/10 border border-verde/30">
-        <p className="text-xs uppercase tracking-wider text-verde-dark dark:text-verde-light font-semibold mb-1">
-          Total em {gastos.length} registro(s)
-        </p>
-        <p className="text-2xl font-bold text-azul dark:text-white">
-          {formatarValor(total)}
-        </p>
+    <div>
+      <div className="grid sm:grid-cols-3 gap-4 mb-6">
+        <div className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Total registrado
+          </p>
+          <p className="text-2xl font-bold text-azul dark:text-white">
+            {formatarValor(gastos.total)}
+          </p>
+        </div>
+
+        <div className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Despesas
+          </p>
+          <p className="text-2xl font-bold text-azul dark:text-white">
+            {gastos.qtd}
+          </p>
+        </div>
+
+        <div className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Maior categoria
+          </p>
+          <p className="text-sm font-semibold text-verde truncate">
+            {categorias[0]?.nome ?? "—"}
+          </p>
+          {maior > 0 && (
+            <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+              {formatarValor(maior)}
+            </p>
+          )}
+        </div>
       </div>
 
-      <div className="overflow-x-auto rounded-2xl border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light/20">
-        <table className="w-full min-w-[600px] border-collapse">
-          <thead>
-            <tr className="bg-azul text-white">
-              <th className="p-3 text-left text-sm font-semibold">Data</th>
-              <th className="p-3 text-left text-sm font-semibold">Descricao</th>
-              <th className="p-3 text-right text-sm font-semibold">Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {gastos.map((g) => (
-              <tr key={g.codigo} className="border-t border-cinza-medio dark:border-azul-light">
-                <td className="p-3 text-sm text-cinza-escuro dark:text-cinza-medio whitespace-nowrap">
-                  {g.data
-                    ? new Date(`${g.data}T12:00:00`).toLocaleDateString("pt-BR")
-                    : "—"}
-                </td>
-                <td className="p-3 text-sm text-azul dark:text-white">
-                  {g.descricao}
-                  {g.orgao && (
-                    <span className="block text-xs text-cinza-escuro dark:text-cinza-medio">
-                      {g.orgao}
-                    </span>
-                  )}
-                </td>
-                <td className="p-3 text-sm font-semibold text-azul dark:text-white text-right whitespace-nowrap">
-                  {formatarValor(g.valor)}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Categorias */}
+      <h3 className="flex items-center gap-2 font-bold text-azul dark:text-white mb-3">
+        <Wallet size={18} className="text-verde" />
+        Por categoria
+      </h3>
+
+      <ul className="space-y-3 mb-6">
+        {categorias.map((c) => (
+          <li key={c.nome}>
+            <div className="flex items-baseline justify-between gap-3 mb-1">
+              <span className="text-sm text-azul dark:text-white min-w-0">
+                {c.nome}
+              </span>
+              <span className="text-sm font-semibold text-azul dark:text-white whitespace-nowrap">
+                {formatarValor(c.valor)}
+              </span>
+            </div>
+            <div className="h-2 bg-cinza-claro dark:bg-azul-light/30 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-verde/70 rounded-full"
+                style={{ width: `${maior > 0 ? (c.valor / maior) * 100 : 0}%` }}
+              />
+            </div>
+            <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-0.5">
+              {c.qtd} {c.qtd === 1 ? "registro" : "registros"}
+            </p>
+          </li>
+        ))}
+      </ul>
+
+      {/* Origem e limites */}
+      <div className="p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/10 text-sm text-cinza-escuro dark:text-cinza-medio space-y-2">
+        <p>
+          <strong className="inline-flex items-center gap-1.5">
+            <TrendingDown size={14} className="text-verde" />
+            Fonte
+          </strong>{" "}
+          —— gastos publicados pela Câmara dos Deputados, exercício de{" "}
+          {anoDoDado()}, arquivo gerado em {geradoEm()}.
+        </p>
+        <p>
+          São valores registrados, com número de documento e código do fornecedor.
+          Eles dizem onde a cota e a verba de gabinete foram gastas, não se
+          houve irregularidade: quem avalia isso é a auditoria da Casa.
+        </p>
+        <p>
+          Esta tela não substitui a fonte. Para conferir item a item, use o
+          {" "}
+          <a
+            href="https://www.camara.leg.br/transparencia/gastos-parlamentares/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-verde font-semibold hover:underline"
+          >
+            portal de transparência da Câmara
+          </a>
+          .
+        </p>
       </div>
-
-      <p className="text-xs text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-        Fonte: Portal da Transparencia (CGU). A base e consultada por nome, o
-        que pode agrupar homonimos e devolver registros de outra pessoa com o
-        mesmo nome. Conferimos o nome exato consultado acima:{" "}
-        <strong>{nome}</strong>.
-      </p>
-
-      <a
-        href="https://www.portaldatransparencia.gov.br"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 text-verde font-semibold hover:underline text-sm"
-      >
-        Abrir o Portal da Transparencia
-      </a>
     </div>
   );
 }

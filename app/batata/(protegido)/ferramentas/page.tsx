@@ -36,9 +36,9 @@ export default async function FerramentasAdminPage() {
     {
       rota: "/ferramentas/transparencia",
       titulo: "Transparência",
-      origem: "Portal da Transparência (CGU)",
+      origem: "Câmara dos Deputados",
       comando: "—",
-      nota: "Precisa de PORTAL_TRANSPARENCIA_API_KEY. Sem a chave, a tela declara o bloqueio.",
+      nota: "CSV aberto da Camara, sem chave. npm run gastos regenera o índice.",
     },
     {
       rota: "/ferramentas/historico-votacao",

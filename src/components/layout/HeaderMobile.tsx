@@ -28,19 +28,39 @@ export function HeaderMobile() {
     };
   }, [open]);
 
+  /*
+   * Escape fecha o menu. Sem isso quem navega por teclado so sai do painel
+   * clicando num link ou no botao, o que prende o foco numa camada que cobre
+   * a tela inteira. Mesmo padrao ja usado nos submenus.
+   */
+  useEffect(() => {
+    if (!open) return;
+
+    const aoTeclar = (evento: KeyboardEvent) => {
+      if (evento.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("keydown", aoTeclar);
+    return () => document.removeEventListener("keydown", aoTeclar);
+  }, [open]);
+
   return (
     <>
       <button
-        className="xl:hidden text-azul dark:text-white p-1"
+        className="xl:hidden text-azul dark:text-white p-2 -m-2"
         onClick={() => setOpen(!open)}
         aria-label={open ? "Fechar menu" : "Abrir menu"}
         aria-expanded={open}
+        aria-controls="menu-mobile"
       >
         {open ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {open && (
-        <div className="fixed inset-0 top-[61px] xl:hidden z-40 overflow-y-auto border-t border-cinza-medio dark:border-azul-light px-4 py-4 space-y-5 bg-white dark:bg-azul-dark">
+        <div
+          id="menu-mobile"
+          className="fixed inset-0 top-[64px] lg:top-[104px] xl:hidden z-40 overflow-y-auto border-t border-cinza-medio dark:border-azul-light px-4 py-4 space-y-5 bg-white dark:bg-azul-dark"
+        >
           <SearchBar onSearch={() => setOpen(false)} />
 
           {navMobile.map((grupo) => (

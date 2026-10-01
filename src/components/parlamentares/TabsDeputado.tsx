@@ -17,7 +17,7 @@ import type { Proposicao, Votacao } from "@/lib/camara";
 import { rotuloVoto, type CorVoto } from "@/lib/camara";
 import { BadgeVoto } from "@/components/pautas/BadgeVotacao";
 import { AbaGastos } from "@/components/parlamentares/AbaGastos";
-import type { Gasto } from "@/lib/gastos";
+import type { GastosDeputado } from "@/lib/gastos";
 
 type Aba = "projetos" | "votacoes" | "gastos" | "ficha";
 
@@ -28,8 +28,8 @@ interface TabsDeputadoProps {
   resumo: Record<string, number>;
   votacoesIndice: Votacao[];
   ficha: { rotulo: string; valor: string }[];
-  gastos: Gasto[] | null;
-  temChaveGastos: boolean;
+  gastos: GastosDeputado | null;
+
 }
 
 const COR_CLASSE: Record<CorVoto, string> = {
@@ -55,7 +55,7 @@ export function TabsDeputado({
   votacoesIndice,
   ficha,
   gastos,
-  temChaveGastos,
+
 }: TabsDeputadoProps) {
   const [aba, setAba] = useState<Aba>("projetos");
 
@@ -225,7 +225,7 @@ export function TabsDeputado({
 
       {/* Gastos */}
       {aba === "gastos" && (
-        <AbaGastos gastos={gastos} temChave={temChaveGastos} nome={nome} />
+      <AbaGastos gastos={gastos} nome={nome} />
       )}
 
       {/* Ficha */}

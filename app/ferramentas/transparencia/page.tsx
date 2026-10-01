@@ -1,226 +1,186 @@
 import Link from "next/link";
-import { Shield, KeyRound, ExternalLink, AlertTriangle } from "lucide-react";
-import {
-  listarGastos,
-  formatarValor,
-  temChavePortalTransparencia,
-} from "@/lib/gastos";
-import { todosOsDeputados } from "@/lib/camara";
-import { obterSenadores } from "@/lib/senado";
+import { Wallet, TrendingUp, Info, ExternalLink } from "lucide-react";
+import { formatarValor, anoDoDado, geradoEm, type GastosDeputado } from "@/lib/gastos";
+import { todosOsDeputados, type Deputado } from "@/lib/camara";
+import { nomesEstados } from "@/data/candidatos";
+import { formatarNome } from "@/lib/nomes";
+import indice from "@/data/gastos-camara.json";
 
 export const metadata = {
-  title: "Transparência — gastos de parlamentares",
+  title: "Gastos de gabinete",
   description:
-    "Gastos registrados no Portal da Transparência (CGU) e o que falta para exibir emendas parlamentares.",
+    "Cota e verba de gabinete dos deputados federais, por categoria, com a fonte da Câmara dos Deputados.",
 };
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
-/**
- * Transparencia: gastos de parlamentares vindos da CGU.
- *
- * Esta pagina ja exibia uma lista deucker comendas e valores fixos no codigo,
- * apresentada ao leitor como dado oficial ("Fonte: Dados da Camara e do Senado,
- * atualizados em 1 de setembro de 2026"). Nao havia nenhuma chamada a API por
- * tras: os numeros eram inventados, assim como o partido e o estado de cada
- * parlamentar. Esse tipo de recorte falso e pior do que pagina vazia, porque
- * parece verificavel.
- *
- * Agora a tela mostra somente dado real. Sem a chave da CGU, ela declara o
- * bloqueio em vez de preencher a tabela.
- */
+/** O que esta tela usa do indice: sem as categorias, que ficam na ficha. */
+interface ResumoGasto {
+  partido: string;
+  uf: string;
+  total: number;
+  qtd: number;
+}
+
+const gastos = indice.deputados as Record<string, ResumoGasto>;
+
 export default async function TransparenciaPage() {
-  const temChave = temChavePortalTransparencia();
-
   /*
-   * A CGU indexa por nome, entao gastamos uma requisicao por parlamentar.
-   * Limitar a uma amostra pequena mantem a pagina dentro do tempo de resposta
-   * da Vercel: buscar os 513 deputados em paralelo daria timeout.
+   * Ordena por valor gasto, cruzando com a lista de deputados em exercício
+   * para trazer nome e partido atuais. O índice é chaveado por ID justamente
+   * para isso: homônimos nunca se misturam.
    */
-  const amostra = temChave
-    ? await (async () => {
-        const [deputados, dadosSenado] = await Promise.all([
-          todosOsDeputados(),
-          obterSenadores().catch(() => null),
-        ]);
+  const linhas = (await todosOsDeputados())
+    .map((d) => ({ d, g: gastos[String(d.id)] }))
+    .filter((x): x is { d: Deputado; g: ResumoGasto } => x.g !== undefined)
+    .sort((a, b) => b.g.total - a.g.total)
+    .slice(0, 20);
 
-        const nomes = [
-          ...deputados.map((d) => d.nome),
-          ...(dadosSenado?.Senado ?? []).map((s) => s.nome),
-        ];
-
-        return nomes.slice(0, 8);
-      })()
-    : [];
-
-  const gastosPorNome = await Promise.all(
-    amostra.map(async (nome) => ({
-      nome,
-      itens: await listarGastos(nome, 20).catch(() => null),
-    }))
-  );
-
-  const comDados = gastosPorNome.filter((g) => (g.itens?.length ?? 0) > 0);
+  const totalGeral = Object.values(gastos).reduce((s, g) => s + g.total, 0);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <header className="mb-10">
+    <div className="max-w-5xl mx-auto px-6 py-12">
+      <header className="mb-8">
         <div className="inline-flex items-center gap-2 text-verde mb-3">
-          <Shield size={18} />
+          <Wallet size={18} />
           <span className="text-xs font-semibold uppercase tracking-wider">
-            Ferramentas
+            Transparência
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Transparência
+          Gastos de gabinete
         </h1>
-        <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-          Gastos de parlamentares registrados no Portal da Transparência da CGU.
+        <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-3xl">
+          Cota e verba de gabinete de {Object.keys(gastos).length} deputados
+          federais, {formatarValor(totalGeral)} no exercício de{" "}
+          {anoDoDado()}.
         </p>
       </header>
 
-      {!temChave && (
-        <section className="p-6 rounded-2xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 mb-8">
-          <div className="flex items-start gap-3">
-            <KeyRound
-              size={20}
-              className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"
-            />
-            <div>
-              <h2 className="font-bold text-azul dark:text-white mb-1">
-                Dados de gastos indisponíveis
-              </h2>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-                A API do Portal da Transparência exige uma chave, e sem ela todo
-                endpoint responde 401. Não mostramos valores de exemplo: número
-                inventado em página de transparência é pior do que página
-                declarada como vazia.
-              </p>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio mt-3">
-                A chave é gratuita, com cadastro por e-mail em{" "}
-                <a
-                  href="https://www.portaldatransparencia.gov.br/api-de-dados/cadastrar-email"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-verde font-semibold hover:underline"
-                >
-                  portaldatransparencia.gov.br
-                </a>
-                . Depois basta definir{" "}
-                <code className="px-1">PORTAL_TRANSPARENCIA_API_KEY</code>.
-              </p>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {temChave && comDados.length === 0 && (
-        <section className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light mb-8 flex items-start gap-3">
-          <AlertTriangle
-            size={20}
-            className="text-cinza-escuro dark:text-cinza-medio shrink-0 mt-0.5"
-          />
-          <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-            A chave está configurada, mas a CGU não devolveu nenhuma despesa
-            para a amostra de parlamentares consultada. Pode ser indisponibilidade
-            temporária do portal.
+      {/* Resumo */}
+      <div className="grid sm:grid-cols-3 gap-4 mb-8">
+        <div className="p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Total registrado
           </p>
-        </section>
-      )}
+          <p className="text-2xl font-bold text-verde">
+            {formatarValor(totalGeral)}
+          </p>
+        </div>
+        <div className="p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Despesas
+          </p>
+          <p className="text-2xl font-bold text-azul dark:text-white">
+            {indice.totalRegistros.toLocaleString("pt-BR")}
+          </p>
+        </div>
+        <div className="p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+           Maior gasto
+          </p>
+          <p className="text-sm font-semibold text-azul dark:text-white truncate">
+            {linhas[0] ? formatarNome(linhas[0].d.nome) : "—"}
+          </p>
+          {linhas[0] && (
+            <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+              {formatarValor(linhas[0].g.total)}
+            </p>
+          )}
+        </div>
+      </div>
 
-      {comDados.length > 0 && (
-        <div className="space-y-4">
-          {comDados.map(({ nome, itens }) => {
-            const total = itens!.reduce((soma, g) => soma + g.valor, 0);
+      {/* Ranking */}
+      <section className="bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light rounded-2xl p-6 mb-8">
+        <h2 className="flex items-center gap-2 text-lg font-bold text-azul dark:text-white mb-5">
+          <TrendingUp size={18} className="text-verde" />
+          Maiores gastos registrados
+        </h2>
 
-            return (
-              <section
-                key={nome}
-                className="bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light rounded-2xl p-6"
+        <ul className="space-y-2.5">
+          {linhas.map(({ d, g }, i) => (
+            <li key={d.id}>
+              <Link
+                href={`/deputados/${d.id}`}
+                className="grid sm:grid-cols-[1fr_auto] items-center gap-3 group"
               >
-                <div className="flex flex-wrap items-baseline justify-between gap-2 mb-4">
-                  <h2 className="font-bold text-lg text-azul dark:text-white">
-                    {nome}
-                  </h2>
-                  <span className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                    {itens!.length} despesas ·{" "}
-                    <strong className="text-azul dark:text-white">
-                      {formatarValor(total)}
-                    </strong>
+                <div className="flex items-center gap-3 min-w-0">
+                  <span className="w-7 shrink-0 text-sm font-bold text-cinza-medio">
+                    {i + 1}
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-semibold text-azul dark:text-white group-hover:text-verde truncate">
+                      {formatarNome(d.nome)}
+                    </span>
+                    <span className="block text-xs text-cinza-escuro dark:text-cinza-medio truncate">
+                      {d.siglaPartido} ·{" "}
+                      {nomesEstados[`br-${d.siglaUf.toLowerCase()}`] ??
+                        d.siglaUf}{" "}
+                      · {g.qtd} despesas
+                    </span>
                   </span>
                 </div>
 
-                <ul className="divide-y divide-cinza-medio dark:divide-azul-light">
-                  {itens!.slice(0, 5).map((g) => (
-                    <li
-                      key={g.codigo}
-                      className="py-2 flex justify-between gap-4 text-sm"
-                    >
-                      <span className="text-cinza-escuro dark:text-cinza-medio min-w-0">
-                        {g.descricao}
-                        {g.orgao && (
-                          <span className="block text-xs opacity-70">
-                            {g.orgao}
-                          </span>
-                        )}
-                      </span>
-                      <span className="text-azul dark:text-white font-semibold whitespace-nowrap">
-                        {formatarValor(g.valor)}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <span className="font-bold text-verde whitespace-nowrap">
+                  {formatarValor(g.total)}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
-                {itens!.length > 5 && (
-                  <p className="mt-3 text-xs text-cinza-escuro dark:text-cinza-medio">
-                    Mostrando 5 de {itens!.length} despesas. A ficha completa
-                    fica na página do parlamentar.
-                  </p>
-                )}
-              </section>
-            );
-          })}
-        </div>
-      )}
-
-      {/* Emendas: recurso separado da CGU, sem chave nao ha como consultar. */}
-      <section className="mt-10 p-6 rounded-2xl border border-cinza-medio dark:border-azul-light">
-        <h2 className="font-bold text-lg text-azul dark:text-white mb-2">
-          Emendas parlamentares
+      {/* O que este dado e o que nao e */}
+      <section className="p-5 rounded-2xl border border-cinza-medio dark:border-azul-light mb-8">
+        <h2 className="flex items-center gap-2 font-bold text-azul dark:text-white mb-3">
+          <Info size={18} className="text-verde" />
+          O que estes números são
         </h2>
-        <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-          Emendas são outro recurso do Portal da Transparência, consultado à
-          parte. Não misturamos o valor de uma emenda com o total de despesas de
-          gabinete: são bases diferentes e a soma entre elas não significa
-          nada. A página de cada parlamentar mostra a base de gastos; as emendas
-          entram quando a chave da CGU estiver habilitada para esse recurso.
-        </p>
+        <ul className="space-y-2 text-sm text-cinza-escuro dark:text-cinza-medio">
+          <li>
+            É o que o deputado registrou como gasto de{" "}
+            <strong>cota parliamentary</strong> e{" "}
+            <strong>verba de gabinete</strong>, publicado pela Câmara. Cada
+            valor vem com número do documento e código do fornecedor.
+          </li>
+          <li>
+            Vale comparar o contexto: mandato de gabinete maior costuma vir
+            com cota maior. O valor mais alto da lista n
+ã
+o significa que o
+            deputado gastou mais que todos os outros, e sim que a cota e a verba
+            dele foram maiores no per
+í
+odo.
+          </li>
+          <li>
+            Dados de Exercise anterior não entram aqui. O arquivo é do exercício
+            de {anoDoDado()}, gerado em {geradoEm()}, e é atualizado por script
+            e não em tempo real.
+          </li>
+          <li>
+            Gastos de senador não estão aqui porque o Senado não publica dado
+            equivalente em formato aberto. A ficha do senador diz isso na aba
+            em vez de mostrar zero.
+          </li>
+        </ul>
       </section>
 
       <div className="mt-8 flex flex-wrap gap-4">
         <a
-          href="https://www.portaldatransparencia.gov.br/"
+          href="https://www.camara.leg.br/transparencia/gastos-parlamentares/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold hover:border-verde transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-verde text-white font-semibold hover:bg-verde-dark transition-colors"
         >
-          <ExternalLink size={18} />
-          Portal da Transparência (CGU)
+          <ExternalLink size={16} />
+          Portal de transparência da Câmara
         </a>
         <Link
           href="/parlamentares"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-verde text-white font-semibold hover:bg-verde-dark transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold hover:border-verde transition-colors"
         >
           Ver parlamentares
-        </Link>
-      </div>
-
-      <div className="mt-8 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <Link
-          href="/ferramentas"
-          className="text-verde font-semibold hover:underline"
-        >
-          ← Voltar para Ferramentas
         </Link>
       </div>
     </div>

@@ -224,7 +224,7 @@ export default async function PatrimonioPage({ searchParams }: PageProps) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-5 text-right shrink-0">
+              <div className="flex items-center gap-4 sm:gap-5 text-right">
                 <div>
                   <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
                     bens

@@ -88,7 +88,7 @@ export function FiltrosBusca({ cargos = CARGOS }: FiltrosBuscaProps) {
               scroll: false,
             });
           }}
-          className="ml-auto text-xs font-semibold text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors"
+          className="ml-auto text-xs font-semibold inline-block py-1 -my-1 text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors"
         >
           Limpar filtros
         </button>

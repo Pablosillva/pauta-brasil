@@ -123,12 +123,12 @@ export default async function MapaCalorPage() {
                         style={{ width: `${percentual}%` }}
                       />
                     </span>
-                    <span className="text-sm text-cinza-escuro dark:text-cinza-medio w-24 truncate">
+                    <span className="text-sm text-cinza-escuro dark:text-cinza-medio w-20 sm:w-24 truncate">
                       {nomesEstados[`br-${uf.toLowerCase()}`] ?? uf}
                     </span>
                   </span>
 
-                  <span className="flex items-center gap-3 text-sm w-32 justify-end">
+                  <span className="flex items-center gap-3 text-sm w-20 sm:w-32 justify-end">
                     <span className="font-bold text-azul dark:text-white">
                       {qtt}
                     </span>

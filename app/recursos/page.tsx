@@ -146,7 +146,7 @@ const recursos: Recurso[] = [
     grupo: "Ferramentas",
     icone: Ruler,
     titulo: "Transparencia",
-     descricao: "Gastos no Portal da Transparencia, quando a chave da CGU esta ativa.",
+     descricao: "Cota e verba de gabinete, com as categorias de despesa.",
     href: "/ferramentas/transparencia",
     status: "parcial",
   },

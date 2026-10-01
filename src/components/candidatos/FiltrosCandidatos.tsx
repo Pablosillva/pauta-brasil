@@ -103,7 +103,7 @@ export function FiltrosCandidatos({ estados, partidos }: FiltrosCandidatosProps)
       {temFiltro && (
         <button
           onClick={limpar}
-          className="ml-auto inline-flex items-center gap-1 text-xs font-semibold text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors"
+          className="ml-auto inline-flex items-center gap-1 text-xs font-semibold inline-block py-1 -my-1 text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors"
         >
           <X size={14} /> Limpar filtros
         </button>

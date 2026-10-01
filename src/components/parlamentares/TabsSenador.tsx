@@ -4,14 +4,14 @@ import { useState } from "react";
 import { FileText, Gavel, Wallet, User, KeyRound } from "lucide-react";
 import type { Senador } from "@/lib/senado";
 import { AbaGastos } from "@/components/parlamentares/AbaGastos";
-import type { Gasto } from "@/lib/gastos";
+
 
 type Aba = "projetos" | "votacoes" | "gastos" | "ficha";
 
 interface TabsSenadorProps {
   senador: Senador;
-  gastos: Gasto[] | null;
-  temChaveGastos: boolean;
+
+  semFonte: boolean;
   temChaveSenado: boolean;
 }
 
@@ -23,8 +23,8 @@ interface TabsSenadorProps {
  */
 export function TabsSenador({
   senador,
-  gastos,
-  temChaveGastos,
+
+  semFonte,
   temChaveSenado,
 }: TabsSenadorProps) {
   const [aba, setAba] = useState<Aba>("projetos");
@@ -122,7 +122,7 @@ export function TabsSenador({
         ))}
 
       {aba === "gastos" && (
-        <AbaGastos gastos={gastos} temChave={temChaveGastos} nome={senador.nome} />
+      <AbaGastos gastos={null} semFonte nome={senador.nome} />
       )}
 
       {aba === "ficha" && (
