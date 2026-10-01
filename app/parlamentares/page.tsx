@@ -1,28 +1,41 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Users, ArrowRight, KeyRound } from "lucide-react";
+import { Users, ArrowRight, Info } from "lucide-react";
 import { todosOsDeputados } from "@/lib/camara";
-import { listarSenadores, temChaveSenado } from "@/lib/senado";
+import { obterSenadores } from "@/lib/senado";
 import { ListaParlamentares } from "@/components/parlamentares/ListaParlamentares";
 import { jsonLdBreadcrumb } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Parlamentares",
   description:
-    "Deputados federais e senadores em exercicio, com partido, estado, projetos propostos e como votaram no Congresso.",
+    "Deputados federais e senadores em exercico, com partido, estado, projetos propostos e como votaram no Congresso.",
   alternates: { canonical: "/parlamentares" },
 };
 
 export const revalidate = 3600;
 
-export default async function ParlamentaresPage() {
-  const [deputados, senadores] = await Promise.all([
+interface PageProps {
+  searchParams: Promise<{ casa?: string }>;
+}
+
+export default async function ParlamentaresPage({ searchParams }: PageProps) {
+  const { casa } = await searchParams;
+
+  // O submenu "Parlamentares" aponta para ?casa=camara / ?casa=senado, para
+  // abrir a listagem ja na aba desejada.
+  const casaInicial = casa === "senado" ? ("senado" as const) : ("camara" as const);
+
+  const [deputados, dadosSenado] = await Promise.all([
     todosOsDeputados(),
-    listarSenadores().catch(() => []),
+    obterSenadores().catch(() => ({ versao: null, Senado: [] })),
   ]);
 
-  // Sem a chave do Senado, a lista vem vazia: mostramos um recorte declarado.
-  const temSenado = temChaveSenado() && senadores.length > 0;
+  const senadores = dadosSenado.Senado;
+
+  // O arquivo XML do Senado e publico, sem chave. A lista so fica vazia se o
+  // endpoint externo estiver fora do ar no momento da consulta.
+  const temSenado = senadores.length > 0;
 
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
@@ -53,35 +66,42 @@ export default async function ParlamentaresPage() {
         </p>
       </header>
 
-      {!temSenado && (
-        <div className="mb-8 p-5 rounded-2xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800">
-          <div className="flex items-start gap-3">
-            <KeyRound
-              size={20}
-              className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"
-            />
-            <div>
-              <h2 className="font-bold text-azul dark:text-white mb-1">
-                Lista restrita a Camara dos Deputados
-              </h2>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-                A API do Senado exige uma chave gratuita para responder, e nao
-                existe fonte federal unificada para deputados estaduais: cada
-                assembleia publica os dados em um sistema proprio. Preferimos
-                declarar o recorte a mostrar uma lista incompleta sem avisar.
-              </p>
-              <Link
-                href="/metodologia"
-                className="inline-flex items-center gap-1 text-sm text-verde font-semibold hover:underline mt-2"
-              >
-                Ver as limitacoes completas
-                <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
+      {deputados.length === 0 && !temSenado ? (
+        <div className="text-center py-16 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-dashed border-cinza-medio dark:border-azul-light">
+          <p className="text-lg font-semibold text-azul dark:text-white mb-2">
+            Nao foi possivel carregar os parlamentares
+          </p>
+          <p className="text-cinza-escuro dark:text-cinza-medio">
+            As APIs da Camara e do Senado podem estar temporariamente fora do
+            ar.
+          </p>
         </div>
+      ) : (
+        <ListaParlamentares
+          deputados={deputados}
+          senadores={senadores}
+          casaInicial={casaInicial}
+        />
       )}
-      <ListaParlamentares deputados={deputados} senadores={senadores} />
+
+      <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light">
+        <p className="flex items-start gap-2 text-sm text-cinza-escuro dark:text-cinza-medio mb-4">
+          <Info size={16} className="text-verde shrink-0 mt-0.5" />
+          <span>
+            Deputados estaduais ainda nao entram aqui: cada assembleia publica
+            seus dados em um sistema proprio e nao existe fonte federal
+            unificada. Preferimos declarar o recorte a mostrar uma lista
+            incompleta sem avisar.
+          </span>
+        </p>
+        <Link
+          href="/metodologia"
+          className="inline-flex items-center gap-1 text-verde font-semibold hover:underline"
+        >
+          Ver a metodologia completa
+          <ArrowRight size={14} />
+        </Link>
+      </div>
     </div>
   );
 }

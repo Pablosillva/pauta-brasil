@@ -19,6 +19,16 @@ export function normalizarEmail(email: string): string {
   return email.trim().toLowerCase();
 }
 
+/**
+ * O projeto nao exige confirmacao de e-mail por enquanto.
+ *
+ * Ligar isso exige um provedor de e-mail funcionando (Resend com dominio
+ * verificado). Sem ele, toda conta ficaria pendente e ninguem conseguiria
+ * entrar. Desligado, a conta funciona logo apos o cadastro.
+ */
+const EXIGIR_VERIFICACAO =
+  (process.env.EXIGIR_VERIFICACAO_EMAIL ?? "false") === "true";
+
 /* ------------------------------------------------------------------ */
 /*  Cadastro                                                            */
 /* ------------------------------------------------------------------ */
@@ -49,7 +59,7 @@ export async function cadastrarUsuario(dados: {
     return { ok: false, erro: "Já existe uma conta com este e-mail." };
   }
 
-  const tokenVerificacao = gerarToken();
+  const tokenVerificacao = EXIGIR_VERIFICACAO ? gerarToken() : null;
 
   const [criado] = await db
     .insert(usuarios)
@@ -58,15 +68,18 @@ export async function cadastrarUsuario(dados: {
       nome,
       email,
       senhaHash: await gerarHashSenha(dados.senha),
-      emailVerificado: false,
+      // Sem verificacao obrigatoria, a conta ja nasce ativa.
+      emailVerificado: !EXIGIR_VERIFICACAO,
       tokenVerificacao,
-      tokenVerificacaoExpira: new Date(Date.now() + VALIDADE_TOKEN_MS),
+      tokenVerificacaoExpira: tokenVerificacao
+        ? new Date(Date.now() + VALIDADE_TOKEN_MS)
+        : null,
       uf: dados.uf || null,
       plano: "gratuito",
     })
     .returning();
 
-  return { ok: true, usuario: criado, tokenVerificacao };
+  return { ok: true, usuario: criado, tokenVerificacao: tokenVerificacao ?? undefined };
 }
 
 export async function buscarUsuarioPorEmail(
@@ -144,7 +157,7 @@ export async function loginUsuario(
     return { ok: false, erro: erroGenerico };
   }
 
-  if (!usuario.emailVerificado) {
+  if (EXIGIR_VERIFICACAO && !usuario.emailVerificado) {
     return {
       ok: false,
       erro: "Confirme seu e-mail para ativar a conta.",

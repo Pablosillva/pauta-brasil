@@ -39,13 +39,18 @@ function normalizarParlamentar(p: Deputado | Senador): {
 interface ListaParlamentaresProps {
   deputados: Deputado[];
   senadores: Senador[];
+  /** Data de atualizacao do arquivo do Senado, quando informada. */
+  versaoSenado?: string | null;
+  /** Aba inicial, vinda de ?casa=senado no link do submenu. */
+  casaInicial?: Casa;
 }
 
 export function ListaParlamentares({
   deputados,
   senadores,
+  casaInicial = "camara",
 }: ListaParlamentaresProps) {
-  const [casa, setCasa] = useState<Casa>("camara");
+  const [casa, setCasa] = useState<Casa>(casaInicial);
   const [busca, setBusca] = useState("");
   const [uf, setUf] = useState("");
 
@@ -130,8 +135,8 @@ export function ListaParlamentares({
             Lista do Senado indisponivel
           </p>
           <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-            A API do Senado exige uma chave gratuita. Sem ela, nao publicamos
-            uma lista de senadores incompleta ou estimada.
+            O arquivo de agency's do Senado nao respondeu agora. Tente de
+            novo em alguns minutos.
           </p>
         </div>
       ) : (

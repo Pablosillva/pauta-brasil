@@ -2,8 +2,24 @@ import { v2 as cloudinary } from "cloudinary";
 
 let configurado = false;
 
+/**
+ * Configura o Cloudinary.
+ *
+ * Aceita as duas formas em que o painel do Cloudinary entrega as credenciais:
+ *   - CLOUDINARY_URL, no formato cloudinary://chave:segredo@nome
+ *   - CLOUDINARY_CLOUD_NAME + CLOUDINARY_API_KEY + CLOUDINARY_API_SECRET
+ */
 function garantirConfig() {
   if (configurado) return;
+
+  const url = process.env.CLOUDINARY_URL?.trim();
+
+  if (url) {
+    // Sem argumentos, o SDK le CLOUDINARY_URL sozinho.
+    cloudinary.config({ secure: true });
+    configurado = true;
+    return;
+  }
 
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
@@ -11,7 +27,8 @@ function garantirConfig() {
 
   if (!cloudName || !apiKey || !apiSecret) {
     throw new Error(
-      "Cloudinary não configurado. Defina CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY e CLOUDINARY_API_SECRET."
+      "Cloudinary nao configurado. Defina CLOUDINARY_URL ou as tres variaveis " +
+        "CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY e CLOUDINARY_API_SECRET."
     );
   }
 

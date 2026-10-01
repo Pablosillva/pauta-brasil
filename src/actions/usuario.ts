@@ -51,8 +51,14 @@ export async function acaoCadastrar(
   const resultado = await cadastrarUsuario({ nome, email, senha, uf });
 
   if (!resultado.ok) return { erro: resultado.erro ?? "Nao foi possivel criar a conta." };
-  if (!resultado.tokenVerificacao || !resultado.usuario) {
-    return { erro: "Nao foi possivel gerar o link de verificacao." };
+  if (!resultado.usuario) {
+    return { erro: "Nao foi possivel criar a conta." };
+  }
+
+  // Sem verificacao obrigatoria nao ha e-mail a enviar: a conta ja nasce
+  // pronta para o login.
+  if (!resultado.tokenVerificacao) {
+    return { sucesso: "Conta criada! Voce ja pode entrar com o e-mail e a senha." };
   }
 
   const envio = await enviarVerificacaoEmail(

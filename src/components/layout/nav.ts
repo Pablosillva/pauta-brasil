@@ -6,13 +6,15 @@ export interface ItemNav {
   descricao?: string;
 }
 
-/** Item que abre submenu no desktop. */
 export interface GrupoNav {
   label: string;
   itens: ItemNav[];
 }
 
-/** Submenu de Eleicoes: o que o eleitor procura primeiro. */
+/**
+ * Submenu de Eleicoes: o que o eleitor procura primeiro.
+ * Rotas dos candidatos de 2026 vindas do TSE.
+ */
 export const eleicoes: ItemNav[] = [
   {
     label: "Candidatos",
@@ -22,7 +24,7 @@ export const eleicoes: ItemNav[] = [
   {
     label: "Mapa eleitoral",
     href: "/mapa",
-    descricao: "Distribuicao por estado",
+    descricao: "Distribuição por estado",
   },
   {
     label: "Planos de governo",
@@ -31,11 +33,35 @@ export const eleicoes: ItemNav[] = [
   },
 ];
 
-/** Navegacao principal exibida na barra superior (desktop). */
+/**
+ * Submenu de Parlamentares: as duas casas do Congresso.
+ * A listagem e unica (/parlamentares, com abas), mas os links seguem
+ * diretos para a aba desejada via query string.
+ */
+export const parlamentares: ItemNav[] = [
+  {
+    label: "Deputados federais",
+    href: "/parlamentares?casa=camara",
+    descricao: "513 em exercício, com votos",
+  },
+  {
+    label: "Senadores",
+    href: "/parlamentares?casa=senado",
+    descricao: "81 em exercício",
+  },
+  {
+    label: "Projetos e votações",
+    href: "/projetos",
+    descricao: "Placar e voto de cada um",
+  },
+];
+
+/**
+ * Navegacao simples do header. "Início" fica fora daqui porque e renderizado
+ * separadamente, junto dos submenus.
+ */
 export const navItems: ItemNav[] = [
-  { label: "Início", href: "/" },
   { label: "Projetos", href: "/projetos" },
-  { label: "Parlamentares", href: "/parlamentares" },
   { label: "Notícias", href: "/noticias" },
   { label: "Ferramentas", href: "/ferramentas" },
   { label: "Sobre", href: "/sobre" },
@@ -43,28 +69,19 @@ export const navItems: ItemNav[] = [
 
 /** Grupos do menu mobile, onde o espaco permite mais detalhe. */
 export const navMobile: { titulo: string; itens: ItemNav[] }[] = [
-  {
-    titulo: "Eleicoes 2026",
-    itens: eleicoes,
-  },
-  {
-    titulo: "Congresso",
-    itens: [
-      { label: "Projetos e votacoes", href: "/projetos" },
-      { label: "Parlamentares", href: "/parlamentares" },
-      { label: "Notícias", href: "/noticias" },
-    ],
-  },
+  { titulo: "Eleições 2026", itens: eleicoes },
+  { titulo: "Congresso", itens: parlamentares },
   {
     titulo: "Navegar",
     itens: [
       { label: "Início", href: "/" },
+      { label: "Notícias", href: "/noticias" },
       { label: "Ferramentas", href: "/ferramentas" },
       { label: "Sobre", href: "/sobre" },
     ],
   },
   {
-    titulo: "Dados e metodo",
+    titulo: "Dados e método",
     itens: [
       { label: "Metodologia", href: "/metodologia" },
       { label: "Fontes de dados", href: "/fontes" },

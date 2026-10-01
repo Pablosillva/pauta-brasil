@@ -3,15 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { eleicoes, navItems } from "@/components/layout/nav";
+import { eleicoes, parlamentares, navItems } from "@/components/layout/nav";
+import type { ItemNav } from "@/components/layout/nav";
 
 /**
- * Aba "Eleicoes" com submenu.
+ * Aba com submenu, generica.
  *
- * Fecha ao clicar fora, ao pressionar Escape e ao ir para outra pagina,
- * para nao deixar o painel flutuando sobre o conteudo.
+ * Fecha ao clicar fora, ao pressionar Escape e ao escolher um item, para nao
+ * deixar o painel flutuando sobre o conteudo.
  */
-export function MenuEleicoes() {
+function Submenu({
+  rotulo,
+  itens,
+  largura,
+}: {
+  rotulo: string;
+  itens: ItemNav[];
+  largura: string;
+}) {
   const [aberto, setAberto] = useState(false);
   const container = useRef<HTMLDivElement>(null);
 
@@ -46,7 +55,7 @@ export function MenuEleicoes() {
         aria-haspopup="true"
         className="flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md text-azul hover:bg-cinza-claro hover:text-verde dark:text-white dark:hover:bg-azul-light transition-colors"
       >
-        Eleicoes
+        {rotulo}
         <ChevronDown
           size={14}
           className={`transition-transform ${aberto ? "rotate-180" : ""}`}
@@ -54,10 +63,12 @@ export function MenuEleicoes() {
       </button>
 
       {aberto && (
-        <div className="absolute left-0 top-full mt-1 w-72 rounded-xl bg-white dark:bg-azul-dark border border-cinza-medio dark:border-azul-light shadow-xl py-2 z-50">
-          {eleicoes.map((item) => (
+        <div
+          className={`absolute left-0 top-full mt-1 ${largura} rounded-xl bg-white dark:bg-azul-dark border border-cinza-medio dark:border-azul-light shadow-xl py-2 z-50`}
+        >
+          {itens.map((item) => (
             <Link
-              key={item.href}
+              key={item.href + item.label}
               href={item.href}
               onClick={() => setAberto(false)}
               className="block px-4 py-2.5 hover:bg-cinza-claro dark:hover:bg-azul-light transition-colors"
@@ -75,6 +86,26 @@ export function MenuEleicoes() {
         </div>
       )}
     </div>
+  );
+}
+
+export function MenuEleicoes() {
+  return <Submenu rotulo="Eleições" itens={eleicoes} largura="w-72" />;
+}
+
+export function MenuParlamentares() {
+  return <Submenu rotulo="Parlamentares" itens={parlamentares} largura="w-80" />;
+}
+
+/** Botao "Início", renderizado fora da lista para evitar duplicacao. */
+export function LinkInicio() {
+  return (
+    <Link
+      href="/"
+      className="px-3 py-2 text-sm font-medium rounded-md text-azul hover:bg-cinza-claro hover:text-verde dark:text-white dark:hover:bg-azul-light transition-colors"
+    >
+      Início
+    </Link>
   );
 }
 
