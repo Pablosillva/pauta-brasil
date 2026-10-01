@@ -135,8 +135,8 @@ export function ListaParlamentares({
             Lista do Senado indisponivel
           </p>
           <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-            O arquivo de agency's do Senado nao respondeu agora. Tente de
-            novo em alguns minutos.
+            O arquivo do Senado nao respondeu agora. Tente de novo em alguns
+            minutos.
           </p>
         </div>
       ) : (

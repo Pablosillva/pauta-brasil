@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Users, Gavel, FileText, MapPin, type LucideIcon } from "lucide-react";
+import { Users, Gavel, FileText, MapPin, Landmark, type LucideIcon } from "lucide-react";
 import { estatisticas } from "@/data/estatisticas";
-import { totalDoEstado, totalGeral } from "@/data/loader-tse";
+import { totalGeral } from "@/data/loader-tse";
 
 interface Cartao {
   icone: LucideIcon;
@@ -19,7 +19,13 @@ interface Cartao {
  * scripts/gerar-estatisticas.mjs) - nada aqui e digitado a mao.
  */
 export function PainelNumeros() {
-  const uf = 27;
+  /*
+   * O arquivo de estatisticas tem uma entrada por codigo de estado, mais "BR"
+   * para os candidatos presidenciais. "BR" nao e um estado: sao as 27 unidades
+   * da federacao (26 estados + Distrito Federal).
+   */
+  const unidades = estatisticas.ufs.filter((u) => u.nome !== "BR").length;
+  const presidenciais = estatisticas.ufs.find((u) => u.nome === "BR")?.quantidade ?? 0;
 
   const cartoes: Cartao[] = [
     {
@@ -27,8 +33,9 @@ export function PainelNumeros() {
       valor: estatisticas.total.toLocaleString("pt-BR"),
       rotulo: "Candidatos registrados",
       href: "/candidatos",
-      nota: `nas ${uf} unidades da federacao`,
-    },    {
+      nota: `nas ${unidades} unidades da federacao`,
+    },
+    {
       icone: FileText,
       valor: estatisticas.comPlano.toLocaleString("pt-BR"),
       rotulo: "Planos de governo no TSE",
@@ -39,8 +46,15 @@ export function PainelNumeros() {
       icone: Users,
       valor: "513",
       rotulo: "Deputados federais",
-      href: "/deputados",
+      href: "/parlamentares?casa=camara",
       nota: "com historico de votacao",
+    },
+    {
+      icone: Landmark,
+      valor: "81",
+      rotulo: "Senadores",
+      href: "/parlamentares?casa=senado",
+      nota: "em exercicio no Senado",
     },
     {
       icone: Gavel,
@@ -51,17 +65,13 @@ export function PainelNumeros() {
     },
     {
       icone: MapPin,
-      valor: String(estatisticas.ufs.length),
+      valor: String(unidades),
       rotulo: "Estados mapeados",
       href: "/mapa",
-      nota: "distribuicao espacial",
-    },
-    {
-      icone: Users,
-      valor: String(estatisticas.partidos.length),
-      rotulo: "Partidos na disputa",
-      href: "/partidos",
-      nota: "com candidatos inscritos",
+      nota:
+        presidenciais > 0
+          ? `+ ${presidenciais.toLocaleString("pt-BR")} presidenciais`
+          : "distribuicao espacial",
     },
   ];
 
@@ -131,9 +141,4 @@ export function PainelNumeros() {
       </div>
     </section>
   );
-}
-
-/** Total de candidatos de um estado, usado em OTHER cards. */
-export function totalPorEstado(uf: string): number {
-  return totalDoEstado(uf);
 }

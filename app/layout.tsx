@@ -7,17 +7,22 @@ import { jsonLdSite, jsonLdOrganization } from "@/lib/seo";
 import type { Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next"
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { SITE_URL as siteUrl } from "@/lib/config";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
-  verification: {
-    google: "JGTBz0Q25olmwGq1mocPS0OO5XMBGrtLMhunmHwdUfs",
-  },
+  /*
+   * O token do Google Search Console e por propriedade: cada dominio tem o
+   * seu. Como o site mudou de endereco, o valor antigo nao valida o novo.
+   * Por isso vem do ambiente em vez de ficar fixo no codigo.
+   * Em Search Console: adicionar propriedade > prefixo de URL > HTML.
+   */
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
   title: {
     default: "Centro Político — Dados eleitorais, transparência e democracia",
     template: "%s | Centro Político",

@@ -4,8 +4,7 @@ import path from "path";
 import { listarNoticias } from "@/lib/noticias";
 import { listarVotacoes, listarProposicoes } from "@/lib/camara";
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://pauta-brasil.vercel.app";
+import { SITE_URL as siteUrl } from "@/lib/config";
 
 /** O sitemap muda devagar: nao ha por que recalcular a cada requisicao. */
 export const revalidate = 86400;

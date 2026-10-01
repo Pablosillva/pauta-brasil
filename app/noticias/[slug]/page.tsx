@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { listarNoticias, buscarNoticia } from "@/lib/noticias";
+import { SITE_URL } from "@/lib/config";
 import { NoticiaConteudo } from "@/components/noticias/NoticiaConteudo";
 import {
   TwitterIcon,
@@ -131,7 +132,9 @@ export default async function NoticiaPage({ params }: PageProps) {
             </p>
             <div className="flex gap-3">
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(noticia.titulo)}`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                  `${noticia.titulo} ${SITE_URL}/noticias/${noticia.slug}`
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-azul text-white flex items-center justify-center hover:bg-verde transition-colors"
@@ -140,7 +143,9 @@ export default async function NoticiaPage({ params }: PageProps) {
                 <TwitterIcon size={18} />
               </a>
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent("https://pauta-brasil.vercel.app/noticias/" + noticia.slug)}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                  `${SITE_URL}/noticias/${noticia.slug}`
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-azul text-white flex items-center justify-center hover:bg-verde transition-colors"

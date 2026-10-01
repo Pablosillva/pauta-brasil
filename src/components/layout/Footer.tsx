@@ -19,10 +19,11 @@ const linksInstitucionais = [
 
 const linksDados = [
   { label: "Candidatos", href: "/candidatos" },
+  { label: "Parlamentares", href: "/parlamentares" },
   { label: "Projetos e votacoes", href: "/projetos" },
-  { label: "Deputados", href: "/deputados" },
   { label: "Partidos", href: "/partidos" },
   { label: "Planos de Governo", href: "/planos" },
+  { label: "Portal", href: "/portal" },
 ];
 
 const linksFerramentas = [

@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "pauta-brasil-secret-key-2026"
+  process.env.JWT_SECRET || "centro-politico-secret-altere-em-producao"
 );
 
 const COOKIE_NAME = "pauta_auth";

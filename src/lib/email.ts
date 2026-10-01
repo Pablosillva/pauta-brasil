@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/config";
+
 /**
  * Envio de e-mail transacional.
  *
@@ -79,9 +81,7 @@ export function validarRemetente(remetente: string): string | null {
 }
 
 function montarLink(caminho: string, token: string): string {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://pauta-brasil.vercel.app";
-  return `${base.replace(/\/$/, "")}${caminho}?token=${token}`;
+  return `${SITE_URL}${caminho}?token=${token}`;
 }
 
 async function enviar(

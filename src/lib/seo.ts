@@ -1,13 +1,10 @@
 import { nomesEstados } from "@/data/candidatos";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://pauta-brasil.vercel.app";
-
+import { SITE_URL, NOME_SITE } from "@/lib/config";
 export function jsonLdSite() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Centro Político",
+    name: NOME_SITE,
     url: SITE_URL,
     description:
       "Portal de informação política brasileira. Mapa eleitoral, candidatos, comparador de propostas e notícias.",
@@ -23,7 +20,7 @@ export function jsonLdOrganization() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Centro Político",
+    name: NOME_SITE,
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.png`,
   };
@@ -87,7 +84,7 @@ export function jsonLdNewsArticle(noticia: {
     author: { "@type": "Person", name: noticia.autor },
     publisher: {
       "@type": "Organization",
-      name: "Centro Político",
+      name: NOME_SITE,
       logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.png` },
     },
     mainEntityOfPage: {

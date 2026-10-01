@@ -57,11 +57,12 @@ export const parlamentares: ItemNav[] = [
 ];
 
 /**
- * Navegacao simples do header. "Início" fica fora daqui porque e renderizado
- * separadamente, junto dos submenus.
+ * Navegacao simples do header. "Início" e os submenus ficam de fora, sao
+ * renderizados separadamente. "Projetos" tambem: ja aparece dentro do
+ * submenu Parlamentares, e repetir aqui polui a barra.
  */
 export const navItems: ItemNav[] = [
-  { label: "Projetos", href: "/projetos" },
+  { label: "Portal", href: "/portal" },
   { label: "Notícias", href: "/noticias" },
   { label: "Ferramentas", href: "/ferramentas" },
   { label: "Sobre", href: "/sobre" },
@@ -75,6 +76,7 @@ export const navMobile: { titulo: string; itens: ItemNav[] }[] = [
     titulo: "Navegar",
     itens: [
       { label: "Início", href: "/" },
+      { label: "Portal", href: "/portal" },
       { label: "Notícias", href: "/noticias" },
       { label: "Ferramentas", href: "/ferramentas" },
       { label: "Sobre", href: "/sobre" },
