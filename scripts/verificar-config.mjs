@@ -85,6 +85,27 @@ const RECOMENDADAS = [
     nome: "ADMIN_PASSWORD",
     ajuda: "Login do painel em /batata.",
   },
+  {
+    nome: "PORTAL_TRANSPARENCIA_API_KEY",
+    ajuda: "Habilita a aba de gastos. Sem a chave a tela declara o bloqueio.",
+    ajuda: "Habilita a aba de gastos. Sem a chave a tela declara o bloqueio.",
+    validar: (v) =>
+      /^[a-z0-9]{32}$/.test(v)
+        ? null
+        : "a chave da CGU tem 32 caracteres alfanumericos minusculos",
+  },
+  {
+    nome: "SENADO_API_KEY",
+    ajuda: "Habilita materias de autoria e votacoes de senador.",
+  },
+  {
+    nome: "GOOGLE_SITE_VERIFICATION",
+    ajuda: "Token da verificacao de propriedade no Search Console.",
+    validar: (v) =>
+      v.startsWith("google-site-verification=")
+        ? null
+        : "inclua o prefixo google-site-verification= na frente",
+  },
 ];
 
 /* ------------------------------------------------------------------ */

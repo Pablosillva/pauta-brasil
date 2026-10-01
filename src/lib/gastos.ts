@@ -9,10 +9,29 @@
  * Atencao: a base da CGU indexa por nome, nao por id. O filtro por nome pode
  * agrupar mais de uma pessoa com o mesmo nome, por isso a tela sempre mostra
  * o nome exato consultado e os valores brutos.
+ *
+ * O nome do header e "chave-api-dados", todo em minusculo, conforme os exemplos
+ * oficiais de Javascript, Java, PHP e .NET. Ja esteve como "Chave-Dados", que a
+ * API nao le: a resposta era "Chave de API nao informada", indistinguivel de
+ * falta de chave, e fazia uma chave valida parecer invalida.
+ *
+ * Limite de taxa declarado pela CGU: 400 requisicoes por minuto entre 6h e 23h59,
+ * e 700 por minuto entre 0h e 5h59. O cache de uma hora abaixo mantem o uso
+ * bem abaixo disso.
  */
 
 const BASE = "https://api.portaldatransparencia.gov.br/api-de-dados";
+const CABECALHO_CHAVE = "chave-api-dados";
 const TIMEOUT_MS = 20000;
+
+/**
+ * A chave tem 32 caracteres alfanumericos minusculos, como no exemplo da
+ * documentacao oficial. Validar o formato evita cadastrar por engano o
+ * segredo de outro servico e esperar resultado que nunca vem.
+ */
+export function formatoDaChaveValido(chave: string): boolean {
+  return /^[a-z0-9]{32}$/.test(chave.trim());
+}
 
 export interface Gasto {
   codigo: string;
@@ -46,14 +65,24 @@ export async function listarGastos(
     const resposta = await fetch(`${BASE}/gastos?${params}`, {
       headers: {
         Accept: "application/json",
-        "Chave-Dados": apiKey,
+        [CABECALHO_CHAVE]: apiKey,
       },
       signal: AbortSignal.timeout(TIMEOUT_MS),
       next: { revalidate: 3600 },
     });
 
     if (!resposta.ok) {
-      console.error(`[gastos] HTTP ${resposta.status} ao consultar gastos`);
+      // A CGU distingue "chave nao informada" de "chave invalida". A primeira
+      // mensagem aparece quando o header chega com o nome errado, e e o sinal
+      // de que vale checar CABECALHO_CHAVE.
+      const erro = await resposta.text().catch(() => "");
+      const causa = erro.includes("não informada")
+        ? "header recusado (confira o nome da variavel)"
+        : erro.includes("inválida")
+          ? "chave invalida ou nao ativada"
+          : "";
+
+      console.error(`[gastos] HTTP ${resposta.status} ao consultar gastos${causa ? `: ${causa}` : ""}`);
       return null;
     }
 
