@@ -55,6 +55,51 @@ export function jsonLdCandidato(candidato: {
   };
 }
 
+/**
+ * Normaliza o valor do token do Search Console.
+ *
+ * A tela do Google mostra a tag HTML inteira, e o reflexo natural e copiar a
+ * linha toda. Quando isso acontece, o Next.js escapa o markup e o site passa
+ * a entregar isto no head:
+ *
+ *   <meta name="google-site-verification" content="&lt;meta name=&quot;...&quot; /&gt;" />
+ *
+ * O content fica com a tag em vez do token, e o Search Console recusa com
+ * "sua metatag nao esta formatada corretamente". Foi exatamente o que
+ * aconteceu com a variavel do Vercel.
+ *
+ * Aqui aceitamos todas as formas em que o token costuma ser colado:
+ *
+ *   JGTBz0Q2...                                   (so o token)
+ *   google-site-verification=JGTBz0Q2...          (com o prefixo)
+ *   <meta name="google-site-verification" content="JGTBz0Q2..." />
+ *
+ * Se nao reconhecer nenhum dos formatos, devolve o valor sem mexer: e melhor
+ * deixar o Google recusar e dizer qual formato ele quer do que devolver vazio
+ * e sumir com a meta tag.
+ */
+export function normalizarTokenGoogle(valor: string | undefined): string | undefined {
+  const bruto = (valor ?? "").trim();
+
+  if (!bruto) return undefined;
+
+  // 1) A tag inteira: extrai o content, aceitando aspas simples ou duplas.
+  const tag = bruto.match(
+    /<meta[^>]*name\s*=\s*["']google-site-verification["'][^>]*content\s*=\s*["']([^"']+)["'][^>]*>/i
+  );
+  if (tag) return tag[1].trim();
+
+  // 2) content= sem a tag em volta, util para quem copia o atributo sozinho.
+  const atributo = bruto.match(/content\s*=\s*["']?([^"'\s>]+)["']?/i);
+  if (atributo && /google-site-verification/i.test(bruto)) {
+    return atributo[1].trim();
+  }
+
+  // 3) O token com o prefixo, ou o token sozinho.
+  const comPrefixo = bruto.replace(/^google-site-verification\s*=\s*/i, "").trim();
+  return comPrefixo || undefined;
+}
+
 export function jsonLdBreadcrumb(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",

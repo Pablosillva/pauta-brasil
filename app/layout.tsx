@@ -3,7 +3,11 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { jsonLdSite, jsonLdOrganization } from "@/lib/seo";
+import {
+  jsonLdSite,
+  jsonLdOrganization,
+  normalizarTokenGoogle,
+} from "@/lib/seo";
 import type { Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next"
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
@@ -19,10 +23,16 @@ export const metadata: Metadata = {
    * seu. Como o site mudou de endereco, o valor antigo nao valida o novo.
    * Por isso vem do ambiente em vez de ficar fixo no codigo.
    * Em Search Console: adicionar propriedade > prefixo de URL > HTML.
+   *
+   * O valor passa por normalizarTokenGoogle porque o Google entrega a tag
+   * HTML inteira e o natural e colar a linha toda. Nesse caso o Next.js
+   * escapa o markup e o Search Console recusa a meta tag. A funcao aceita o
+   * token, o token com prefixo e a tag completa.
    */
-  verification: process.env.GOOGLE_SITE_VERIFICATION
-    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
-    : undefined,
+  verification: (() => {
+    const token = normalizarTokenGoogle(process.env.GOOGLE_SITE_VERIFICATION);
+    return token ? { google: token } : undefined;
+  })(),
   title: {
     default: "Centro Político — Dados eleitorais, transparência e democracia",
     template: "%s | Centro Político",
