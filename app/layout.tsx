@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Centro Político",
     description:
-      "Acompanhe candidatos, propostas e o cenário político do Brasil em um só lugar.",
+      "Candidatos, fotos, planos de governo e votacoes do Congresso com dados oficiais do TSE e da Camara.",
     images: ["/og-image.png"],
   },
 };

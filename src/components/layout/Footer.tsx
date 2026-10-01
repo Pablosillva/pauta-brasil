@@ -54,8 +54,8 @@ export function Footer() {
             <span className="font-bold text-lg">Centro Político</span>
           </Link>
           <p className="text-sm text-white/60 leading-relaxed">
-            Informação, transparência e democracia. Acompanhe candidatos,
-            propostas e o cenário político do Brasil em um só lugar.
+            Dados eleitorais e fiscalização do poder, com base em fontes oficiais
+            do TSE e da Camara dos Deputados.
           </p>
         </div>
 
