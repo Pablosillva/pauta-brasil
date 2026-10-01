@@ -10,11 +10,43 @@
 
 const BASE = "https://dadosabertos.camara.leg.br/api/v2";
 
+/** Junta BASE e caminho garantindo exatamente uma barra entre os dois. */
+function url(caminho: string): string {
+  return `${BASE}/${caminho.replace(/^\/+/, "")}`;
+}
+
 /** 1 hora: suficientemente atual para um site informativo, barato para a API. */
 const REVALIDACAO = 3600;
 
 const TIMEOUT_MS = 12000;
 const POR_PAGINA = 100;
+
+/**
+ * A API da Camara nao aguenta muitas requisicoes ao mesmo tempo: quando o build
+ * monta varias paginas em paralelo, ela devolve uma pagina HTML de erro em
+ * vez de JSON. Este semaforo limita a 3 chamadas simultaneas.
+ */
+const MAXIMO_PARALELO = 3;
+let emVoo = 0;
+const fila: (() => void)[] = [];
+
+async function adquirirVaga(): Promise<void> {
+  if (emVoo < MAXIMO_PARALELO) {
+    emVoo++;
+    return;
+  }
+
+  await new Promise<void>((resolver) => fila.push(resolver));
+  emVoo++;
+}
+
+function liberarVaga(): void {
+  emVoo--;
+  const proximo = fila.shift();
+  if (proximo) proximo();
+}
+
+const ESPERA_ENTRE_TENTATIVAS = 400;
 
 /* ------------------------------------------------------------------ */
 /*  Tipos                                                              */
@@ -118,49 +150,69 @@ interface Envelope<T> {
 /**
  * Consulta a API e devolve apenas o campo `dados`.
  * Retorna null em qualquer erro, para que a pagina degrade com elegância.
+ *
+ * Faz ate 3 tentativas: o limite de taxa da Camara costuma responder com uma
+ * pagina HTML em vez de JSON, e um nova tentativa resolve.
  */
-async function camara<T>(caminho: string, revalidate = REVALIDACAO): Promise<T | null> {
-  try {
-    const resposta = await fetch(`${BASE}${caminho}`, {
-      headers: { Accept: "application/json" },
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-      next: { revalidate },
-    });
+async function camara<T>(
+  caminho: string,
+  revalidate = REVALIDACAO
+): Promise<T | null> {
+  const TENTATIVAS = 3;
 
-    if (!resposta.ok) {
-      console.error(`[camara] HTTP ${resposta.status} em ${caminho}`);
+  for (let tentativa = 1; tentativa <= TENTATIVAS; tentativa++) {
+    await adquirirVaga();
+
+    try {
+      const resposta = await fetch(url(caminho), {
+        headers: { Accept: "application/json" },
+        signal: AbortSignal.timeout(TIMEOUT_MS),
+        next: { revalidate },
+      });
+
+      // 429 e 5xx costumam ser transitorios.
+      if (!resposta.ok) {
+        if ((resposta.status === 429 || resposta.status >= 500) && tentativa < TENTATIVAS) {
+          await new Promise((r) => setTimeout(r, ESPERA_ENTRE_TENTATIVAS * tentativa));
+          continue;
+        }
+
+        console.error(`[camara] HTTP ${resposta.status} em ${caminho}`);
+        return null;
+      }
+
+      const texto = await resposta.text();
+
+      // Resposta que comeca com "<" e uma pagina de erro, nao JSON.
+      if (texto.trimStart().startsWith("<")) {
+        if (tentativa < TENTATIVAS) {
+          await new Promise((r) => setTimeout(r, ESPERA_ENTRE_TENTATIVAS * tentativa));
+          continue;
+        }
+
+        console.error(
+          `[camara] resposta HTML em ${url(caminho)}\n` +
+            `   status: ${resposta.status} | redirect: ${resposta.redirected}\n` +
+            `   corpo: ${texto.slice(0, 200).replace(/\s+/g, " ")}`
+        );
+        return null;
+      }
+
+      return (JSON.parse(texto) as Envelope<T>).dados;
+    } catch (erro) {
+      if (tentativa < TENTATIVAS) {
+        await new Promise((r) => setTimeout(r, ESPERA_ENTRE_TENTATIVAS * tentativa));
+        continue;
+      }
+
+      console.error(`[camara] falha em ${caminho}:`, (erro as Error).message);
       return null;
+    } finally {
+      liberarVaga();
     }
-
-    const envelope = (await resposta.json()) as Envelope<T>;
-    return envelope.dados;
-  } catch (erro) {
-    console.error(`[camara] falha em ${caminho}:`, (erro as Error).message);
-    return null;
   }
-}
 
-/** Número total de páginas, lido do link "last" da resposta paginada. */
-async function contarPaginas(caminho: string): Promise<number> {
-  try {
-    const resposta = await fetch(`${BASE}${caminho}`, {
-      headers: { Accept: "application/json" },
-      signal: AbortSignal.timeout(8000),
-      next: { revalidate: REVALIDACAO },
-    });
-
-    if (!resposta.ok) return 1;
-
-    const envelope = (await resposta.json()) as Envelope<unknown[]>;
-    const ultimo = envelope.links?.find((l) => l.rel === "last");
-    if (!ultimo) return 1;
-
-    const pagina = new URL(ultimo.href).searchParams.get("pagina");
-    const n = pagina ? Number(pagina) : 1;
-    return Number.isFinite(n) && n > 0 ? n : 1;
-  } catch {
-    return 1;
-  }
+  return null;
 }
 
 /* ------------------------------------------------------------------ */
@@ -168,20 +220,29 @@ async function contarPaginas(caminho: string): Promise<number> {
 /* ------------------------------------------------------------------ */
 
 /**
- * Todos os deputados em exercício (~513). São baixados em blocos de 100,
- * todos em paralelo. O resultado fica em cache por uma hora.
+ * Todos os deputadores em exercício (~513).
+ *
+ * As páginas são trazidas em sequência até a API devolver uma lista vazia,
+ * em vez de ler o total de páginas e buscar todas de uma vez: são ~6
+ * requisições, e o limite de taxa da Câmara é sensível.
  */
 export async function todosOsDeputados(): Promise<Deputado[]> {
   const base = `deputados?itens=${POR_PAGINA}&ordem=ASC&ordenarPor=nome`;
-  const totalPaginas = await contarPaginas(`${base}&pagina=1`);
 
-  const blocos = await Promise.all(
-    Array.from({ length: totalPaginas }, (_, i) =>
-      camara<Deputado[]>(`${base}&pagina=${i + 1}`)
-    )
-  );
+  const coletados: Deputado[] = [];
 
-  return blocos.flatMap((b) => b ?? []);
+  for (let pagina = 1; pagina <= 10; pagina++) {
+    const bloco = await camara<Deputado[]>(`${base}&pagina=${pagina}`);
+
+    if (!bloco || bloco.length === 0) break;
+
+    coletados.push(...bloco);
+
+    // Menos de uma pagina cheia significa que chegamos ao fim da lista.
+    if (bloco.length < POR_PAGINA) break;
+  }
+
+  return coletados;
 }
 
 export async function buscarDeputado(
@@ -231,17 +292,96 @@ export async function buscarDeputado(
   };
 }
 
-/** Últimas votações de um deputado. */
+/**
+ * Quantas votações são abertas para montar o índice de votos.
+ *
+ * A API não oferece "votos de um deputado" (`/deputados/{id}/votos` responde
+ * 405), mas responde bem "votos de uma votação". Então invertemos a direção:
+ * abrimos as últimas votações nominais e montamos o índice aqui.
+ *
+ * O custo é uma requisição por votação, amortizado pelo cache de 1 hora.
+ */
+const VOTACOES_NO_INDICE = 12;
+
+interface IndiceVotos {
+  /** deputadoId -> [{ votacao, voto }] */
+  porDeputado: Map<number, { votacao: Votacao; voto: string }[]>;
+  /** Cacheado junto, evita refazer as consultas de votação. */
+  votacoes: Votacao[];
+}
+
+let indiceCache: { dados: IndiceVotos; geradoEm: number } | null = null;
+const VALIDADE_INDICE_MS = REVALIDACAO * 1000;
+
+async function construirIndice(): Promise<IndiceVotos> {
+  const votacoes = await listarVotacoes(VOTACOES_NO_INDICE);
+
+  const porDeputado = new Map<number, { votacao: Votacao; voto: string }[]>();
+
+  for (const votacao of votacoes) {
+    const votos = await votosDaVotacao(votacao.id);
+    if (votos.length === 0) continue;
+
+    for (const { tipoVoto, deputado } of votos) {
+      const lista = porDeputado.get(deputado.id) ?? [];
+      lista.push({ votacao, voto: tipoVoto });
+      porDeputado.set(deputado.id, lista);
+    }
+  }
+
+  return { porDeputado, votacoes };
+}
+
+async function obterIndice(): Promise<IndiceVotos | null> {
+  if (
+    indiceCache &&
+    Date.now() - indiceCache.geradoEm < VALIDADE_INDICE_MS
+  ) {
+    return indiceCache.dados;
+  }
+
+  try {
+    const dados = await construirIndice();
+    indiceCache = { dados, geradoEm: Date.now() };
+    return dados;
+  } catch (erro) {
+    console.error("[camara] falha ao montar o indice de votos:", erro);
+    return null;
+  }
+}
+
+/**
+ * Votacoes em que um deputado aparece, com o voto registrado.
+ *
+ * Baseado nas últimas {@link VOTACOES_NO_INDICE} votações nominais, não no
+ * histórico completo da legislatura.
+ */
 export async function votosDoDeputado(
   id: number,
-  itens = 20
+  limite = 20
 ): Promise<{ votacao: Votacao; voto: string }[]> {
-  const dados = await camara<{ votacao: Votacao; voto: string }[]>(
-    `deputados/${id}/votos?itens=${itens}`
-  );
+  const indice = await obterIndice();
+  if (!indice) return [];
 
-  return dados ?? [];
+  const votos = indice.porDeputado.get(id) ?? [];
+
+  return votos
+    .slice()
+    .sort(
+      (a, b) =>
+        new Date(b.votacao.dataHoraRegistro).getTime() -
+        new Date(a.votacao.dataHoraRegistro).getTime()
+    )
+    .slice(0, limite);
 }
+
+/** As votações que compõem o índice, para exibir o aviso de recorte. */
+export async function votacoesDoIndice(): Promise<Votacao[]> {
+  const indice = await obterIndice();
+  return indice?.votacoes ?? [];
+}
+
+export { VOTACOES_NO_INDICE };
 
 /* ------------------------------------------------------------------ */
 /*  Votações                                                           */

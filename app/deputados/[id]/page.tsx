@@ -14,6 +14,8 @@ import {
 import {
   buscarDeputado,
   votosDoDeputado,
+  votacoesDoIndice,
+  VOTACOES_NO_INDICE,
   dataDaCamara,
   rotuloVoto,
   type CorVoto,
@@ -56,7 +58,10 @@ export default async function DeputadoPage({ params }: PageProps) {
   const deputado = await buscarDeputado(deputadoId);
   if (!deputado) notFound();
 
-  const votos = await votosDoDeputado(deputadoId, 40);
+  const [votos, votacoesIndice] = await Promise.all([
+    votosDoDeputado(deputadoId, 40),
+    votacoesDoIndice(),
+  ]);
 
   // Resumo de posicoes: o leitor quer saber "como esta pessoa vota?", nao 40 linhas.
   const resumo = votos.reduce<Record<string, number>>((mapa, v) => {
@@ -213,15 +218,30 @@ export default async function DeputadoPage({ params }: PageProps) {
 
       {/* Histórico de votação */}
       <section>
-        <h2 className="flex items-center gap-2 text-xl font-bold text-azul dark:text-white mb-4">
+        <h2 className="flex items-center gap-2 text-xl font-bold text-azul dark:text-white mb-2">
           <Gavel size={20} className="text-verde" />
           Historico de votacao ({votos.length})
         </h2>
 
+        {/* Deixa claro o recorte: nao e a legislatura inteira. */}
+        {votos.length > 0 && votacoesIndice.length > 0 && (
+          <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-5">
+            Baseado nas {votacoesIndice.length} votacoes nominais mais recentes
+            do Congresso, de{" "}
+            {new Date(`${votacoesIndice[votacoesIndice.length - 1].data}T12:00:00`).toLocaleDateString("pt-BR")}{" "}
+            a{" "}
+            {new Date(`${votacoesIndice[0].data}T12:00:00`).toLocaleDateString("pt-BR")}
+            . A Camara nao oferece consulta de votos por deputado, entao
+            reconstruimos o historico a partir dessas votacoes.
+          </p>
+        )}
+
         {votos.length === 0 ? (
           <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-dashed border-cinza-medio dark:border-azul-light text-center text-cinza-escuro dark:text-cinza-medio">
-            Nenhuma votacao nominal registrada para este deputado no periodo
-            consultado.
+            Este deputado nao votou nominalmente em nenhuma das{" "}
+            {VOTACOES_NO_INDICE} votacoes mais recentes do Congresso, ou nao
+            esta mais em exercicio. Consultas em bloco nao registram voto
+            individual.
           </div>
         ) : (
           <>
