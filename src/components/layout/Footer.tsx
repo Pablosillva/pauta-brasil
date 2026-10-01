@@ -22,7 +22,6 @@ const linksDados = [
   { label: "Pautas do Congresso", href: "/pautas" },
   { label: "Deputados", href: "/deputados" },
   { label: "Partidos", href: "/partidos" },
-  { label: "Temas", href: "/temas" },
   { label: "Planos de Governo", href: "/planos" },
 ];
 

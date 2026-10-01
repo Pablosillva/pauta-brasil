@@ -4,34 +4,51 @@ import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
 
+/**
+ * Alterna entre tema claro e escuro.
+ *
+ * O estado inicial e `null` de proposito: a preferencia so e conhecida no
+ * navegador, e renderizar o icone errado antes da hidratacao causaria
+ * divergencia entre o servidor e o cliente.
+ */
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false);
+  const [tema, setTema] = useState<"claro" | "escuro" | null>(null);
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const shouldBeDark = saved === "dark" || (!saved && prefersDark);
+    const salvo = localStorage.getItem("theme");
+    const prefereEscuro = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
 
-    setDark(shouldBeDark);
-    document.documentElement.classList.toggle("dark", shouldBeDark);
+    const escuro = salvo === "dark" || (!salvo && prefereEscuro);
+
+    document.documentElement.classList.toggle("dark", escuro);
+
+    // Le a preferencia gravada no navegador: o servidor nao tem acesso a ela,
+    // entao o tema so pode ser resolvido depois da hidratacao.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setTema(escuro ? "escuro" : "claro");
   }, []);
 
-  function toggle() {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    localStorage.setItem("theme", next ? "dark" : "light");
+  function alternar() {
+    const proximo = tema === "escuro" ? "claro" : "escuro";
+
+    document.documentElement.classList.toggle("dark", proximo === "escuro");
+    localStorage.setItem("theme", proximo);
+    setTema(proximo);
   }
+
+  const escuro = tema === "escuro";
 
   return (
     <Button
       variant="ghost"
       size="sm"
-      onClick={toggle}
+      onClick={alternar}
       aria-label="Alternar tema"
-      title={dark ? "Modo claro" : "Modo escuro"}
+      title={escuro ? "Modo claro" : "Modo escuro"}
     >
-      {dark ? <Sun size={18} /> : <Moon size={18} />}
+      {escuro ? <Sun size={18} /> : <Moon size={18} />}
     </Button>
   );
 }

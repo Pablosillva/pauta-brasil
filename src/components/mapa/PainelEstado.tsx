@@ -36,7 +36,8 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
   const [pagina, setPagina] = useState(1);
 
   const [candidatosTse, setCandidatosTse] = useState<Candidato[]>([]);
-  const [carregando, setCarregando] = useState(false);
+  /** UF cujos candidatos ja chegaram. Vazio enquanto nada foi carregado. */
+  const [ufCarregada, setUfCarregada] = useState("");
 
   // Fechar com ESC
   useEffect(() => {
@@ -57,38 +58,37 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
 
   // Buscar candidatos do estado (ou BR para Presidente)
   useEffect(() => {
-    if (!estadoId) {
-      setCandidatosTse([]);
-      return;
-    }
+    if (!estadoId) return;
 
     const uf =
       cargoAtivo === "Presidente"
         ? "BR"
         : estadoId.replace(/^br-/, "").toUpperCase();
 
-    setCarregando(true);
-    fetch(`/api/candidatos/${uf}`)
-      .then((r) => r.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setCandidatosTse(data);
-        } else {
-          console.error("API não retornou array:", data);
-          setCandidatosTse([]);
-        }
-      })
-      .catch((err) => {
-        console.error("Erro ao carregar candidatos:", err);
-        setCandidatosTse([]);
-      })
-      .finally(() => setCarregando(false));
-  }, [estadoId, cargoAtivo]);
+    let cancelado = false;
 
-  // Resetar página ao trocar filtros
-  useEffect(() => {
-    setPagina(1);
-  }, [cargoAtivo, filtroPartido, filtroGenero, busca, ordenacao]);
+    (async () => {
+      try {
+        const resposta = await fetch(`/api/candidatos/${uf}`);
+        const data: unknown = await resposta.json();
+
+        if (cancelado) return;
+
+        setCandidatosTse(Array.isArray(data) ? data : []);
+        setUfCarregada(uf);
+      } catch (erro) {
+        console.error("Erro ao carregar candidatos:", erro);
+        if (!cancelado) {
+          setCandidatosTse([]);
+          setUfCarregada(uf);
+        }
+      }
+    })();
+
+    return () => {
+      cancelado = true;
+    };
+  }, [estadoId, cargoAtivo]);
 
   if (!estadoId) return null;
 
@@ -96,6 +96,14 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
   const governador = getGovernador(estadoId);
 
   const lista = Array.isArray(candidatosTse) ? candidatosTse : [];
+
+  // Enquanto os dados da UF atual nao chegam, mostramos o carregamento.
+  const ufAtual =
+    cargoAtivo === "Presidente"
+      ? "BR"
+      : estadoId.replace(/^br-/, "").toUpperCase();
+
+  const carregando = ufCarregada !== ufAtual;
 
   const candidatosFiltrados = lista
     .filter((c) => c.cargo === cargoAtivo)
@@ -119,7 +127,10 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
     });
 
   const totalPaginas = Math.ceil(candidatosFiltrados.length / ITENS_POR_PAGINA);
-  const inicio = (pagina - 1) * ITENS_POR_PAGINA;
+
+  // Um filtro mais restritivo pode deixar a pagina atual fora do intervalo.
+  const paginaAtual = Math.min(Math.max(1, pagina), Math.max(1, totalPaginas));
+  const inicio = (paginaAtual - 1) * ITENS_POR_PAGINA;
   const candidatosPaginados = candidatosFiltrados.slice(
     inicio,
     inicio + ITENS_POR_PAGINA
@@ -312,17 +323,17 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
           <div className="flex items-center justify-center gap-2 px-6 py-3 border-t border-cinza-medio dark:border-azul-light">
             <button
               onClick={() => setPagina((p) => Math.max(1, p - 1))}
-              disabled={pagina === 1}
+              disabled={paginaAtual === 1}
               className="px-3 py-1.5 text-sm rounded-md border border-cinza-medio dark:border-azul-light disabled:opacity-40 hover:border-verde transition-colors"
             >
               ← Anterior
             </button>
             <span className="text-sm text-cinza-escuro dark:text-cinza-medio">
-              Página {pagina} de {totalPaginas}
+              Página {paginaAtual} de {totalPaginas}
             </span>
             <button
               onClick={() => setPagina((p) => Math.min(totalPaginas, p + 1))}
-              disabled={pagina === totalPaginas}
+              disabled={paginaAtual === totalPaginas}
               className="px-3 py-1.5 text-sm rounded-md border border-cinza-medio dark:border-azul-light disabled:opacity-40 hover:border-verde transition-colors"
             >
               Próxima →

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run db:migrar && npm run verificar:texto && next build --webpack",
+    "build": "npm run verificar:texto && npm run db:migrar && next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "db:migrar": "node scripts/migrar-banco.mjs",
@@ -14,6 +14,7 @@
     "fotos:principais": "node scripts/baixar-fotos-tse.mjs BR && node scripts/baixar-fotos-tse.mjs SP && node scripts/baixar-fotos-tse.mjs RJ && node scripts/baixar-fotos-tse.mjs MG",
     "planos": "node scripts/baixar-planos-tse.mjs",
     "planos:presidentes": "node scripts/baixar-planos-tse.mjs BR",
+    "estatisticas": "node scripts/gerar-estatisticas.mjs",
     "postinstall": "node scripts/postinstall.mjs",
     "noticia": "node scripts/nova-noticia.mjs",
     "db:generate": "drizzle-kit generate",

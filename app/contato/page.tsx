@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Mail, MessageSquare, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
@@ -195,9 +196,9 @@ export default function ContatoPage() {
       </div>
 
       <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <a href="/" className="text-verde font-semibold hover:underline">
+        <Link href="/" className="text-verde font-semibold hover:underline">
           ← Voltar para a home
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
-import { Mail, Lock, User, MapPin, Copy, Check } from "lucide-react";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { Mail, Lock, User, MapPin, Copy, Check, Crown } from "lucide-react";
 import { Campo } from "@/components/ui/Campo";
 import { acaoCadastrar, type EstadoForm } from "@/actions/usuario";
 import { ufs } from "@/data/ufs";
@@ -11,6 +12,9 @@ import { ufs } from "@/data/ufs";
 const ESTADO_VAZIO: EstadoForm = {};
 
 export function FormularioCadastro() {
+  const params = useSearchParams();
+  const plano = params.get("plano");
+
   const [estado, enviar] = useActionState(acaoCadastrar, ESTADO_VAZIO);
   const [copiado, setCopiado] = useState(false);
   const [senha, setSenha] = useState("");
@@ -45,6 +49,13 @@ export function FormularioCadastro() {
         <p className="text-cinza-escuro dark:text-cinza-medio">
           Salve candidatos e acompanhe as pautas do seu interesse.
         </p>
+
+        {plano && (
+          <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-verde/10 border border-verde/30 text-verde text-xs font-semibold">
+            <Crown size={13} />
+            Plano selecionado: {plano}
+          </div>
+        )}
       </div>
 
       {estado.sucesso ? (

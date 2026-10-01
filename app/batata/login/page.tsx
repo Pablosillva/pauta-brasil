@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function BatataLoginPage() {
@@ -9,11 +9,6 @@ export default function BatataLoginPage() {
   const [password, setPassword] = useState("");
   const [erro, setErro] = useState("");
   const [carregando, setCarregando] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -39,10 +34,6 @@ export default function BatataLoginPage() {
     } finally {
       setCarregando(false);
     }
-  }
-
-  if (!mounted) {
-    return null;
   }
 
   return (

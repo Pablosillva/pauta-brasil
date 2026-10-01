@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { getSessaoUsuario } from "@/lib/sessao-usuario";
 import { FormularioCadastro } from "@/components/auth/FormularioCadastro";
@@ -15,7 +16,10 @@ export default async function CadastroPage() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <FormularioCadastro />
+      {/* useSearchParams exige um limite de Suspense na borda */}
+      <Suspense fallback={<div className="h-96" />}>
+        <FormularioCadastro />
+      </Suspense>
     </div>
   );
 }

@@ -135,18 +135,9 @@ export default async function ProposicaoPage({ params }: PageProps) {
         {proposicao.tema && (
           <div className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light sm:col-span-2">
             <dt className="text-xs font-semibold uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
-              Tema
+              Tema (classificacao oficial da Camara)
             </dt>
-            <dd>
-              <Link
-                href={`/tema/${encodeURIComponent(
-                  proposicao.tema.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                )}`}
-                className="text-verde font-semibold hover:underline"
-              >
-                {proposicao.tema}
-              </Link>
-            </dd>
+            <dd className="text-azul dark:text-white">{proposicao.tema}</dd>
           </div>
         )}
       </dl>

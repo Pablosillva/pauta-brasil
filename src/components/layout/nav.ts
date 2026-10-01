@@ -28,7 +28,6 @@ export const navMobile: { titulo: string; itens: ItemNav[] }[] = [
       { label: "Metodologia", href: "/metodologia" },
       { label: "Fontes de dados", href: "/fontes" },
       { label: "Partidos", href: "/partidos" },
-      { label: "Temas", href: "/temas" },
       { label: "Todos os recursos", href: "/recursos" },
     ],
   },

@@ -163,13 +163,26 @@ export default function PremiumPage() {
                   </li>
                 ))}
               </ul>
-              <Button
-                variant={plan.popular ? "primary" : "outline"}
-                className="w-full"
-                disabled={plan.disabled}
-              >
-                {plan.cta}
-              </Button>
+              {plan.disabled ? (
+                <Button
+                  variant={plan.popular ? "primary" : "outline"}
+                  className="w-full"
+                  disabled
+                >
+                  {plan.cta}
+                </Button>
+              ) : (
+                <Link
+                  href={`/cadastro?plano=${encodeURIComponent(plan.name)}`}
+                  className={`w-full inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-colors ${
+                    plan.popular
+                      ? "bg-verde hover:bg-verde-dark text-white"
+                      : "border border-azul dark:border-white text-azul dark:text-white hover:bg-azul hover:text-white dark:hover:bg-white dark:hover:text-azul"
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              )}
             </div>
           ))}
         </div>

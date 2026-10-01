@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import path from "path";
+import type { Candidato } from "@/data/candidatos";
 
 export const dynamic = "force-dynamic";
 
@@ -16,8 +17,8 @@ export async function GET(_request: NextRequest, { params }: Params) {
   try {
     const filePath = path.join(process.cwd(), "src/data/tse", `${uf}.json`);
     const conteudo = await readFile(filePath, "utf-8");
-    const lista = JSON.parse(conteudo);
-    const candidato = lista.find((c: any) => c.id === id);
+    const lista = JSON.parse(conteudo) as Candidato[];
+    const candidato = lista.find((c) => c.id === id);
 
     if (!candidato) {
       return NextResponse.json(

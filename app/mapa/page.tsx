@@ -50,7 +50,7 @@ export default function MapaPage() {
               <li>Clique para abrir o painel de candidatos</li>
               <li>Navegue pelas abas: Presidente, Governador, Senador, Deputado Federal, Deputado Estadual</li>
               <li>Use os filtros para refinar por partido e gênero</li>
-              <li>Clique em "Ver propostas" para abrir o perfil completo</li>
+              <li>Clique em &ldquo;Ver propostas&rdquo; para abrir o perfil completo</li>
             </ol>
           </div>
 

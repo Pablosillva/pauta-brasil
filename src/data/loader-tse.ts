@@ -28,12 +28,20 @@ export async function carregarCandidatosDoEstado(
   }
 
   try {
-    const mod = await import(`./tse/${ufUpper.toLowerCase()}.json`);
-    const lista = ((mod as any).default ?? mod) as Candidato[];
-    if (!Array.isArray(lista)) {
-      console.error(`Formato inesperado para ${ufUpper}:`, typeof lista);
+    const mod: unknown = await import(`./tse/${ufUpper.toLowerCase()}.json`);
+
+    // O import dinamico pode devolver { default: [...] } ou o array direto.
+    const bruto =
+      mod && typeof mod === "object" && "default" in mod
+        ? (mod as { default: unknown }).default
+        : mod;
+
+    if (!Array.isArray(bruto)) {
+      console.error(`Formato inesperado para ${ufUpper}:`, typeof bruto);
       return [];
     }
+
+    const lista = bruto as Candidato[];
     cache.set(ufUpper, lista);
     return lista;
   } catch (err) {

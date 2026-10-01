@@ -1,23 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { GitCompare, Download, Share2 } from "lucide-react";
 import { SeletorCandidatos } from "@/components/comparador/SeletorCandidatos";
 import { TabelaComparativa } from "@/components/comparador/TabelaComparativa";
 
-export function ComparadorContent() {
+interface ComparadorContentProps {
+  /** Ids vindos da query string (?ids=a,b,c), lidos no servidor. */
+  idsIniciais: string[];
+}
+
+export function ComparadorContent({ idsIniciais }: ComparadorContentProps) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const idsParam = searchParams.get("ids") ?? "";
-
-  const [selecionados, setSelecionados] = useState<string[]>([]);
-
-  useEffect(() => {
-    if (idsParam) {
-      setSelecionados(idsParam.split(",").filter(Boolean));
-    }
-  }, [idsParam]);
+  const [selecionados, setSelecionados] = useState<string[]>(idsIniciais);
 
   function handleChange(novos: string[]) {
     setSelecionados(novos);

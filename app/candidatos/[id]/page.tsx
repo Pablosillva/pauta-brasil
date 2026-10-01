@@ -31,11 +31,17 @@ export const dynamicParams = true;
 async function buscarCandidato(id: string): Promise<Candidato | null> {
   // Busca diretamente nos arquivos JSON do TSE
   const uf = id.split("-")[0].toLowerCase();
+
   try {
-    const filePath = `src/data/tse/${uf}.json`;
-    const mod = await import(`@/data/tse/${uf}.json`);
-    const lista = ((mod as any).default ?? mod) as Candidato[];
-    return lista.find((c) => c.id === id) ?? null;
+    const mod: unknown = await import(`@/data/tse/${uf}.json`);
+
+    const lista = (
+      mod && typeof mod === "object" && "default" in mod
+        ? (mod as { default: unknown }).default
+        : mod
+    ) as Candidato[];
+
+    return Array.isArray(lista) ? (lista.find((c) => c.id === id) ?? null) : null;
   } catch {
     return null;
   }
