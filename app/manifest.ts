@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Pauta Brasil",
-    short_name: "Pauta Brasil",
+    name: "Centro Político",
+    short_name: "Centro Político",
     description:
       "Informação, transparência e democracia. Acompanhe candidatos, propostas e o cenário político do Brasil em um só lugar.",
     start_url: "/",

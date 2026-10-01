@@ -16,7 +16,7 @@ export const noticias: Noticia[] = [
     titulo: "Congresso aprova nova lei de licitações para obras públicas",
     categoria: "Política",
     data: "14 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-verde",
     resumo:
       "A nova lei promete acelerar obras públicas, mas especialistas alertam para riscos de flexibilização excessiva.",
@@ -65,7 +65,7 @@ export const noticias: Noticia[] = [
     titulo: "Pesquisa aponta aprovação recorde do Congresso Nacional",
     categoria: "Sociedade",
     data: "11 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-azul-light",
     resumo:
       "Índice de aprovação chega a 42%, o maior desde 2013, segundo levantamento do Datafolha.",
@@ -97,7 +97,7 @@ export const noticias: Noticia[] = [
     titulo: "TSE lança sistema de fiscalização de fake news nas eleições",
     categoria: "Justiça",
     data: "09 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-azul",
     resumo:
       "Ferramenta usa IA para identificar conteúdos falsos em tempo real durante o período eleitoral.",
@@ -145,7 +145,7 @@ export const noticias: Noticia[] = [
     titulo: "Banco Central divulga novos dados sobre inflação",
     categoria: "Economia",
     data: "06 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-verde",
     resumo:
       "IPCA acumulado em 12 meses fica em 3,8%, dentro da meta estabelecida pelo governo.",
@@ -161,7 +161,7 @@ export const noticias: Noticia[] = [
     titulo: "Eleições 2026: veja o calendário completo do TSE",
     categoria: "Eleições",
     data: "05 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-verde",
     resumo:
       "Confira as datas mais importantes das eleições de 2026, do prazo de justificativa ao segundo turno.",
@@ -209,7 +209,7 @@ export const noticias: Noticia[] = [
     titulo: "Câmara aprova projeto que amplia transparência em emendas parlamentares",
     categoria: "Política",
     data: "02 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-azul-light",
     resumo:
       "Texto exige divulgação detalhada de emendas individuais e cria portal de acompanhamento.",
@@ -273,7 +273,7 @@ export const noticias: Noticia[] = [
     titulo: "Banco Central mantém taxa Selic em 10,75% ao ano",
     categoria: "Economia",
     data: "29 de março de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-verde",
     resumo:
       "Comitê de Política Monetária decide manter taxa estável pela terceira vez consecutiva.",

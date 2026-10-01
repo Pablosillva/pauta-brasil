@@ -3,7 +3,7 @@ import { FileText } from "lucide-react";
 
 export const metadata = {
   title: "Termos de Uso",
-  description: "Termos de uso do Pauta Brasil.",
+  description: "Termos de uso do Centro Político.",
 };
 
 export default function TermosPage() {
@@ -30,7 +30,7 @@ export default function TermosPage() {
             1. Aceitação dos Termos
           </h2>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-            Ao acessar e usar o Pauta Brasil, você concorda com estes Termos de
+            Ao acessar e usar o Centro Político, você concorda com estes Termos de
             Uso. Se você não concordar com qualquer parte destes termos, não
             utilize o site.
           </p>
@@ -41,7 +41,7 @@ export default function TermosPage() {
             2. Uso do Site
           </h2>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-            O Pauta Brasil é uma plataforma de informação política. Você se
+            O Centro Político é uma plataforma de informação política. Você se
             compromete a usar o site apenas para fins lícitos e de acordo com
             estes termos. É proibido:
           </p>
@@ -59,13 +59,13 @@ export default function TermosPage() {
             3. Conteúdo e Dados
           </h2>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-            Os dados exibidos no Pauta Brasil são obtidos de fontes oficiais,
+            Os dados exibidos no Centro Político são obtidos de fontes oficiais,
             principalmente do Tribunal Superior Eleitoral (TSE). Embora nos
             esforcemos para manter as informações precisas e atualizadas, não
             garantimos a exatidão, completude ou atualidade de todos os dados.
           </p>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed mt-3">
-            O Pauta Brasil não se responsabiliza por decisões tomadas com base
+            O Centro Político não se responsabiliza por decisões tomadas com base
             nas informações exibidas no site. Consulte sempre os canais oficiais
             para confirmar informações.
           </p>
@@ -77,7 +77,7 @@ export default function TermosPage() {
           </h2>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
             Todo o conteúdo do site, incluindo textos, gráficos, logos, ícones e
-            imagens, é propriedade do Pauta Brasil ou de seus licenciadores e
+            imagens, é propriedade do Centro Político ou de seus licenciadores e
             está protegido por leis de direitos autorais. Você não pode
             reproduzir, distribuir ou criar obras derivadas sem autorização
             expressa.
@@ -101,7 +101,7 @@ export default function TermosPage() {
             6. Limitação de Responsabilidade
           </h2>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-            O Pauta Brasil não se responsabiliza por danos diretos, indiretos,
+            O Centro Político não se responsabiliza por danos diretos, indiretos,
             incidentais ou consequenciais decorrentes do uso ou incapacidade de
             usar o site. Isso inclui, mas não se limita a, perda de dados,
             lucros cessantes ou interrupção de negócios.
@@ -138,10 +138,10 @@ export default function TermosPage() {
             Se você tiver dúvidas sobre estes Termos de Uso, entre em contato
             conosco pelo e-mail{" "}
             <a
-              href="mailto:contato@pautabrasil.com.br"
+              href="mailto:contato@centropolitico.com.br"
               className="text-verde font-semibold hover:underline"
             >
-              contato@pautabrasil.com.br
+              contato@centropolitico.com.br
             </a>
             .
           </p>

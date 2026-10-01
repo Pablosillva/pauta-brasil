@@ -51,10 +51,10 @@ export default function BatataLoginPage() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-12 h-12 rounded-full bg-verde flex items-center justify-center text-white font-bold text-lg">
-              PB
+              CP
             </div>
             <span className="font-bold text-2xl text-azul dark:text-white">
-              Pauta Brasil
+              Centro Político
             </span>
           </div>
           <h1 className="text-2xl font-bold text-azul dark:text-white mb-2">

@@ -9,15 +9,28 @@ import {
 
 const linksInstitucionais = [
   { label: "Sobre", href: "/sobre" },
+  { label: "Metodologia", href: "/metodologia" },
+  { label: "Fontes de dados", href: "/fontes" },
+  { label: "Todos os recursos", href: "/recursos" },
   { label: "Termos de Uso", href: "/termos" },
   { label: "Política de Privacidade", href: "/privacidade" },
   { label: "Fale Conosco", href: "/contato" },
+];
+
+const linksDados = [
+  { label: "Candidatos", href: "/candidatos" },
+  { label: "Pautas do Congresso", href: "/pautas" },
+  { label: "Deputados", href: "/deputados" },
+  { label: "Partidos", href: "/partidos" },
+  { label: "Temas", href: "/temas" },
+  { label: "Planos de Governo", href: "/planos" },
 ];
 
 const linksFerramentas = [
   { label: "Mapa Eleitoral", href: "/mapa" },
   { label: "Comparador", href: "/comparador" },
   { label: "Ranking", href: "/ferramentas/ranking" },
+  { label: "Histórico de votação", href: "/ferramentas/historico-votacao" },
   { label: "Notícias", href: "/noticias" },
 ];
 
@@ -32,14 +45,14 @@ export function Footer() {
   return (
     <footer className="bg-azul dark:bg-azul-dark text-white mt-16">
       {/* Conteúdo principal */}
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-5 gap-8">
         {/* Marca */}
         <div className="md:col-span-1">
           <Link href="/" className="flex items-center gap-2 mb-4">
             <div className="w-9 h-9 rounded-full bg-verde flex items-center justify-center text-white font-bold">
-              PB
+              CP
             </div>
-            <span className="font-bold text-lg">Pauta Brasil</span>
+            <span className="font-bold text-lg">Centro Político</span>
           </Link>
           <p className="text-sm text-white/60 leading-relaxed">
             Informação, transparência e democracia. Acompanhe candidatos,
@@ -54,6 +67,25 @@ export function Footer() {
           </h4>
           <ul className="space-y-2">
             {linksInstitucionais.map((l) => (
+              <li key={l.href}>
+                <Link
+                  href={l.href}
+                  className="text-sm text-white/60 hover:text-verde-light transition-colors"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Dados */}
+        <div>
+          <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider text-white/90">
+            Dados
+          </h4>
+          <ul className="space-y-2">
+            {linksDados.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
@@ -132,7 +164,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/50">
           <p>
-            © {new Date().getFullYear()} Pauta Brasil. Todos os direitos
+            © {new Date().getFullYear()} Centro Político. Todos os direitos
             reservados.
           </p>
           <p>

@@ -65,7 +65,7 @@ export async function criarNoticia(dados: DadosNoticia) {
       titulo: dados.titulo,
       resumo: dados.resumo,
       conteudo: dados.conteudo,
-      autor: dados.autor || "Redação Pauta Brasil",
+      autor: dados.autor || "Redação Centro Político",
       categoria: dados.categoria,
       imagemCapa: dados.imagemCapa || null,
       tags: dados.tags ?? [],

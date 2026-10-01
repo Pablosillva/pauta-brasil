@@ -6,7 +6,7 @@ const noticias = [
     titulo: "Congresso aprova nova lei de licitações para obras públicas",
     categoria: "Política",
     data: "14 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     destaque: true,
     cor: "bg-verde",
   },
@@ -28,7 +28,7 @@ const noticias = [
     titulo: "Pesquisa aponta aprovação recorde do Congresso Nacional",
     categoria: "Sociedade",
     data: "11 de abril de 2026",
-    autor: "Redação Pauta Brasil",
+    autor: "Redação Centro Político",
     cor: "bg-azul-light",
   },
   {

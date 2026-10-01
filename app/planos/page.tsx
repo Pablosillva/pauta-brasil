@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FileText, MapPin } from "lucide-react";
 
 export const metadata = {
-  title: "Planos de Governo — Pauta Brasil",
+  title: "Planos de Governo — Centro Político",
   description: "Acesse os planos de governo dos candidatos por estado.",
 };
 

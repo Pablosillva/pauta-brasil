@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 
 export const metadata = {
   title: "Premium",
-  description: "Assine o Pauta Brasil Premium e tenha acesso a recursos exclusivos.",
+  description: "Assine o Centro Político Premium e tenha acesso a recursos exclusivos.",
 };
 
 const plans = [
@@ -88,7 +88,7 @@ export default function PremiumPage() {
         <div className="inline-flex items-center gap-2 text-verde mb-3">
           <Crown size={20} />
           <span className="text-xs font-semibold uppercase tracking-wider">
-            Pauta Brasil Premium
+            Centro Político Premium
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-4">
@@ -195,7 +195,7 @@ export default function PremiumPage() {
               a: "Os dados do TSE são atualizados diariamente. Rankings e análises são atualizados semanalmente.",
             },
             {
-              q: "O Pauta Brasil é apartidário?",
+              q: "O Centro Político é apartidário?",
               a: "Sim. Não recebemos financiamento de partidos políticos. O Premium nos ajuda a manter a independência editorial.",
             },
           ].map((faq) => (
@@ -217,10 +217,10 @@ export default function PremiumPage() {
         <p className="text-cinza-escuro dark:text-cinza-medio mb-4">
           Dúvidas? Fale conosco em{" "}
           <a
-            href="mailto:contato@pautabrasil.com.br"
+            href="mailto:contato@centropolitico.com.br"
             className="text-verde font-semibold hover:underline"
           >
-            contato@pautabrasil.com.br
+            contato@centropolitico.com.br
           </a>
         </p>
         <Link href="/" className="text-verde font-semibold hover:underline">

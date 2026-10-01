@@ -3,7 +3,7 @@ import { Shield } from "lucide-react";
 
 export const metadata = {
   title: "Política de Privacidade",
-  description: "Política de privacidade do Pauta Brasil.",
+  description: "Política de privacidade do Centro Político.",
 };
 
 export default function PrivacidadePage() {
@@ -130,10 +130,10 @@ export default function PrivacidadePage() {
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed mt-3">
             Para exercer seus direitos, entre em contato pelo e-mail{" "}
             <a
-              href="mailto:contato@pautabrasil.com.br"
+              href="mailto:contato@centropolitico.com.br"
               className="text-verde font-semibold hover:underline"
             >
-              contato@pautabrasil.com.br
+              contato@centropolitico.com.br
             </a>
             .
           </p>
@@ -169,10 +169,10 @@ export default function PrivacidadePage() {
             Se você tiver dúvidas sobre esta Política de Privacidade ou sobre
             como tratamos seus dados, entre em contato conosco pelo e-mail{" "}
             <a
-              href="mailto:contato@pautabrasil.com.br"
+              href="mailto:contato@centropolitico.com.br"
               className="text-verde font-semibold hover:underline"
             >
-              contato@pautabrasil.com.br
+              contato@centropolitico.com.br
             </a>
             .
           </p>

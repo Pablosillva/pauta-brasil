@@ -16,7 +16,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
 
     const res = await fetch(urlCandidato, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; PautaBrasil/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; CentroPolitico/1.0)",
         "Accept": "application/json",
       },
     });
@@ -42,7 +42,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
     // 3. Baixa a imagem
     const imgRes = await fetch(fotoUrl, {
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; PautaBrasil/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; CentroPolitico/1.0)",
       },
     });
 

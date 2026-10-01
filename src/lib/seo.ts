@@ -7,7 +7,7 @@ export function jsonLdSite() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Pauta Brasil",
+    name: "Centro Político",
     url: SITE_URL,
     description:
       "Portal de informação política brasileira. Mapa eleitoral, candidatos, comparador de propostas e notícias.",
@@ -23,7 +23,7 @@ export function jsonLdOrganization() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Pauta Brasil",
+    name: "Centro Político",
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.png`,
   };
@@ -87,7 +87,7 @@ export function jsonLdNewsArticle(noticia: {
     author: { "@type": "Person", name: noticia.autor },
     publisher: {
       "@type": "Organization",
-      name: "Pauta Brasil",
+      name: "Centro Político",
       logo: { "@type": "ImageObject", url: `${SITE_URL}/favicon.png` },
     },
     mainEntityOfPage: {

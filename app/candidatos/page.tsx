@@ -10,7 +10,7 @@ import { FotoCandidato } from "@/components/ui/FotoCandidato";
 export const metadata = {
   title: "Candidatos",
   description:
-    "Conheça todos os candidatos cadastrados no Pauta Brasil. Use os filtros para refinar por estado, cargo ou partido.",
+    "Conheça todos os candidatos cadastrados no Centro Político. Use os filtros para refinar por estado, cargo ou partido.",
 };
 
 interface PageProps {

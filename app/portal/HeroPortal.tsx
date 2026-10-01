@@ -19,7 +19,7 @@ export function HeroPortal() {
           </h1>
 
           <p className="text-lg text-white/80 max-w-2xl mb-8">
-            Fora de época de eleição, o Pauta Brasil se transforma em um portal
+            Fora de época de eleição, o Centro Político se transforma em um portal
             completo de política: notícias diárias, análises de especialistas,
             rankings de popularidade e ferramentas permanentes.
           </p>

@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Pauta Brasil",
+    absolute: "Centro Político",
   },
   description:
     "Explore o mapa eleitoral do Brasil. Descubra quem disputa o poder em cada estado.",

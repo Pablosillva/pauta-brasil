@@ -5,7 +5,7 @@ import { AnalisesColunas } from "./AnalisesColunas";
 import { RankingPopularidade } from "./RankingPopularidade";
 
 export const metadata = {
-  title: "Modo Portal — Pauta Brasil",
+  title: "Modo Portal — Centro Político",
   description: "Notícias, análises e o cenário político do Brasil.",
 };
 

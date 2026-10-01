@@ -1,86 +1,36 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { FileText, ArrowLeft, AlertTriangle } from "lucide-react";
+import { listarVotacoes } from "@/lib/camara";
+import { FiltrosPautas } from "@/components/pautas/FiltrosPautas";
+import { jsonLdBreadcrumb } from "@/lib/seo";
 
-import { useState } from "react";
-import { FileText, ThumbsUp, ThumbsDown, Minus, Search } from "lucide-react";
+export const metadata: Metadata = {
+  title: "Historico de votacao",
+  description:
+    "Como cada deputado votou nas principais pautas do Congresso Nacional. Votacoes nominais oficiais da Camara dos Deputados.",
+  alternates: { canonical: "/ferramentas/historico-votacao" },
+};
 
-interface Votacao {
-  parlamentar: string;
-  cargo: string;
-  partido: string;
-  votacoes: { pauta: string; voto: string; data: string }[];
-}
+export const revalidate = 3600;
 
-const votacoes: Votacao[] = [
-  {
-    parlamentar: "Arthur Lira",
-    cargo: "Deputado Federal",
-    partido: "PP",
-    votacoes: [
-      { pauta: "Reforma Administrativa", voto: "Sim", data: "2026-08-15" },
-      { pauta: "Marco Temporal", voto: "Não", data: "2026-07-20" },
-      { pauta: "Reforma Tributária", voto: "Sim", data: "2026-06-10" },
-      { pauta: "Lei de Licitações", voto: "Sim", data: "2026-05-05" },
-    ],
-  },
-  {
-    parlamentar: "Pacheco",
-    cargo: "Senador",
-    partido: "PSD",
-    votacoes: [
-      { pauta: "Reforma Administrativa", voto: "Sim", data: "2026-08-15" },
-      { pauta: "Marco Temporal", voto: "Abstenção", data: "2026-07-20" },
-      { pauta: "Reforma Tributária", voto: "Sim", data: "2026-06-10" },
-      { pauta: "Lei de Licitações", voto: "Sim", data: "2026-05-05" },
-    ],
-  },
-  {
-    parlamentar: "Hugo Motta",
-    cargo: "Deputado Federal",
-    partido: "Republicanos",
-    votacoes: [
-      { pauta: "Reforma Administrativa", voto: "Sim", data: "2026-08-15" },
-      { pauta: "Marco Temporal", voto: "Sim", data: "2026-07-20" },
-      { pauta: "Reforma Tributária", voto: "Não", data: "2026-06-10" },
-      { pauta: "Lei de Licitações", voto: "Sim", data: "2026-05-05" },
-    ],
-  },
-  {
-    parlamentar: "Davi Alcolumbre",
-    cargo: "Senador",
-    partido: "UNIÃO",
-    votacoes: [
-      { pauta: "Reforma Administrativa", voto: "Não", data: "2026-08-15" },
-      { pauta: "Marco Temporal", voto: "Sim", data: "2026-07-20" },
-      { pauta: "Reforma Tributária", voto: "Não", data: "2026-06-10" },
-      { pauta: "Lei de Licitações", voto: "Não", data: "2026-05-05" },
-    ],
-  },
-];
+export default async function HistoricoVotacaoPage() {
+  const votacoes = await listarVotacoes(60);
 
-export default function HistoricoVotacaoPage() {
-  const [busca, setBusca] = useState("");
-
-  const votacoesFiltradas = votacoes.filter(
-    (v) =>
-      v.parlamentar.toLowerCase().includes(busca.toLowerCase()) ||
-      v.partido.toLowerCase().includes(busca.toLowerCase())
-  );
-
-  function getVotoIcon(voto: string) {
-    if (voto === "Sim") return <ThumbsUp size={16} className="text-verde" />;
-    if (voto === "Não") return <ThumbsDown size={16} className="text-red-500" />;
-    return <Minus size={16} className="text-cinza-medio" />;
-  }
-
-  function getVotoColor(voto: string) {
-    if (voto === "Sim") return "text-verde";
-    if (voto === "Não") return "text-red-500";
-    return "text-cinza-medio";
-  }
+  const breadcrumb = jsonLdBreadcrumb([
+    { name: "Início", url: "/" },
+    { name: "Ferramentas", url: "/ferramentas" },
+    { name: "Histórico de votação", url: "/ferramentas/historico-votacao" },
+  ]);
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
-      <header className="mb-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
+      />
+
+      <header className="mb-8">
         <div className="inline-flex items-center gap-2 text-verde mb-3">
           <FileText size={18} />
           <span className="text-xs font-semibold uppercase tracking-wider">
@@ -88,85 +38,42 @@ export default function HistoricoVotacaoPage() {
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Histórico de Votação
+          Historico de votacao
         </h1>
-        <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-          Como cada parlamentar votou nas principais pautas do Congresso Nacional.
+        <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-3xl">
+          Vote em uma pauta para ver o placar e como cada deputado federal
+          votou. Todos os dados vem do registro nominal oficial da Camara.
         </p>
       </header>
 
-      {/* Busca */}
-      <div className="relative mb-8">
-        <Search
-          size={18}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-cinza-medio"
-        />
-        <input
-          type="text"
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          placeholder="Buscar parlamentar ou partido..."
-          className="w-full pl-10 pr-4 py-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white placeholder:text-cinza-medio focus:outline-none focus:ring-2 focus:ring-verde"
-        />
-      </div>
-
-      {/* Lista de parlamentares */}
-      <div className="space-y-6">
-        {votacoesFiltradas.map((parlamentar) => (
-          <div
-            key={parlamentar.parlamentar}
-            className="bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light rounded-2xl overflow-hidden"
-          >
-            {/* Cabeçalho do parlamentar */}
-            <div className="p-4 bg-cinza-claro dark:bg-azul-light/30 border-b border-cinza-medio dark:border-azul-light">
-              <h3 className="font-bold text-azul dark:text-white">
-                {parlamentar.parlamentar}
-              </h3>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                {parlamentar.cargo} · {parlamentar.partido}
-              </p>
-            </div>
-
-            {/* Votações */}
-            <div className="divide-y divide-cinza-medio dark:divide-azul-light">
-              {parlamentar.votacoes.map((votacao) => (
-                <div
-                  key={votacao.pauta}
-                  className="flex items-center justify-between p-4"
-                >
-                  <div>
-                    <p className="font-medium text-azul dark:text-white">
-                      {votacao.pauta}
-                    </p>
-                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
-                      {new Date(votacao.data).toLocaleDateString("pt-BR")}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {getVotoIcon(votacao.voto)}
-                    <span
-                      className={`font-semibold ${getVotoColor(votacao.voto)}`}
-                    >
-                      {votacao.voto}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {votacoesFiltradas.length === 0 && (
-        <div className="text-center py-12 text-cinza-escuro dark:text-cinza-medio">
-          Nenhum parlamentar encontrado.
+      {votacoes.length === 0 ? (
+        <div className="text-center py-16 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-dashed border-cinza-medio dark:border-azul-light">
+          <p className="text-lg font-semibold text-azul dark:text-white mb-2">
+            Nao foi possivel carregar as votacoes
+          </p>
+          <p className="text-cinza-escuro dark:text-cinza-medio">
+            A API da Camara pode estar temporariamente indisponivel.
+          </p>
         </div>
+      ) : (
+        <FiltrosPautas votacoes={votacoes} />
       )}
 
-      <div className="mt-8 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <a href="/ferramentas" className="text-verde font-semibold hover:underline">
-          ← Voltar para Ferramentas
-        </a>
+      <div className="mt-10 pt-8 border-t border-cinza-medio dark:border-azul-light space-y-4">
+        <p className="flex items-start gap-2 text-sm text-cinza-escuro dark:text-cinza-medio">
+          <AlertTriangle size={16} className="shrink-0 mt-0.5 text-verde" />
+          <span>
+            As votacoes em bloco, feitas porleaders de partido, nao registram o
+            voto de cada deputado. Nestes casos mostramos apenas o resultado.
+          </span>
+        </p>
+
+        <Link
+          href="/ferramentas"
+          className="inline-flex items-center gap-2 text-verde font-semibold hover:underline"
+        >
+          <ArrowLeft size={16} /> Voltar para as ferramentas
+        </Link>
       </div>
     </div>
   );

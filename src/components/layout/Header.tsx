@@ -1,48 +1,27 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, User, Crown } from "lucide-react";
-import { Button } from "../ui/Button";
-import { SearchBar } from "../ui/SearchBar";
-import { ThemeToggle } from "../ui/ThemeToggle";
-
-const navItems = [
-  { label: "Início", href: "/" },
-  { label: "Portal", href: "/portal" },
-  { label: "Mapa Eleitoral", href: "/mapa" },
-  { label: "Candidatos", href: "/candidatos" },
-  { label: "Planos de Governo", href: "/planos" },
-  { label: "Notícias", href: "/noticias" },
-  { label: "Ferramentas", href: "/ferramentas" },
-  { label: "Comparador", href: "/comparador" },
-  { label: "Sobre", href: "/sobre" },
-];
+import { Crown } from "lucide-react";
+import { BotaoConta } from "@/components/layout/BotaoConta";
+import { HeaderMobile } from "@/components/layout/HeaderMobile";
+import { navItems } from "@/components/layout/nav";
+import { SearchBar } from "@/components/ui/SearchBar";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
-  const [open, setOpen] = useState(false);
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b border-cinza-medio dark:bg-azul-dark/95 dark:border-azul-light">
       {/* Faixa superior (apenas desktop) */}
       <div className="hidden lg:flex items-center justify-between px-6 py-2 text-xs border-b border-cinza-medio dark:border-azul-light">
-        <span className="text-cinza-escuro">
-          Informação, transparência e democracia
+        <span className="text-cinza-escuro dark:text-cinza-medio">
+          Dados oficiais do TSE e da Câmara dos Deputados
         </span>
         <div className="flex items-center gap-4">
-          {/* Links de Entrar e Premium ocultos temporariamente */}
-          {/* <Link
-            href="/login"
-            className="flex items-center gap-1 text-azul dark:text-white hover:text-verde transition-colors"
-          >
-            <User size={14} /> Entrar
-          </Link>
+          <BotaoConta />
           <Link
             href="/premium"
             className="flex items-center gap-1 font-semibold text-verde hover:text-verde-dark transition-colors"
           >
             <Crown size={14} /> Assine Premium
-          </Link> */}
+          </Link>
         </div>
       </div>
 
@@ -51,10 +30,10 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <div className="w-8 h-8 rounded-full bg-verde flex items-center justify-center text-white font-bold text-sm">
-            PB
+            CP
           </div>
           <span className="font-bold text-lg text-azul dark:text-white">
-            Pauta Brasil
+            Centro Político
           </span>
         </Link>
 
@@ -77,45 +56,8 @@ export function Header() {
           <ThemeToggle />
         </div>
 
-        {/* Botão hamburguer (mobile/tablet) */}
-        <button
-          className="xl:hidden text-azul dark:text-white p-1"
-          onClick={() => setOpen(!open)}
-          aria-label="Abrir menu"
-          aria-expanded={open}
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <HeaderMobile />
       </div>
-
-      {/* Menu mobile */}
-      {open && (
-        <div className="xl:hidden border-t border-cinza-medio dark:border-azul-light px-4 py-4 space-y-4 bg-white dark:bg-azul-dark">
-          <SearchBar onSearch={() => setOpen(false)} />
-          <nav className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="px-3 py-2 text-sm font-medium rounded-md text-azul hover:bg-cinza-claro dark:text-white dark:hover:bg-azul-light transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center justify-between pt-3 border-t border-cinza-medio dark:border-azul-light">
-            <ThemeToggle />
-            {/* Links de Entrar e Premium ocultos temporariamente */}
-            {/* <div className="flex gap-2">
-              <Button variant="outline" size="sm">
-                Entrar
-              </Button>
-              <Button size="sm">Assine Premium</Button>
-            </div> */}
-          </div>
-        </div>
-      )}
     </header>
   );
 }

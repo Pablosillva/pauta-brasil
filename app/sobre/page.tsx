@@ -2,8 +2,8 @@ import Link from "next/link";
 import { Info, Target, Users, Shield, Mail } from "lucide-react";
 
 export const metadata = {
-  title: "Sobre — Pauta Brasil",
-  description: "Conheça a missão e os valores do Pauta Brasil.",
+  title: "Sobre — Centro Político",
+  description: "Conheça a missão e os valores do Centro Político.",
 };
 
 export default function SobrePage() {
@@ -17,7 +17,7 @@ export default function SobrePage() {
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-4">
-          Sobre o Pauta Brasil
+          Sobre o Centro Político
         </h1>
         <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
           Informação, transparência e democracia.
@@ -30,7 +30,7 @@ export default function SobrePage() {
             Nossa missão
           </h2>
           <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-            O Pauta Brasil nasceu para simplificar o acesso à informação
+            O Centro Político nasceu para simplificar o acesso à informação
             política. Acreditamos que uma democracia forte exige cidadãos
             informados. Por isso, reunimos em um só lugar os candidatos, suas
             propostas, seus históricos e seus patrimônios — tudo de forma clara,
@@ -79,8 +79,8 @@ export default function SobrePage() {
             </h3>
             <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
               Encontrou um erro? Tem uma sugestão?{" "}
-              <a href="mailto:contato@pautabrasil.com.br" className="text-verde font-semibold hover:underline">
-                contato@pautabrasil.com.br
+              <a href="mailto:contato@centropolitico.com.br" className="text-verde font-semibold hover:underline">
+                contato@centropolitico.com.br
               </a>
             </p>
           </div>

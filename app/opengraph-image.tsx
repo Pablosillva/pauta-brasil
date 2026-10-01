@@ -37,7 +37,7 @@ export default function OpengraphImage() {
               fontWeight: 800,
             }}
           >
-            PB
+            CP
           </span>
         </div>
         <h1
@@ -49,7 +49,7 @@ export default function OpengraphImage() {
             textAlign: "center",
           }}
         >
-          Pauta Brasil
+          Centro Político
         </h1>
         <p
           style={{
