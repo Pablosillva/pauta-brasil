@@ -102,9 +102,19 @@ const RECOMENDADAS = [
     nome: "GOOGLE_SITE_VERIFICATION",
     ajuda: "Token da verificacao de propriedade no Search Console.",
     validar: (v) =>
-      v.startsWith("google-site-verification=")
+      // O layout normaliza o valor, aceitando token, prefixo ou a tag
+      // inteira. Aqui so avisamos quando nao ha nada reconhecivel.
+      /google-site-verification/i.test(v) || /^[A-Za-z0-9_-]{20,}$/.test(v)
         ? null
-        : "inclua o prefixo google-site-verification= na frente",
+        : "nao parece um token do Search Console",
+  },
+  {
+    nome: "NEXT_PUBLIC_GA_ID",
+    ajuda: "ID de medicao do Google Analytics, no formato G-XXXXXXX.",
+    validar: (v) =>
+      /^G-[A-Za-z0-9]{4,}$/.test(v.trim())
+        ? null
+        : "o ID de medicao comeca com G-, por exemplo G-ABC1234",
   },
 ];
 
