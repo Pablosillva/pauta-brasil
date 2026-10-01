@@ -155,11 +155,54 @@ console.log("\nAvisos");
 const remetente = process.env.EMAIL_REMETENTE ?? "";
 const resend = (process.env.RESEND_API_KEY ?? "").trim();
 
-if (resend && remetente.includes("resend.dev")) {
+const WEBMAIL_GRATIS = [
+  "gmail.com", "googlemail.com", "hotmail.com", "hotmail.com.br",
+  "outlook.com", "live.com", "yahoo.com", "yahoo.com.br",
+  "icloud.com", "uol.com.br", "bol.com.br",
+];
+
+if (resend && remetente) {
+  const email = (remetente.match(/<([^>]+)>/) ?? [null, remetente])[1]
+    .trim()
+    .toLowerCase();
+  const dominio = email.split("@")[1] ?? "";
+
+  if (WEBMAIL_GRATIS.includes(dominio)) {
+    console.log(
+      `  ! EMAIL_REMETENTE usa ${dominio}, e webmail gratis.\n` +
+        "    NENHUM provedor de e-mail transacional envia a partir de um\n" +
+        "    dominio desses: quem controla o dominio precisa autorizar por\n" +
+        "    SPF/DKIM, e essas empresas nao autorizam terceiros. O envio vai\n" +
+        "    falhar para todos, menos para voce.\n" +
+        "    Resolva assim:\n" +
+        "      a) Registre um dominio no Resend (Domains > Add Domain) e use\n" +
+        "         contato@seudominio. Exige ter um dominio proprio.\n" +
+        "      b) Para testar agora, use onboarding@resend.dev. So envia para\n" +
+        "         o e-mail cadastrado na sua conta Resend."
+    );
+  } else if (!dominio.endsWith("resend.dev")) {
+    console.log(
+      `  ! EMAIL_REMETENTE usa ${dominio}. Confirme que esse dominio esta\n` +
+        "    verificado no Resend (Domains). Sem verificacao o envio e recusado."
+    );
+  }
+}
+
+const chavesCloudinary = [
+  "CLOUDINARY_CLOUD_NAME",
+  "CLOUDINARY_API_KEY",
+  "CLOUDINARY_API_SECRET",
+];
+
+const definidasCloudinary = chavesCloudinary.filter(
+  (c) => (process.env[c] ?? "").trim()
+);
+
+if (definidasCloudinary.length > 0 && definidasCloudinary.length < 3) {
+  const faltando = chavesCloudinary.filter((c) => !definidasCloudinary.includes(c));
   console.log(
-    "  ! EMAIL_REMETENTE usa o dominio de teste do Resend (resend.dev).\n" +
-      "    O envio so funciona para o seu proprio e-mail. Para mandar para\n" +
-      "    quem se cadastra, valide um dominio em Resend > Domains."
+    `  ! Cloudinary incompleto: faltam ${faltando.join(", ")}.` +
+      "\n    Rode  npm run testar:cloudinary  para conferir."
   );
 }
 

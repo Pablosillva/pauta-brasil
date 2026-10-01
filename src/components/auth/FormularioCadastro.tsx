@@ -68,18 +68,22 @@ export function FormularioCadastro() {
           {estado.linkDebug && (
             <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-300 dark:border-amber-700 text-sm">
               <p className="font-semibold text-amber-800 dark:text-amber-200 mb-2">
-                Servidor de e-mail nao configurado
+                O e-mail nao saiu
               </p>
+              {estado.erroEnvio && (
+                <p className="text-amber-700 dark:text-amber-300 text-xs mb-3">
+                  {estado.erroEnvio}
+                </p>
+              )}
               <p className="text-amber-700 dark:text-amber-300 text-xs mb-3">
-                Configure <code>RESEND_API_KEY</code> no Vercel para o envio
-                automatico. Enquanto isso, use o link abaixo:
+                Enquanto isso, confirme seu e-mail usando o link abaixo:
               </p>
               <div className="flex gap-2">
                 <input
                   readOnly
                   value={estado.linkDebug}
-                  className="flex-1 px-3 py-2 rounded border border-amber-300 dark:border-amber-700 bg-white dark:bg-azul-dark text-xs text-azul dark:text-white"
                   onFocus={(e) => e.currentTarget.select()}
+                  className="flex-1 px-3 py-2 rounded border border-amber-300 dark:border-amber-700 bg-white dark:bg-azul-dark text-xs text-azul dark:text-white"
                 />
                 <button
                   type="button"

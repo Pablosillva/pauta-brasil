@@ -11,6 +11,7 @@
     "verificar:texto": "node scripts/verificar-texto.mjs",
     "verificar:links": "node scripts/verificar-links.mjs",
     "verificar:config": "node scripts/verificar-config.mjs",
+    "testar:cloudinary": "node scripts/testar-cloudinary.mjs",
     "tse": "node scripts/baixar-candidatos-tse.mjs",
     "fotos": "node scripts/baixar-fotos-tse.mjs",
     "fotos:principais": "node scripts/baixar-fotos-tse.mjs BR && node scripts/baixar-fotos-tse.mjs SP && node scripts/baixar-fotos-tse.mjs RJ && node scripts/baixar-fotos-tse.mjs MG",

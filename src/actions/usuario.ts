@@ -21,6 +21,8 @@ export interface EstadoForm {
   sucesso?: string;
   /** Exibido quando o envio de e-mail falhou, para permitir recuperar o link. */
   linkDebug?: string;
+  /** Motivo pelo qual o e-mail nao saiu, em linguagem clara. */
+  erroEnvio?: string;
 }
 
 const str = (v: FormDataEntryValue | null) => (typeof v === "string" ? v : "");
@@ -63,6 +65,7 @@ export async function acaoCadastrar(
     sucesso:
       "Cadastro criado! Enviamos o link de confirmacao para o seu e-mail. Verifique também a caixa de spam.",
     linkDebug: envio.enviado ? undefined : envio.link,
+    erroEnvio: envio.enviado ? undefined : envio.erro,
   };
 }
 
@@ -86,6 +89,7 @@ export async function acaoReenviarVerificacao(
   return {
     sucesso: "Link de confirmacao reenviado.",
     linkDebug: envio.enviado ? undefined : envio.link,
+    erroEnvio: envio.enviado ? undefined : envio.erro,
   };
 }
 
@@ -145,6 +149,7 @@ export async function acaoSolicitarReset(
   return {
     sucesso: "Instrucoes de redefinicao enviadas.",
     linkDebug: envio.enviado ? undefined : envio.link,
+    erroEnvio: envio.enviado ? undefined : envio.erro,
   };
 }
 

@@ -7,14 +7,75 @@
  * copiado manualmente.
  */
 
-const REMETENTE = process.env.EMAIL_REMETENTE ?? "Centro Político <nao-responda@centropolitico.com.br>";
+const REMETENTE =
+  process.env.EMAIL_REMETENTE ??
+  "Centro Politico <onboarding@resend.dev>";
 const RESEND_URL = "https://api.resend.com/emails";
+
+/**
+ * Dominios de webmail gratis (gmail, hotmail, yahoo) que o Resend nao aceita
+ * como remetente. Nenhum provedor transacional pode enviar "de" um dominio
+ * desses: quem controla o dominio precisa autorizar o envio por SPF/DKIM, e
+ * essas empresas nao concedem isso a terceiros.
+ */
+const DOMINIOS_BLOQUEADOS = [
+  "gmail.com",
+  "googlemail.com",
+  "hotmail.com",
+  "hotmail.com.br",
+  "outlook.com",
+  "live.com",
+  "yahoo.com",
+  "yahoo.com.br",
+  "icloud.com",
+  "me.com",
+  "uol.com.br",
+  "bol.com.br",
+];
 
 export interface ResultadoEnvio {
   enviado: boolean;
   /** Link gerado, devolvido tambem quando o envio falha, para fins de depuracao. */
   link: string;
   erro?: string;
+  /** Explicacao pronta para mostrar ao usuario, quando o envio nao sai. */
+  aviso?: string;
+}
+
+/** Extrai o endereco de dentro de "Nome <email@dominio>". */
+function extrairEmail(remetente: string): string {
+  const achado = remetente.match(/<([^>]+)>/);
+  return (achado ? achado[1] : remetente).trim().toLowerCase();
+}
+
+/**
+ * Confere se o remetente pode ser usado pelo Resend.
+ * Retorna a explicacao do problema, ou null quando esta tudo certo.
+ */
+export function validarRemetente(remetente: string): string | null {
+  const email = extrairEmail(remetente);
+
+  if (!email || !email.includes("@")) {
+    return "EMAIL_REMETENTE mal formatado. Use: Nome <email@dominio>";
+  }
+
+  const dominio = email.split("@")[1];
+
+  if (DOMINIOS_BLOQUEADOS.includes(dominio)) {
+    return (
+      `O Resend nao permite enviar a partir de ${dominio}. Webmail gratis ` +
+      "nao concede autorizacao de envio a provedores. Registre um dominio " +
+      "proprio no Resend e use contato@seudominio, ou use o endereco de " +
+      "teste onboarding@resend.dev (que so envia para o seu proprio e-mail)."
+    );
+  }
+
+  if (dominio.endsWith("resend.dev")) return null;
+
+  return (
+    `Confirme se o dominio ${dominio} esta verificado no Resend ` +
+    "(Domains > Add Domain). Sem verificacao o envio e recusado."
+  );
 }
 
 function montarLink(caminho: string, token: string): string {
@@ -38,6 +99,15 @@ async function enviar(
     return { enviado: false, link, erro: "Servidor de e-mail nao configurado" };
   }
 
+  // Detecta remetente invalido antes de gastar uma chamada na API, e devolve
+  // uma explicacao util em vez do erro cru do Resend.
+  const problemaRemetente = validarRemetente(REMETENTE);
+
+  if (problemaRemetente) {
+    console.error(`[email] remetente invalido: ${problemaRemetente}`);
+    return { enviado: false, link, erro: problemaRemetente, aviso: problemaRemetente };
+  }
+
   try {
     const resposta = await fetch(RESEND_URL, {
       method: "POST",
@@ -51,7 +121,17 @@ async function enviar(
     if (!resposta.ok) {
       const corpo = await resposta.text();
       console.error("[email] Resend respondeu:", resposta.status, corpo);
-      return { enviado: false, link, erro: corpo };
+
+      // O Resend devolve JSON com "message" nos erros de dominio.
+      let mensagem = corpo;
+      try {
+        const dados = JSON.parse(corpo) as { message?: string; name?: string };
+        if (dados.message) mensagem = `${dados.name ?? "erro"}: ${dados.message}`;
+      } catch {
+        // resposta nao era JSON: mantem o texto
+      }
+
+      return { enviado: false, link, erro: mensagem, aviso: mensagem };
     }
 
     return { enviado: true, link };
