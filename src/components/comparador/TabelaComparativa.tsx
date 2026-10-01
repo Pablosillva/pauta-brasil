@@ -1,36 +1,94 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { AlertCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AlertCircle, FileText } from "lucide-react";
 import { nomesEstados, type Candidato } from "@/data/candidatos";
 
 interface TabelaComparativaProps {
   ids: string[];
 }
 
+/** Campos do registro oficial do TSE usados na comparacao. */
+const CAMPOS = [
+  {
+    rotulo: "Nome na urna",
+    valor: (c: Candidato) => c.nomeUrna || c.nome,
+  },
+  {
+    rotulo: "Numero na urna",
+    valor: (c: Candidato) => (c.numero ? String(c.numero) : "—"),
+    destaque: true,
+  },
+  { rotulo: "Partido", valor: (c: Candidato) => c.partido || "—" },
+  { rotulo: "Cargo", valor: (c: Candidato) => c.cargo },
+  {
+    rotulo: "Estado",
+    valor: (c: Candidato) => nomesEstados[c.estadoId] ?? c.estadoId,
+  },
+  {
+    rotulo: "Idade",
+    valor: (c: Candidato) => (c.idade ? `${c.idade} anos` : "—"),
+  },
+  { rotulo: "Genero", valor: (c: Candidato) => (c.genero === "F" ? "Feminino" : "Masculino") },
+  { rotulo: "Ocupacao", valor: (c: Candidato) => c.ocupacao || "—", texto: true },
+  {
+    rotulo: "Grau de instrucao",
+    valor: (c: Candidato) => c.grauInstrucao || "—",
+    texto: true,
+  },
+  { rotulo: "Status", valor: (c: Candidato) => c.status },
+] as const;
+
 export function TabelaComparativa({ ids }: TabelaComparativaProps) {
   const [candidatos, setCandidatos] = useState<Candidato[]>([]);
-  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
 
   useEffect(() => {
+    if (ids.length === 0) return;
+
+    let cancelado = false;
+
     async function carregar() {
       try {
-        const res = await fetch("/api/candidatos");
-        if (res.ok) {
-          const data = await res.json();
-          const selecionados = ids
-            .map((id) => data.find((c: Candidato) => c.id === id))
-            .filter(Boolean) as Candidato[];
-          setCandidatos(selecionados);
+        const res = await fetch(`/api/candidatos?ids=${ids.join(",")}`);
+
+        if (!res.ok) throw new Error("Falha na consulta");
+
+        const dados: Candidato[] = await res.json();
+
+        if (!cancelado) {
+          // Preserva a ordem em que o usuario escolheu.
+          const porId = new Map(dados.map((c) => [c.id, c]));
+          setCandidatos(
+            ids.map((id) => porId.get(id)).filter(Boolean) as Candidato[]
+          );
+          setErro("");
         }
-      } catch (err) {
-        console.error("Erro ao carregar candidatos:", err);
-      } finally {
-        setCarregando(false);
+      } catch {
+        if (!cancelado) setErro("Nao foi possivel carregar os candidatos.");
       }
     }
+
     carregar();
+    return () => {
+      cancelado = true;
+    };
   }, [ids]);
+
+  // Nada selecionado: nao ha nada a buscar nem a comparar.
+  if (ids.length === 0) {
+    return (
+      <div className="text-center py-16 bg-white dark:bg-azul-light/20 rounded-2xl border border-dashed border-cinza-medio dark:border-azul-light">
+        <AlertCircle size={40} className="mx-auto text-cinza-escuro mb-3" />
+        <p className="text-cinza-escuro dark:text-cinza-medio">
+          Selecione pelo menos <strong>2 candidatos</strong> para comparar.
+        </p>
+      </div>
+    );
+  }
+
+  // Enquanto a resposta nao volta, mostramos o carregamento.
+  const carregando = candidatos.length === 0 && !erro;
 
   if (carregando) {
     return (
@@ -42,125 +100,139 @@ export function TabelaComparativa({ ids }: TabelaComparativaProps) {
     );
   }
 
-  if (candidatos.length < 2) {
+  if (erro) {
     return (
       <div className="text-center py-16 bg-white dark:bg-azul-light/20 rounded-2xl border border-dashed border-cinza-medio dark:border-azul-light">
-        <AlertCircle
-          size={40}
-          className="mx-auto text-cinza-escuro mb-3"
-        />
-        <p className="text-cinza-escuro dark:text-cinza-medio">
-          Selecione pelo menos <strong>2 candidatos</strong> para comparar.
-        </p>
+        <p className="text-cinza-escuro dark:text-cinza-medio">{erro}</p>
       </div>
     );
   }
 
-  // Coletar todas as áreas temáticas únicas entre os selecionados
-  const areas = Array.from(
-    new Set(
-      candidatos.flatMap((c) => (c.propostas ?? []).map((p) => p.area))
-    )
-  );
-
-  if (areas.length === 0) {
+  if (candidatos.length < 2) {
     return (
       <div className="text-center py-16 bg-white dark:bg-azul-light/20 rounded-2xl border border-dashed border-cinza-medio dark:border-azul-light">
+        <AlertCircle size={40} className="mx-auto text-cinza-escuro mb-3" />
         <p className="text-cinza-escuro dark:text-cinza-medio">
-          Os candidatos selecionados ainda não têm propostas cadastradas.
+          Nao encontramos 2 candidatos validos nessa selecao. Volte ao seletor
+          e escolha outros.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light/20">
-      <table className="w-full min-w-[720px] border-collapse">
-        {/* Cabeçalho com candidatos */}
-        <thead>
-          <tr className="bg-azul text-white">
-            <th className="p-4 text-left text-sm font-semibold w-40">
-              Tema
-            </th>
-            {candidatos.map((c) => (
-              <th key={c.id} className="p-4 text-left align-top">
-                <div className="flex items-center gap-3">
-                  <img
-                    src={c.foto}
-                    alt={c.nome}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-verde"
-                    loading="lazy"
-                  />
-                  <div>
-                    <p className="font-bold">{c.nome}</p>
-                    <p className="text-xs text-white/70">
-                      {c.partido} · {nomesEstados[c.estadoId] ?? c.estadoId}
-                    </p>
-                  </div>
-                </div>
+    <div className="space-y-4">
+      <div className="overflow-x-auto rounded-2xl border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-light/20">
+        <table className="w-full min-w-[720px] border-collapse">
+          <thead>
+            <tr className="bg-azul text-white">
+              <th className="p-4 text-left text-sm font-semibold w-48">
+                Dado oficial
               </th>
-            ))}
-          </tr>
-        </thead>
+              {candidatos.map((c) => (
+                <th key={c.id} className="p-4 text-left align-top">
+                  <div className="flex items-center gap-3">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={c.foto}
+                      alt=""
+                      className="w-12 h-12 rounded-full object-cover border-2 border-verde"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p className="font-bold text-sm">{c.nome}</p>
+                      <p className="text-xs text-white/70">
+                        {c.partido} · {c.numero ? `nº ${c.numero}` : "sem número"}
+                      </p>
+                    </div>
+                  </div>
+                </th>
+              ))}
+            </tr>
+          </thead>
 
-        {/* Linhas por tema */}
-        <tbody>
-          {areas.map((area, i) => {
-            const propostasDaLinha = candidatos.map(
-              (c) => c.propostas?.find((p) => p.area === area)?.resumo ?? null
-            );
-
-            // Detecta se há diferenças (ignora nulls)
-            const valoresUnicos = new Set(
-              propostasDaLinha.filter((p) => p !== null)
-            );
-            const temDiferenca = valoresUnicos.size > 1;
-
-            return (
+          <tbody>
+            {CAMPOS.map((campo, i) => (
               <tr
-                key={area}
+                key={campo.rotulo}
                 className={
                   i % 2 === 0
                     ? "bg-white dark:bg-transparent"
                     : "bg-cinza-claro dark:bg-azul-light/10"
                 }
               >
-                <td className="p-4 align-top border-t border-cinza-medio dark:border-azul-light">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-azul dark:text-white">
-                      {area}
-                    </span>
-                    {temDiferenca && (
-                      <span
-                        title="Os candidatos divergem neste tema"
-                        className="text-verde"
-                      >
-                        <AlertCircle size={14} />
-                      </span>
-                    )}
-                  </div>
+                <td className="p-4 align-top border-t border-cinza-medio dark:border-azul-light font-semibold text-sm text-azul dark:text-white">
+                  {campo.rotulo}
                 </td>
-                {propostasDaLinha.map((resumo, j) => (
-                  <td
-                    key={j}
-                    className="p-4 align-top border-t border-cinza-medio dark:border-azul-light"
-                  >
-                    {resumo ? (
-                      <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-                        {resumo}
-                      </p>
-                    ) : (
-                      <span className="text-xs italic text-cinza-escuro/60">
-                        Sem proposta cadastrada
-                      </span>
-                    )}
-                  </td>
-                ))}
+
+                {candidatos.map((c) => {
+                  const valor = campo.valor(c);
+                  const vazio = valor === "—";
+
+                  return (
+                    <td
+                      key={c.id}
+                      className="p-4 align-top border-t border-cinza-medio dark:border-azul-light"
+                    >
+                      {vazio ? (
+                        <span className="text-xs italic text-cinza-escuro/60">
+                          nao informado
+                        </span>
+                      ) : (
+                        <span
+                          className={`text-sm ${
+                            "destaque" in campo && campo.destaque
+                              ? "text-2xl font-bold text-verde"
+                              : "text-cinza-escuro dark:text-cinza-medio"
+                          }`}
+                        >
+                          {valor}
+                        </span>
+                      )}
+                    </td>
+                  );
+                })}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+
+            {/* Plano de governo: o unico material real de propostas */}
+            <tr className="bg-cinza-claro dark:bg-azul-light/10">
+              <td className="p-4 align-top border-t border-cinza-medio dark:border-azul-light font-semibold text-sm text-azul dark:text-white">
+                Plano de governo
+              </td>
+              {candidatos.map((c) => (
+                <td
+                  key={c.id}
+                  className="p-4 align-top border-t border-cinza-medio dark:border-azul-light"
+                >
+                  {c.planoGovernoUrl ? (
+                    <a
+                      href={c.planoGovernoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-verde hover:underline"
+                    >
+                      <FileText size={14} /> Abrir documento
+                    </a>
+                  ) : (
+                    <span className="text-xs italic text-cinza-escuro/60">
+                      nao registrado no TSE
+                    </span>
+                  )}
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+        Todos os campos acima vem do registro oficial do TSE. As propostas de
+        cada candidato sao publicadas pelo Tribunal em PDF: por isso, a
+        comparacao aponta para o documento original em vez de resumir um texto
+        que nao esta estruturado na base. Onde o TSE nao tem o dado, a celula
+        fica vazia.
+      </p>
     </div>
   );
 }

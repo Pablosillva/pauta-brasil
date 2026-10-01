@@ -13,7 +13,7 @@ import { jsonLdCandidato, jsonLdBreadcrumb } from "@/lib/seo";
 
 const ABAS = [
   { id: "propostas", label: "Propostas" },
-  { id: "plano", label: "Plano de Governo" },
+  { id: "plano", label: "Documentos" },
   { id: "historico", label: "Histórico" },
   { id: "patrimonio", label: "Patrimônio" },
   { id: "noticias", label: "Notícias" },
@@ -185,28 +185,49 @@ export default async function CandidatoPage({
             {abaAtiva === "propostas" && (
               <div className="space-y-5">
                 <h2 className="text-2xl font-bold text-azul dark:text-white">
-                  Principais propostas
+                  Propostas
                 </h2>
-                {candidato.propostas && candidato.propostas.length > 0 ? (
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {candidato.propostas.map((p) => (
-                      <div
-                        key={p.area}
-                        className="p-4 rounded-xl border border-cinza-medio dark:border-azul-light bg-cinza-claro dark:bg-azul-light/30"
-                      >
-                        <h3 className="font-semibold text-verde mb-2">
-                          {p.area}
-                        </h3>
-                        <p className="text-sm text-azul dark:text-white/90">
-                          {p.resumo}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+
+                {candidato.planoGovernoUrl ? (
+                  <>
+                    <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+                      Este candidato entregou um plano de governo ao Tribunal
+                      Superior Eleitoral. O documento original esta disponivel
+                      abaixo, sem resumo ou interpretacao nossa.
+                    </p>
+                    <a
+                      href={candidato.planoGovernoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors"
+                    >
+                      <FileText size={18} />
+                      Abrir plano de governo (PDF)
+                    </a>
+                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                      Documento enviado pela campanha e registrado no sistema
+                      de divulgacao do TSE.
+                    </p>
+                  </>
                 ) : (
-                  <p className="text-cinza-escuro dark:text-cinza-medio">
-                    Nenhuma proposta cadastrada para este candidato ainda.
-                  </p>
+                  <div className="p-6 rounded-xl border border-dashed border-cinza-medio dark:border-azul-light bg-cinza-claro dark:bg-azul-light/10">
+                    <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+                      Este candidato nao entregou plano de governo ao TSE, ou o
+                      documento ainda nao foi disponbilizado na base oficial.
+                      Nao publicamos estimativas nem resumo por conta propria:
+                      esta secao fica vazia de proposito.
+                    </p>
+                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-3">
+                      Acompanhe a{" "}
+                      <Link
+                        href="/metodologia"
+                        className="text-verde font-semibold hover:underline"
+                      >
+                        metodologia
+                      </Link>{" "}
+                      para entender por que optamos por deixar em branco.
+                    </p>
+                  </div>
                 )}
               </div>
             )}
@@ -224,8 +245,9 @@ export default async function CandidatoPage({
                     <FileText size={18} /> Baixar plano de governo (PDF)
                   </a>
                 ) : (
-                  <p className="text-cinza-escuro dark:text-cinza-medio">
-                    Plano de governo não disponível.
+                  <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+                    Nenhum documento de plano de governo foi localizado para
+                    este candidato na base do TSE.
                   </p>
                 )}
               </div>
@@ -251,8 +273,10 @@ export default async function CandidatoPage({
                     ))}
                   </ol>
                 ) : (
-                  <p className="text-cinza-escuro dark:text-cinza-medio">
-                    Histórico não disponível.
+                  <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+                    A base do TSE nao informa o historico de cargos exercidos.
+                    Preferimos deixar esta secao vazia a estimar uma trajetoria
+                    que nao consta do registro oficial.
                   </p>
                 )}
               </div>
@@ -280,8 +304,11 @@ export default async function CandidatoPage({
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-cinza-escuro dark:text-cinza-medio">
-                    Patrimônio não disponível.
+                  <p className="text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+                    A base de divulgacao do TSE nao disponibiliza a declaracao
+                    de patrimonio por candidato nesta API. Nada e estimado aqui:
+                    a secao permanece vazia ate que o registro oficial esteja
+                    disponivel.
                   </p>
                 )}
               </div>

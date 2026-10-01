@@ -7,7 +7,19 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/admin/"],
+      // Area administrativa, APIs e paginas de conta nao devem ser indexadas.
+      disallow: [
+        "/api/",
+        "/batata",
+        "/admin",
+        "/minha-conta",
+        "/login",
+        "/cadastro",
+        "/recuperar-senha",
+        "/redefinir-senha",
+        "/verificar-email",
+        "/busca",
+      ],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
     host: siteUrl,

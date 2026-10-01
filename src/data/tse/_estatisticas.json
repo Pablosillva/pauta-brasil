@@ -1,0 +1,281 @@
+{
+  "geradoEm": "2026-10-01T01:20:21.702Z",
+  "total": 20064,
+  "comFoto": 20064,
+  "comPlano": 534,
+  "comPropostas": 0,
+  "partidos": [
+    {
+      "nome": "PL",
+      "quantidade": 1577
+    },
+    {
+      "nome": "MDB",
+      "quantidade": 1366
+    },
+    {
+      "nome": "REPUBLICANOS",
+      "quantidade": 1274
+    },
+    {
+      "nome": "NOVO",
+      "quantidade": 1269
+    },
+    {
+      "nome": "PODE",
+      "quantidade": 1209
+    },
+    {
+      "nome": "PDT",
+      "quantidade": 1095
+    },
+    {
+      "nome": "PSD",
+      "quantidade": 1090
+    },
+    {
+      "nome": "PT",
+      "quantidade": 1067
+    },
+    {
+      "nome": "PSDB",
+      "quantidade": 1060
+    },
+    {
+      "nome": "AVANTE",
+      "quantidade": 956
+    },
+    {
+      "nome": "PSB",
+      "quantidade": 941
+    },
+    {
+      "nome": "UNIÃO",
+      "quantidade": 825
+    },
+    {
+      "nome": "PSOL",
+      "quantidade": 745
+    },
+    {
+      "nome": "DC",
+      "quantidade": 727
+    },
+    {
+      "nome": "PP",
+      "quantidade": 688
+    },
+    {
+      "nome": "MOBILIZA",
+      "quantidade": 566
+    },
+    {
+      "nome": "MISSÃO",
+      "quantidade": 525
+    },
+    {
+      "nome": "SOLIDARIEDADE",
+      "quantidade": 524
+    },
+    {
+      "nome": "PRD",
+      "quantidade": 498
+    },
+    {
+      "nome": "AGIR",
+      "quantidade": 446
+    },
+    {
+      "nome": "DEMOCRATA",
+      "quantidade": 429
+    },
+    {
+      "nome": "REDE",
+      "quantidade": 341
+    },
+    {
+      "nome": "PV",
+      "quantidade": 228
+    },
+    {
+      "nome": "CIDADANIA",
+      "quantidade": 151
+    },
+    {
+      "nome": "PCDOB",
+      "quantidade": 146
+    },
+    {
+      "nome": "UP",
+      "quantidade": 124
+    },
+    {
+      "nome": "PCO",
+      "quantidade": 100
+    },
+    {
+      "nome": "PSTU",
+      "quantidade": 78
+    },
+    {
+      "nome": "PCB",
+      "quantidade": 13
+    },
+    {
+      "nome": "PRTB",
+      "quantidade": 6
+    }
+  ],
+  "cargos": [
+    {
+      "nome": "Deputado Estadual",
+      "quantidade": 11727
+    },
+    {
+      "nome": "Deputado Federal",
+      "quantidade": 7803
+    },
+    {
+      "nome": "Senador",
+      "quantidade": 319
+    },
+    {
+      "nome": "Governador",
+      "quantidade": 201
+    },
+    {
+      "nome": "Presidente",
+      "quantidade": 14
+    }
+  ],
+  "ufs": [
+    {
+      "nome": "SP",
+      "quantidade": 2586
+    },
+    {
+      "nome": "RJ",
+      "quantidade": 2007
+    },
+    {
+      "nome": "MG",
+      "quantidade": 1783
+    },
+    {
+      "nome": "BA",
+      "quantidade": 1195
+    },
+    {
+      "nome": "PR",
+      "quantidade": 1062
+    },
+    {
+      "nome": "RS",
+      "quantidade": 1021
+    },
+    {
+      "nome": "PE",
+      "quantidade": 929
+    },
+    {
+      "nome": "GO",
+      "quantidade": 877
+    },
+    {
+      "nome": "PA",
+      "quantidade": 706
+    },
+    {
+      "nome": "CE",
+      "quantidade": 688
+    },
+    {
+      "nome": "SC",
+      "quantidade": 666
+    },
+    {
+      "nome": "DF",
+      "quantidade": 629
+    },
+    {
+      "nome": "MA",
+      "quantidade": 586
+    },
+    {
+      "nome": "ES",
+      "quantidade": 563
+    },
+    {
+      "nome": "AM",
+      "quantidade": 449
+    },
+    {
+      "nome": "MT",
+      "quantidade": 423
+    },
+    {
+      "nome": "PB",
+      "quantidade": 419
+    },
+    {
+      "nome": "RO",
+      "quantidade": 410
+    },
+    {
+      "nome": "MS",
+      "quantidade": 395
+    },
+    {
+      "nome": "SE",
+      "quantidade": 380
+    },
+    {
+      "nome": "RR",
+      "quantidade": 376
+    },
+    {
+      "nome": "AC",
+      "quantidade": 363
+    },
+    {
+      "nome": "PI",
+      "quantidade": 348
+    },
+    {
+      "nome": "TO",
+      "quantidade": 328
+    },
+    {
+      "nome": "AP",
+      "quantidade": 299
+    },
+    {
+      "nome": "RN",
+      "quantidade": 289
+    },
+    {
+      "nome": "AL",
+      "quantidade": 273
+    },
+    {
+      "nome": "BR",
+      "quantidade": 14
+    }
+  ],
+  "status": [
+    {
+      "nome": "Pré-candidato",
+      "quantidade": 20064
+    }
+  ],
+  "genero": [
+    {
+      "nome": "M",
+      "quantidade": 13004
+    },
+    {
+      "nome": "F",
+      "quantidade": 7060
+    }
+  ]
+}

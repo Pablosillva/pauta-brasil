@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Comparador de propostas",
+  title: "Comparador de candidatos",
   description:
-    "Compare lado a lado as propostas de até 4 candidatos por tema: Saúde, Educação, Economia e mais.",
+    "Compare lado a lado ate 4 candidatos com os dados oficiais do TSE: numero na urna, partido, cargo, ocupacao e plano de governo.",
 };
 
 export default function ComparadorLayout({

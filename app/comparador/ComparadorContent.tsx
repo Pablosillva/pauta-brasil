@@ -35,11 +35,12 @@ export function ComparadorContent() {
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Comparador de propostas
+          Comparador de candidatos
         </h1>
         <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-2xl">
-          Escolha de 2 a 4 candidatos e veja lado a lado o que cada um propõe
-          para Saúde, Educação, Economia, Segurança e outros temas.
+          Escolha de 2 a 4 candidatos e veja lado a lado os dados oficiais do
+          TSE: numero na urna, partido, cargo, ocupacao e o plano de governo
+          registrado.
         </p>
       </header>
 

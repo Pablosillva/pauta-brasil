@@ -20,7 +20,7 @@ export default function SobrePage() {
           Sobre o Centro Político
         </h1>
         <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-          Informação, transparência e democracia.
+          Dados eleitorais e fiscalização do poder, com base em fontes oficiais.
         </p>
       </header>
 
@@ -33,8 +33,9 @@ export default function SobrePage() {
             O Centro Político nasceu para simplificar o acesso à informação
             política. Acreditamos que uma democracia forte exige cidadãos
             informados. Por isso, reunimos em um só lugar os candidatos, suas
-            propostas, seus históricos e seus patrimônios — tudo de forma clara,
-            comparável e acessível.
+            fotos, suas propostas, os planos de governo registrados no TSE e os
+            registros de votação do Congresso — tudo de forma clara, comparável
+            e acessível.
           </p>
         </div>
 
@@ -45,8 +46,9 @@ export default function SobrePage() {
               Transparência
             </h3>
             <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-              Todos os dados que publicamos vêm de fontes oficiais: TSE,
-              Câmaras, Senado e portais de transparência.
+              Todos os dados que publicamos vêm de fontes oficiais: TSE, Câmara
+              dos Deputados, Senado e portais de transparência. Onde a fonte não
+              tem o dado, a página fica em branco.
             </p>
           </div>
 
@@ -67,8 +69,9 @@ export default function SobrePage() {
               Isenção
             </h3>
             <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-              Não somos filiados a partidos. Apresentamos os fatos. Você tira
-              suas próprias conclusões.
+              Não somos filiados a partidos e não ordenamos candidatos por
+              preferência. Apresentamos os fatos. Você tira suas próprias
+              conclusões.
             </p>
           </div>
 
@@ -79,19 +82,49 @@ export default function SobrePage() {
             </h3>
             <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
               Encontrou um erro? Tem uma sugestão?{" "}
-              <a href="mailto:contato@centropolitico.com.br" className="text-verde font-semibold hover:underline">
+              <a
+                href="mailto:contato@centropolitico.com.br"
+                className="text-verde font-semibold hover:underline"
+              >
                 contato@centropolitico.com.br
               </a>
             </p>
           </div>
         </div>
+
+        {/* Escopo do projeto */}
+        <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-cinza-medio dark:border-azul-light">
+          <h2 className="text-xl font-bold text-azul dark:text-white mb-3">
+            O que já funciona e o que não funciona
+          </h2>
+          <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed mb-4">
+            Preferimos declarar o escopo real do projeto a apresentar cobertura
+            completa onde não temos. Hoje o Centro Político funciona com:
+          </p>
+          <ul className="space-y-1.5 text-sm text-cinza-escuro dark:text-cinza-medio mb-4">
+            <li>— Todos os candidatos registrados no TSE nas 27 unidades</li>
+            <li>— Fotos oficiais de campanha</li>
+            <li>— Planos de governo em PDF, como enviados ao TSE</li>
+            <li>— Votações nominais do Congresso, com o voto de cada deputado</li>
+            <li>— Tramitação completa de projetos de lei</li>
+          </ul>
+          <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+            Ainda não cobrimos Dados de senadores, de eleições anteriores a 2024, e o histórico de gastos. Essas lacunas estão listadas na página de limitações conhecidas.
+          </p>
+        </div>
       </section>
 
-      <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <Link
-          href="/"
-          className="text-verde font-semibold hover:underline"
-        >
+      <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light flex flex-wrap gap-6">
+        <Link href="/metodologia" className="text-verde font-semibold hover:underline">
+          Metodologia
+        </Link>
+        <Link href="/fontes" className="text-verde font-semibold hover:underline">
+          Fontes de dados
+        </Link>
+        <Link href="/recursos" className="text-verde font-semibold hover:underline">
+          Todos os recursos
+        </Link>
+        <Link href="/" className="text-verde font-semibold hover:underline">
           ← Voltar para a home
         </Link>
       </div>

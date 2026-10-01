@@ -16,24 +16,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -55,24 +37,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -94,24 +58,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -133,24 +79,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -172,24 +100,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -211,24 +121,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -263,24 +155,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -302,24 +176,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -350,24 +206,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -389,24 +227,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -493,24 +313,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -545,24 +347,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -593,24 +377,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -632,24 +398,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -684,24 +432,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -780,24 +510,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -840,24 +552,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -892,24 +586,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -931,24 +607,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -970,24 +628,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1009,24 +649,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1048,24 +670,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1087,24 +691,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1175,24 +761,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1235,24 +803,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1274,24 +824,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1334,24 +866,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1382,24 +896,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1421,24 +917,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1469,24 +947,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1508,24 +968,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1547,24 +989,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1591,24 +1015,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002553711.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1679,24 +1085,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1751,24 +1139,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1795,24 +1165,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1834,24 +1186,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -1873,24 +1207,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -1949,24 +1265,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2009,24 +1307,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2065,24 +1345,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2104,24 +1366,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2192,24 +1436,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2276,24 +1502,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2315,24 +1523,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2403,24 +1593,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2499,24 +1671,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2555,24 +1709,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2594,24 +1730,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2633,24 +1751,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2677,24 +1777,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2716,24 +1798,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2755,24 +1819,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2794,24 +1840,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2838,24 +1866,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -2890,24 +1900,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -2929,24 +1921,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3017,24 +1991,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3065,24 +2021,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3104,24 +2042,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3152,24 +2072,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3200,24 +2102,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3239,24 +2123,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3303,24 +2169,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3407,24 +2255,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002553726.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3531,24 +2361,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3570,24 +2382,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3609,24 +2403,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3648,24 +2424,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3692,24 +2450,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3731,24 +2471,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3770,24 +2492,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3814,24 +2518,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3853,24 +2539,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3892,24 +2560,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -3931,24 +2581,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002539642.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliar o efetivo policial e integrar as forças de segurança do estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expandir o ensino técnico e ampliar a infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Reduzir filas de cirurgias e ampliar a atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atrair investimentos e reduzir a burocracia para abertura de empresas."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -3979,24 +2611,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4018,24 +2632,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4057,24 +2653,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4101,24 +2679,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4140,24 +2700,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4179,24 +2721,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4218,24 +2742,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4262,24 +2768,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4318,24 +2806,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4386,24 +2856,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4494,24 +2946,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4542,24 +2976,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4581,24 +2997,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4645,24 +3043,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4689,24 +3069,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4728,24 +3090,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4767,24 +3111,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4806,24 +3132,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4845,24 +3153,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -4884,24 +3174,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -4944,24 +3216,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5020,24 +3274,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5088,24 +3324,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5148,24 +3366,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5192,24 +3392,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5231,24 +3413,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5299,24 +3463,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5343,24 +3489,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002553727.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5407,24 +3535,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5446,24 +3556,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5485,24 +3577,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5524,24 +3598,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5563,24 +3619,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5602,24 +3640,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5641,24 +3661,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5725,24 +3727,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": "/planos/AL/20002552502.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliar o efetivo policial e integrar as forças de segurança do estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expandir o ensino técnico e ampliar a infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Reduzir filas de cirurgias e ampliar a atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atrair investimentos e reduzir a burocracia para abertura de empresas."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5764,24 +3748,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5832,24 +3798,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -5871,24 +3819,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5931,24 +3861,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -5979,24 +3891,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6075,24 +3969,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6147,24 +4023,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6235,24 +4093,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6299,24 +4139,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6375,24 +4197,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -6414,24 +4218,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -6453,24 +4239,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6565,24 +4333,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -6604,24 +4354,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -6643,24 +4375,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -6682,24 +4396,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -6721,24 +4417,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6793,24 +4471,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6869,24 +4529,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6921,24 +4563,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -6965,24 +4589,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7004,24 +4610,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7043,24 +4631,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7082,24 +4652,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7162,24 +4714,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7201,24 +4735,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7240,24 +4756,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7316,24 +4814,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7360,24 +4840,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7404,24 +4866,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7512,24 +4956,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7568,24 +4994,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7624,24 +5032,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002540197.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7663,24 +5053,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002553272.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7859,24 +5231,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7898,24 +5252,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -7937,24 +5273,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -7981,24 +5299,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002553350.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliar o efetivo policial e integrar as forças de segurança do estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expandir o ensino técnico e ampliar a infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Reduzir filas de cirurgias e ampliar a atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atrair investimentos e reduzir a burocracia para abertura de empresas."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8053,24 +5353,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -8092,24 +5374,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8144,24 +5408,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8188,24 +5434,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8268,24 +5496,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8408,24 +5618,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -8447,24 +5639,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8515,24 +5689,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -8554,24 +5710,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8622,24 +5760,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -8661,24 +5781,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8737,24 +5839,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8809,24 +5893,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8853,24 +5919,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8905,24 +5953,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -8944,24 +5974,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -8992,24 +6004,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9040,24 +6034,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9088,24 +6064,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9132,24 +6090,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9176,24 +6116,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9220,24 +6142,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9264,24 +6168,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9312,24 +6198,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": "/planos/AL/20002552524.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9351,24 +6219,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9395,24 +6245,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9439,24 +6271,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9478,24 +6292,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9517,24 +6313,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": "/planos/AL/20002553745.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliar o efetivo policial e integrar as forças de segurança do estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expandir o ensino técnico e ampliar a infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Reduzir filas de cirurgias e ampliar a atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atrair investimentos e reduzir a burocracia para abertura de empresas."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9589,24 +6367,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9628,24 +6388,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9667,24 +6409,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9706,24 +6430,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9758,24 +6464,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9810,24 +6498,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -9926,24 +6596,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -9965,24 +6617,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10009,24 +6643,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10053,24 +6669,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10145,24 +6743,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10257,24 +6837,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10309,24 +6871,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10365,24 +6909,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10417,24 +6943,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10485,24 +6993,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -10524,24 +7014,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -10563,24 +7035,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10651,24 +7105,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10719,24 +7155,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10775,24 +7193,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10823,24 +7223,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10867,24 +7249,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -10931,24 +7295,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -10970,24 +7316,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11009,24 +7337,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11048,24 +7358,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11087,24 +7379,6 @@
     "grauInstrucao": "LÊ E ESCREVE",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11126,24 +7400,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11170,24 +7426,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11209,24 +7447,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11248,24 +7468,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11332,24 +7534,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11384,24 +7568,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11440,24 +7606,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11484,24 +7632,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11536,24 +7666,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11580,24 +7692,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11644,24 +7738,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11732,24 +7808,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11776,24 +7834,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11815,24 +7855,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -11859,24 +7881,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11898,24 +7902,6 @@
     "grauInstrucao": "ENSINO MÉDIO INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11937,24 +7923,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -11976,24 +7944,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12015,24 +7965,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12054,24 +7986,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12110,24 +8024,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12154,24 +8050,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12193,24 +8071,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12232,24 +8092,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12284,24 +8126,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12368,24 +8192,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12416,24 +8222,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12455,24 +8243,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12539,24 +8309,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12578,24 +8330,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12898,24 +8632,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -12946,24 +8662,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -12985,24 +8683,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13037,24 +8717,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13076,24 +8738,6 @@
     "grauInstrucao": "LÊ E ESCREVE",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13128,24 +8772,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13184,24 +8810,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13223,24 +8831,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13267,24 +8857,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13306,24 +8878,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13354,24 +8908,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13406,24 +8942,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13454,24 +8972,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13493,24 +8993,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13537,24 +9019,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13576,24 +9040,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13632,24 +9078,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13708,24 +9136,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13747,24 +9157,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13786,24 +9178,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13842,24 +9216,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -13942,24 +9298,6 @@
     "grauInstrucao": "ENSINO FUNDAMENTAL INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -13981,24 +9319,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Segurança",
-        "resumo": "Ampliação do efetivo policial e integração das forças de segurança."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Expansão do ensino técnico e melhoria da infraestrutura escolar."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Redução de filas e ampliação da atenção primária."
-      },
-      {
-        "area": "Economia",
-        "resumo": "Atração de investimentos e geração de empregos."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14025,24 +9345,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14081,24 +9383,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14133,24 +9417,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -14172,24 +9438,6 @@
     "grauInstrucao": "ENSINO MÉDIO COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -14211,24 +9459,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14267,24 +9497,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14323,24 +9535,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14395,24 +9589,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {
@@ -14571,24 +9747,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -14610,24 +9768,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -14649,24 +9789,6 @@
     "grauInstrucao": "SUPERIOR COMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -14688,24 +9810,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": null,
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Reforma tributária e simplificação de impostos."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do investimento em educação básica e técnica."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da atenção primária."
-      },
-      {
-        "area": "Segurança",
-        "resumo": "Combate ao crime organizado e fortalecimento policial."
-      }
-    ],
     "historico": [],
     "patrimonio": [],
     "redesSociais": []
@@ -14727,24 +9831,6 @@
     "grauInstrucao": "SUPERIOR INCOMPLETO",
     "planoGovernoUrl": "/planos/AL/20002548147.pdf",
     "bio": "",
-    "propostas": [
-      {
-        "area": "Economia",
-        "resumo": "Defesa do equilíbrio fiscal e atração de investimentos para o estado."
-      },
-      {
-        "area": "Educação",
-        "resumo": "Ampliação do ensino técnico e superior público."
-      },
-      {
-        "area": "Saúde",
-        "resumo": "Fortalecimento do SUS e ampliação da rede hospitalar."
-      },
-      {
-        "area": "Infraestrutura",
-        "resumo": "Investimento em rodovias, ferrovias e saneamento básico."
-      }
-    ],
     "historico": [],
     "patrimonio": [
       {

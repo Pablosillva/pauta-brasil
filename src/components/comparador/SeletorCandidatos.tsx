@@ -17,31 +17,87 @@ export function SeletorCandidatos({
   max = 4,
 }: SeletorCandidatosProps) {
   const [busca, setBusca] = useState("");
-  const [candidatos, setCandidatos] = useState<Candidato[]>([]);
-  const [carregando, setCarregando] = useState(true);
+  const [resultados, setResultados] = useState<Candidato[]>([]);
+  const [carregados, setCarregados] = useState<string | null>(null);
 
+  /**
+   * A base tem 20 mil candidatos. Baixar tudo no cliente custaria ~17 MB por
+   * visita, entao a busca vai para o servidor e fica limitada a 24 resultados.
+   */
   useEffect(() => {
-    async function carregar() {
+    let cancelado = false;
+    const chave = busca.trim();
+
+    const temporizador = setTimeout(async () => {
       try {
-        const res = await fetch("/api/candidatos");
-        if (res.ok) {
-          const data = await res.json();
-          setCandidatos(data);
+        const url = chave
+          ? `/api/candidatos?q=${encodeURIComponent(chave)}&limite=24`
+          : "/api/candidatos?limite=24";
+
+        const res = await fetch(url);
+        if (!res.ok) throw new Error("Falha na consulta");
+
+        const dados = (await res.json()) as { candidatos: Candidato[] };
+
+        if (!cancelado) {
+          setResultados(dados.candidatos ?? []);
+          setCarregados(chave);
         }
-      } catch (err) {
-        console.error("Erro ao carregar candidatos:", err);
-      } finally {
-        setCarregando(false);
+      } catch {
+        if (!cancelado) {
+          setResultados([]);
+          setCarregados(chave);
+        }
       }
-    }
-    carregar();
-  }, []);
+    }, 300);
+
+    return () => {
+      cancelado = true;
+      clearTimeout(temporizador);
+    };
+  }, [busca]);
+
+  // Busca os candidatos ja escolhidos, que podem nao estar nos resultados.
+  useEffect(() => {
+    const faltando = selecionados.filter(
+      (id) => !resultados.some((c) => c.id === id)
+    );
+
+    if (faltando.length === 0) return;
+
+    let cancelado = false;
+
+    (async () => {
+      try {
+        const res = await fetch(`/api/candidatos?ids=${faltando.join(",")}`);
+        if (!res.ok) return;
+
+        const dados = (await res.json()) as Candidato[];
+        if (cancelado) return;
+
+        setResultados((atuais) => {
+          const porId = new Map(atuais.map((c) => [c.id, c]));
+          for (const c of dados) porId.set(c.id, c);
+          return [...porId.values()];
+        });
+      } catch {
+        // Silencioso: a lista de selecionados e atualizada em outra tela.
+      }
+    })();
+
+    return () => {
+      cancelado = true;
+    };
+  }, [selecionados, resultados]);
+
+  // So mostra "carregando" enquanto a busca atual nao voltou.
+  const carregando = carregados !== busca.trim();
 
   const candidatosSelecionados = selecionados
-    .map((id) => candidatos.find((c) => c.id === id))
+    .map((id) => resultados.find((c) => c.id === id))
     .filter(Boolean) as Candidato[];
 
-  const candidatosDisponiveis = candidatos
+  const candidatosDisponiveis = resultados
     .filter((c) => !selecionados.includes(c.id))
     .filter((c) =>
       busca.trim() === ""

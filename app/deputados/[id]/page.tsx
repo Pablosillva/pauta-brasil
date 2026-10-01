@@ -66,11 +66,19 @@ export default async function DeputadoPage({ params }: PageProps) {
   }, {});
 
   const nascimento = dataDaCamara(deputado.dataNascimento);
+
+  /*
+   * Componente de servidor: a idade e calculada uma vez por requisicao e o
+   * resultado ja vai no HTML. Nao existe re-render no cliente que veja a
+   * mudanca, o que torna seguro usar Date.now() aqui.
+   */
+  /* eslint-disable react-hooks/purity */
   const idade = nascimento
     ? Math.floor(
         (Date.now() - nascimento.getTime()) / (365.25 * 24 * 60 * 60 * 1000)
       )
     : null;
+  /* eslint-enable react-hooks/purity */
 
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
