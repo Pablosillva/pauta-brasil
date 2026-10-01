@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Crown } from "lucide-react";
 import { BotaoConta } from "@/components/layout/BotaoConta";
 import { HeaderMobile } from "@/components/layout/HeaderMobile";
-import { navItems } from "@/components/layout/nav";
+import { LinksNav, MenuEleicoes } from "@/components/layout/MenuEleicoes";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
@@ -39,15 +39,14 @@ export function Header() {
 
         {/* Navegação desktop */}
         <nav className="hidden xl:flex items-center gap-1">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-2 text-sm font-medium rounded-md text-azul hover:bg-cinza-claro hover:text-verde dark:text-white dark:hover:bg-azul-light transition-colors whitespace-nowrap"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link
+            href="/"
+            className="px-3 py-2 text-sm font-medium rounded-md text-azul hover:bg-cinza-claro hover:text-verde dark:text-white dark:hover:bg-azul-light transition-colors"
+          >
+            Início
+          </Link>
+          <MenuEleicoes />
+          <LinksNav />
         </nav>
 
         {/* Ações desktop */}

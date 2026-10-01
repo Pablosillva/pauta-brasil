@@ -46,7 +46,7 @@ export function PainelNumeros() {
       icone: Gavel,
       valor: "1.200+",
       rotulo: "Votacoes do Congresso",
-      href: "/pautas",
+      href: "/projetos",
       nota: "voto nominal de cada deputado",
     },
     {

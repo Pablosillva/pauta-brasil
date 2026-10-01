@@ -54,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { rota: "/candidatos", prioridade: 0.9 },
     { rota: "/partidos", prioridade: 0.8 },
     { rota: "/planos", prioridade: 0.7 },
-    { rota: "/pautas", prioridade: 0.9 },
+    { rota: "/projetos", prioridade: 0.9 },
     { rota: "/deputados", prioridade: 0.8 },
     { rota: "/noticias", prioridade: 0.9 },
     { rota: "/ferramentas", prioridade: 0.8 },
@@ -93,7 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const pautas: MetadataRoute.Sitemap = votacoes.map((v) => ({
-    url: `${siteUrl}/pautas/${v.id}`,
+    url: `${siteUrl}/projetos/${v.id}`,
     lastModified: agora,
     changeFrequency: "daily",
     priority: 0.7,

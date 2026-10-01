@@ -527,6 +527,27 @@ export async function tramitacaoDaProposicao(
 }
 
 /* ------------------------------------------------------------------ */
+/*  Projetos por parlamentar                                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Projetos de lei autoria de um parlamentar.
+ *
+ * A API filtra por NOME, nao por id: o endpoint `/deputados/{id}/proposicoes`
+ * responde 405. Isso cria dois limites reais, declarados na tela: um nome
+ * grafado de outra forma na base oficial nao encontra nada, e um homonimo
+ * poderia trazer projetos de outra pessoa.
+ */
+export async function projetosDoDeputado(
+  nome: string,
+  itens = 30
+): Promise<Proposicao[]> {
+  if (!nome.trim()) return [];
+
+  return await listarProposicoes({ itens, autor: nome });
+}
+
+/* ------------------------------------------------------------------ */
 /*  Partidos                                                           */
 /* ------------------------------------------------------------------ */
 

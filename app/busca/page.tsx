@@ -82,7 +82,7 @@ export default async function BuscaPage({ searchParams }: PageProps) {
               Ver todos os candidatos
             </Link>
             <Link
-              href="/pautas"
+              href="/projetos"
               className="px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold transition-colors"
             >
               Ver as pautas do Congresso

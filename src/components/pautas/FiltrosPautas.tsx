@@ -84,7 +84,7 @@ export function FiltrosPautas({ votacoes }: { votacoes: Votacao[] }) {
             return (
               <li key={v.id}>
                 <a
-                  href={`/pautas/${v.id}`}
+                  href={`/projetos/${v.id}`}
                   className="block p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light hover:border-verde transition-colors"
                 >
                   <div className="flex items-start justify-between gap-4 flex-wrap">

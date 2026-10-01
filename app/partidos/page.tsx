@@ -88,7 +88,7 @@ export default function PartidosPage() {
         <p className="text-cinza-escuro dark:text-cinza-medio mb-4">
           Para ver como cada partido se posiciona nas votacoes do Congresso,
           consulte a area de deputados ou o{" "}
-          <Link href="/pautas" className="text-verde font-semibold hover:underline">
+          <Link href="/projetos" className="text-verde font-semibold hover:underline">
             historico de votacao
           </Link>
           .

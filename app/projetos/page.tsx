@@ -6,16 +6,16 @@ import { FiltrosPautas } from "@/components/pautas/FiltrosPautas";
 import { jsonLdBreadcrumb } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Pautas do Congresso",
+  title: "Projetos e votacoes",
   description:
-    "Votações nominais do Congresso Nacional com o voto registrado de cada deputado. Dados oficiais da Câmara dos Deputados.",
-  alternates: { canonical: "/pautas" },
+    "Projetos de lei e votacoes nominais do Congresso Nacional, com o voto registrado de cada deputado. Dados oficiais da Camara dos Deputados.",
+  alternates: { canonical: "/projetos" },
 };
 
-// A API da Câmara é cacheada; a página pode ser gerada estaticamente.
+// A API da Camara e cacheada; a pagina pode ser gerada com revalidate.
 export const revalidate = 3600;
 
-export default async function PautasPage() {
+export default async function ProjetosPage() {
   const [votacoes, proposicoes] = await Promise.all([
     listarVotacoes(60),
     listarProposicoes({ itens: 12, siglaTipo: "PL" }),
@@ -23,7 +23,7 @@ export default async function PautasPage() {
 
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
-    { name: "Pautas", url: "/pautas" },
+    { name: "Projetos", url: "/projetos" },
   ]);
 
   return (
@@ -41,11 +41,12 @@ export default async function PautasPage() {
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Pautas e votações
+          Projetos e votacoes
         </h1>
         <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-3xl">
-          Cada votação nominal da Câmara, com o voto registrado de todos os
-          deputados. Clique em uma pauta para ver o placar e quem votou como.
+          Os projetos que tramitam no Congresso e cada votacao nominal, com o
+          voto registrado de todos os deputados. Clique em uma votacao para ver
+          o placar e quem votou como.
         </p>
       </header>
 

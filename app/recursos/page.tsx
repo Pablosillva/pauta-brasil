@@ -81,9 +81,9 @@ const recursos: Recurso[] = [
   {
     grupo: "Congresso",
     icone: Gavel,
-    titulo: "Pautas e votacoes",
+    titulo: "Projetos e votacoes",
     descricao: "Votacoes nominais do Congresso com o placar e o voto de cada deputado.",
-    href: "/pautas",
+    href: "/projetos",
     status: "producao",
   },
   {
@@ -99,7 +99,7 @@ const recursos: Recurso[] = [
     icone: Scale,
     titulo: "Dossie de projetos de lei",
     descricao: "Tramitacao completa de cada proposicao, com datas e orgaos por onde passou.",
-    href: "/pautas",
+    href: "/projetos",
     status: "producao",
   },
   {

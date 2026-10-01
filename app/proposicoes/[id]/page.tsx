@@ -72,7 +72,7 @@ export default async function ProposicaoPage({ params }: PageProps) {
       />
 
       <Link
-        href="/pautas"
+        href="/projetos"
         className="inline-flex items-center gap-2 text-sm text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors mb-6"
       >
         <ArrowLeft size={16} /> Pautas e projetos

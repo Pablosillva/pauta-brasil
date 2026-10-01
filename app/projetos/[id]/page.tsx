@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${titulo} — como votaram`,
     description: votacao.descricao.slice(0, 160),
-    alternates: { canonical: `/pautas/${id}` },
+    alternates: { canonical: `/projetos/${id}` },
   };
 }
 
@@ -40,8 +40,8 @@ export default async function PautaPage({ params }: PageProps) {
 
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
-    { name: "Pautas", url: "/pautas" },
-    { name: extrairIdentificacao(votacao.descricao) ?? votacaoId, url: `/pautas/${id}` },
+    { name: "Projetos", url: "/projetos" },
+    { name: extrairIdentificacao(votacao.descricao) ?? votacaoId, url: `/projetos/${id}` },
   ]);
 
   const identificacao = extrairIdentificacao(votacao.descricao);
@@ -64,7 +64,7 @@ export default async function PautaPage({ params }: PageProps) {
       />
 
       <Link
-        href="/pautas"
+        href="/projetos"
         className="inline-flex items-center gap-2 text-sm text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors mb-6"
       >
         <ArrowLeft size={16} /> Todas as pautas

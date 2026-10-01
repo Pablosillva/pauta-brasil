@@ -10,17 +10,26 @@ import {
   Calendar,
   ExternalLink,
   Gavel,
+  FileText,
+  Wallet,
+  Users,
+  Search,
 } from "lucide-react";
 import {
   buscarDeputado,
   votosDoDeputado,
   votacoesDoIndice,
+  projetosDoDeputado,
   VOTACOES_NO_INDICE,
   dataDaCamara,
   rotuloVoto,
   type CorVoto,
 } from "@/lib/camara";
+import { listarGastos } from "@/lib/gastos";
+import { temChavePortalTransparencia } from "@/lib/gastos";
 import { BadgeVoto } from "@/components/pautas/BadgeVotacao";
+import { TabsDeputado } from "@/components/parlamentares/TabsDeputado";
+import { AbaGastos } from "@/components/parlamentares/AbaGastos";
 import { jsonLdBreadcrumb } from "@/lib/seo";
 
 export const revalidate = 3600;
@@ -34,11 +43,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params;
   const deputado = await buscarDeputado(Number(id));
 
-  if (!deputado) return { title: "Deputado nao encontrado" };
+  if (!deputado) return { title: "Parlamentar nao encontrado" };
 
   return {
     title: `${deputado.nome} — ${deputado.partido}/${deputado.uf}`,
-    description: `Como ${deputado.nome} (${deputado.partido}/${deputado.uf}) votou nas pautas do Congresso. Ficha, gabineto e historico de votacoes.`,
+    description: `Projetos propostos e votacoes de ${deputado.nome} (${deputado.partido}/${deputado.uf}). Dados oficiais da Camara dos Deputados.`,
     alternates: { canonical: `/deputados/${id}` },
   };
 }
@@ -58,12 +67,13 @@ export default async function DeputadoPage({ params }: PageProps) {
   const deputado = await buscarDeputado(deputadoId);
   if (!deputado) notFound();
 
-  const [votos, votacoesIndice] = await Promise.all([
+  const [votos, votacoesIndice, projetos, gastos] = await Promise.all([
     votosDoDeputado(deputadoId, 40),
     votacoesDoIndice(),
+    projetosDoDeputado(deputado.nome, 30),
+    listarGastos(deputado.nome).catch(() => null),
   ]);
 
-  // Resumo de posicoes: o leitor quer saber "como esta pessoa vota?", nao 40 linhas.
   const resumo = votos.reduce<Record<string, number>>((mapa, v) => {
     const { texto } = rotuloVoto(v.voto);
     mapa[texto] = (mapa[texto] ?? 0) + 1;
@@ -72,11 +82,9 @@ export default async function DeputadoPage({ params }: PageProps) {
 
   const nascimento = dataDaCamara(deputado.dataNascimento);
 
-  /*
-   * Componente de servidor: a idade e calculada uma vez por requisicao e o
-   * resultado ja vai no HTML. Nao existe re-render no cliente que veja a
-   * mudanca, o que torna seguro usar Date.now() aqui.
-   */
+  /* Componente de servidor: a idade e calculada uma vez por requisicao e o
+     resultado ja vai no HTML. Nao existe re-render no cliente que veja a
+     mudanca, o que torna seguro usar Date.now() aqui. */
   /* eslint-disable react-hooks/purity */
   const idade = nascimento
     ? Math.floor(
@@ -87,7 +95,7 @@ export default async function DeputadoPage({ params }: PageProps) {
 
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
-    { name: "Deputados", url: "/deputados" },
+    { name: "Parlamentares", url: "/parlamentares" },
     { name: deputado.nome, url: `/deputados/${id}` },
   ]);
 
@@ -113,198 +121,94 @@ export default async function DeputadoPage({ params }: PageProps) {
   ].filter(Boolean) as { icone: typeof Mail; rotulo: string; valor: string }[];
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-6xl mx-auto px-6 py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
       />
 
       <Link
-        href="/deputados"
+        href="/parlamentares"
         className="inline-flex items-center gap-2 text-sm text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors mb-6"
       >
-        <ArrowLeft size={16} /> Todos os deputados
+        <ArrowLeft size={16} /> Todos os parlamentares
       </Link>
 
-      <header className="flex flex-col sm:flex-row gap-6 items-start mb-10">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={deputado.urlFoto}
-          alt={`Foto de ${deputado.nome}`}
-          className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover bg-cinza-medio dark:bg-azul-light flex-shrink-0"
-        />
+      {/* Cabeçalho, no mesmo formato da página de candidatos */}
+      <header className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-6 mb-8">
+        <div className="flex flex-col sm:flex-row gap-6 items-start">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={deputado.urlFoto}
+            alt={`Foto de ${deputado.nome}`}
+            className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover bg-cinza-medio dark:bg-azul-light flex-shrink-0"
+          />
 
-        <div className="flex-1">
-          <h1 className="text-3xl lg:text-4xl font-bold text-azul dark:text-white mb-2">
-            {deputado.nome}
-          </h1>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-2xl lg:text-3xl font-bold text-azul dark:text-white mb-2">
+              {deputado.nome}
+            </h1>
 
-          {deputado.nomeCivil && deputado.nomeCivil !== deputado.nome && (
-            <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-3">
-              Nome civil: {deputado.nomeCivil}
-            </p>
-          )}
-
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="px-3 py-1 rounded-lg bg-azul/10 dark:bg-azul-light/30 text-azul dark:text-white text-sm font-bold">
-              {deputado.partido}/{deputado.uf}
-            </span>
-            <span className="px-3 py-1 rounded-lg bg-verde/10 text-verde text-sm font-semibold">
-              Deputado federal
-            </span>
-            {deputado.situacao && (
-              <span className="px-3 py-1 rounded-lg bg-cinza-claro dark:bg-azul-light/20 text-cinza-escuro dark:text-cinza-medio text-sm">
-                {deputado.situacao}
-              </span>
+            {deputado.nomeCivil && deputado.nomeCivil !== deputado.nome && (
+              <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-3">
+                Nome civil: {deputado.nomeCivil}
+              </p>
             )}
-          </div>
 
-          {deputado.redesSociais.length > 0 && (
-            <div className="flex items-center gap-3 mt-4">
-              {deputado.redesSociais.slice(0, 4).map((url) => {
-                const rede = url.includes("twitter") || url.includes("x.com")
-                  ? "X"
-                  : url.includes("facebook")
-                    ? "Facebook"
-                    : url.includes("instagram")
-                      ? "Instagram"
-                      : url.includes("youtube")
-                        ? "YouTube"
-                        : "Perfil";
-
-                return (
-                  <a
-                    key={url}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-cinza-escuro dark:text-cinza-medio hover:text-verde transition-colors font-medium"
-                  >
-                    {rede}
-                  </a>
-                );
-              })}
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="px-3 py-1 rounded-lg bg-azul/10 dark:bg-azul-light/30 text-azul dark:text-white text-sm font-bold">
+                {deputado.partido}/{deputado.uf}
+              </span>
+              <span className="px-3 py-1 rounded-lg bg-verde/10 text-verde text-sm font-semibold">
+                Deputado federal
+              </span>
+              {deputado.situacao && (
+                <span className="px-3 py-1 rounded-lg bg-cinza-claro dark:bg-azul-light/20 text-cinza-escuro dark:text-cinza-medio text-sm">
+                  {deputado.situacao}
+                </span>
+              )}
             </div>
-          )}
+
+            <div className="grid grid-cols-3 gap-4 mt-5 pt-5 border-t border-cinza-medio dark:border-azul-light">
+              <div>
+                <p className="text-2xl font-bold text-azul dark:text-white">
+                  {projetos.length}
+                </p>
+                <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                  projetos autoria
+                </p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-azul dark:text-white">
+                  {votos.length}
+                </p>
+                <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                  votacoes nominais
+                </p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-azul dark:text-white">
+                  {Object.keys(resumo).length}
+                </p>
+                <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                  posicoes distintas
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* Ficha */}
-      {ficha.length > 0 && (
-        <section className="mb-12">
-          <h2 className="text-xl font-bold text-azul dark:text-white mb-4">
-            Ficha
-          </h2>
-          <dl className="grid sm:grid-cols-2 gap-4">
-            {ficha.map((item) => {
-              const Icone = item.icone;
-              return (
-                <div
-                  key={item.rotulo}
-                  className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light"
-                >
-                  <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
-                    <Icone size={14} className="text-verde" /> {item.rotulo}
-                  </dt>
-                  <dd className="text-azul dark:text-white break-words">
-                    {item.valor}
-                  </dd>
-                </div>
-              );
-            })}
-          </dl>
-        </section>
-      )}
-
-      {/* Histórico de votação */}
-      <section>
-        <h2 className="flex items-center gap-2 text-xl font-bold text-azul dark:text-white mb-2">
-          <Gavel size={20} className="text-verde" />
-          Historico de votacao ({votos.length})
-        </h2>
-
-        {/* Deixa claro o recorte: nao e a legislatura inteira. */}
-        {votos.length > 0 && votacoesIndice.length > 0 && (
-          <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-5">
-            Baseado nas {votacoesIndice.length} votacoes nominais mais recentes
-            do Congresso, de{" "}
-            {new Date(`${votacoesIndice[votacoesIndice.length - 1].data}T12:00:00`).toLocaleDateString("pt-BR")}{" "}
-            a{" "}
-            {new Date(`${votacoesIndice[0].data}T12:00:00`).toLocaleDateString("pt-BR")}
-            . A Camara nao oferece consulta de votos por deputado, entao
-            reconstruimos o historico a partir dessas votacoes.
-          </p>
-        )}
-
-        {votos.length === 0 ? (
-          <div className="p-6 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-dashed border-cinza-medio dark:border-azul-light text-center text-cinza-escuro dark:text-cinza-medio">
-            Este deputado nao votou nominalmente em nenhuma das{" "}
-            {VOTACOES_NO_INDICE} votacoes mais recentes do Congresso, ou nao
-            esta mais em exercicio. Consultas em bloco nao registram voto
-            individual.
-          </div>
-        ) : (
-          <>
-            {/* Resumo de posições */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-              {Object.entries(resumo).map(([tipo, total]) => {
-                const { cor } = rotuloVoto(tipo);
-                return (
-                  <div
-                    key={tipo}
-                    className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light text-center"
-                  >
-                    <p
-                      className={`text-3xl font-bold ${COR_CLASSE[cor]}`}
-                    >
-                      {total}
-                    </p>
-                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
-                      {tipo}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <ul className="space-y-3">
-              {votos.map(({ votacao, voto }, i) => {
-                const data = dataDaCamara(votacao.dataHoraRegistro);
-
-                return (
-                  <li key={`${votacao.id}-${i}`}>
-                    <Link
-                      href={`/pautas/${votacao.id}`}
-                      className="block p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light hover:border-verde transition-colors"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="min-w-0">
-                          <p className="text-azul dark:text-white leading-snug text-sm">
-                            {votacao.descricao}
-                          </p>
-                          {data && (
-                            <time
-                              dateTime={data.toISOString()}
-                              className="block mt-2 text-xs text-cinza-escuro dark:text-cinza-medio"
-                            >
-                              {data.toLocaleDateString("pt-BR", {
-                                day: "2-digit",
-                                month: "2-digit",
-                                year: "numeric",
-                              })}
-                            </time>
-                          )}
-                        </div>
-                        <BadgeVoto voto={voto} />
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </>
-        )}
-      </section>
+      <TabsDeputado
+        nome={deputado.nome}
+        projetos={projetos}
+        votos={votos}
+        resumo={resumo}
+        votacoesIndice={votacoesIndice}
+        ficha={ficha.map((f) => ({ rotulo: f.rotulo, valor: f.valor }))}
+        gastos={gastos}
+        temChaveGastos={temChavePortalTransparencia()}
+      />
 
       <div className="mt-12 pt-8 border-t border-cinza-medio dark:border-azul-light">
         <a
