@@ -1,5 +1,10 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
+/*
+ * Sem o plugin de typography, a classe `prose` nao faz nada e o corpo das
+ * noticias perde todo o espacamento entre paragrafos, titulos e listas.
+ */
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

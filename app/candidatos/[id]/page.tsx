@@ -1,3 +1,4 @@
+import { formatarNome } from "@/lib/nomes";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Share2, GitCompare, FileText, Mail } from "lucide-react";
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!candidato) return { title: "Candidato não encontrado" };
   return {
     title: candidato.nome,
-    description: `${candidato.nome} — ${candidato.cargo} pelo ${candidato.partido}`,
+    description: `${formatarNome(candidato.nome)} — ${candidato.cargo} pelo ${candidato.partido}`,
     alternates: {
       canonical: `/candidatos/${id}`,
     },
@@ -113,7 +114,7 @@ export default async function CandidatoPage({
           <div className="flex flex-col md:flex-row gap-6 items-start md:items-center">
             <Image
               src={candidato.foto}
-              alt={`Foto de ${candidato.nome}`}
+              alt={`Foto de ${formatarNome(candidato.nome)}`}
               width={160}
               height={160}
               unoptimized
@@ -124,7 +125,7 @@ export default async function CandidatoPage({
                 {candidato.status}
               </span>
               <h1 className="text-3xl md:text-4xl font-bold mb-2">
-                {candidato.nome}
+                {formatarNome(candidato.nome)}
               </h1>
               <p className="text-lg text-white/80">
                 <span className="font-semibold">{candidato.cargo}</span> ·{" "}

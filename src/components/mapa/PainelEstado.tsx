@@ -1,12 +1,24 @@
 "use client";
 
+import { formatarNome } from "@/lib/nomes";
+
 import { useEffect, useState } from "react";
 import { X, GitCompare, Filter, Search } from "lucide-react";
-import { getNomeEstado, getGovernador } from "@/data/candidatos";
+import governadoresJson from "@/data/governadores.json";
+import { getNomeEstado } from "@/data/candidatos";
 import type { Candidato } from "@/data/candidatos";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FotoCandidato } from "@/components/ui/FotoCandidato";
+
+interface CandidatoGovernador {
+  partido: string;
+}
+
+const governadoresPorUf = governadoresJson as Record<
+  string,
+  CandidatoGovernador[]
+>;
 
 const CARGOS = [
   "Presidente",
@@ -93,7 +105,20 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
   if (!estadoId) return null;
 
   const nomeEstado = getNomeEstado(estadoId);
-  const governador = getGovernador(estadoId);
+  /*
+   * Quem disputa a vaga em 2026, lido do TSE. Nao mostramos quem governa hoje:
+   * os candidatos a governador estao todos marcados como "Pre-candidato",
+   * porque a eleicao ainda nao houve, e a antiga lista de governadores em
+   * exercico cobria so 10 dos 27 estados, com partidos errados.
+   */
+  const disputaGovernador = (() => {
+    const sigla = estadoId.replace(/^br[-_]?/i, "").toUpperCase();
+    const lista = governadoresPorUf[sigla] ?? [];
+    return {
+      candidatos: lista.length,
+      partidos: new Set(lista.map((c) => c.partido)).size,
+    };
+  })();
 
   const lista = Array.isArray(candidatosTse) ? candidatosTse : [];
 
@@ -167,10 +192,13 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
               <h2 id="painel-titulo" className="text-2xl font-bold">
                 {nomeEstado}
               </h2>
-              {governador && (
+              {disputaGovernador.candidatos > 0 && (
                 <p className="text-sm text-white/80 mt-1">
-                  Governador atual:{" "}
-                  <span className="font-semibold">{governador}</span>
+                  Disputa a governo em 2026:{" "}
+                  <span className="font-semibold">
+                    {disputaGovernador.candidatos} candidatos
+                  </span>{" "}
+                  em {disputaGovernador.partidos} partidos
                 </p>
               )}
             </div>
@@ -288,7 +316,7 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
                 <div className="w-16 h-16 rounded-full overflow-hidden bg-cinza-medio dark:bg-azul-light flex-shrink-0">
                   <FotoCandidato
                     src={c.foto}
-                    alt={`Foto de ${c.nome}`}
+                    alt={`Foto de ${formatarNome(c.nome)}`}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -296,7 +324,7 @@ export function PainelEstado({ estadoId, onClose }: PainelEstadoProps) {
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
                       <h3 className="font-semibold text-azul dark:text-white truncate">
-                        {c.nome}
+                        {formatarNome(c.nome)}
                       </h3>
                       <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
                         {c.partido} · Nº {c.numero}

@@ -46,12 +46,19 @@ export async function PUT(request: NextRequest, { params }: Params) {
       );
     }
 
+    // Data de publicação escolhida no painel. Campo vazio = manter a atual.
+    const dataBruta = (formData.get("dataPublicacao") as string) ?? "";
+    const dataLida = dataBruta ? new Date(dataBruta) : null;
+    const dataValida =
+      dataLida && !Number.isNaN(dataLida.getTime()) ? dataLida : null;
+
     await atualizarNoticia(slug, {
       titulo,
       resumo,
       categoria,
       conteudo,
       imagemCapa,
+      dataPublicacao: dataValida ?? existente.createdAt,
       tags: tagsInput
         ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean)
         : [],

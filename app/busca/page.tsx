@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { formatarNome } from "@/lib/nomes";
 import { Search, User, Newspaper, Gavel } from "lucide-react";
 import { nomesEstados } from "@/data/candidatos";
 import { buscarTudo } from "@/lib/busca";
@@ -112,13 +113,13 @@ export default async function BuscaPage({ searchParams }: PageProps) {
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-cinza-medio dark:bg-azul-light flex-shrink-0">
                     <FotoCandidato
                       src={c.foto}
-                      alt={`Foto de ${c.nome}`}
+                      alt={`Foto de ${formatarNome(c.nome)}`}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="min-w-0">
                     <p className="font-bold text-azul dark:text-white truncate group-hover:text-verde transition-colors">
-                      {c.nomeUrna || c.nome}
+                      {formatarNome(c.nomeUrna || c.nome)}
                     </p>
                     <p className="text-xs text-cinza-escuro dark:text-cinza-medio truncate">
                       {c.cargo} · {c.partido} · Nº {c.numero}

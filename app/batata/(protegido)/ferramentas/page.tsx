@@ -1,11 +1,60 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, TrendingUp, Map, BarChart3 } from "lucide-react";
+import { ArrowLeft, ExternalLink, Database, Info } from "lucide-react";
 
 export default async function FerramentasAdminPage() {
   const session = await getSession();
   if (!session) redirect("/batata/login");
+
+  /*
+   * Esta página tinha três formulários com "Salvar Ranking", "Salvar Mapa de
+   * Calor" e "Salvar Histórico". Nenhum botão tinha ação, formulário ou server
+   * action: nada era gravado. Pior, os campos já vinham preenchidos com dados
+   * inventados, o que dava a impressão de que aquilo era o conteúdo do site.
+   *
+   * Os dados das ferramentas vêm das fontes oficiais e dos scripts de
+   * geração, não de edição manual. Por isso a tela virou um índice: mostra de
+   * onde vem cada número e como regenerar.
+   */
+
+  const fontes = [
+    {
+      rota: "/ferramentas/patrimonio",
+      titulo: "Patrimônio declarado",
+      origem: "TSE",
+      comando: "npm run patrimonio",
+      nota: "Gera src/data/patrimonio.json a partir dos 27 arquivos do TSE.",
+    },
+    {
+      rota: "/ferramentas/mapa-calor",
+      titulo: "Peso eleitoral por estado",
+      origem: "Câmara dos Deputados",
+      comando: "—",
+      nota: "Conta os deputados em exercício por UF, direto da API.",
+    },
+    {
+      rota: "/ferramentas/transparencia",
+      titulo: "Transparência",
+      origem: "Portal da Transparência (CGU)",
+      comando: "—",
+      nota: "Precisa de PORTAL_TRANSPARENCIA_API_KEY. Sem a chave, a tela declara o bloqueio.",
+    },
+    {
+      rota: "/ferramentas/historico-votacao",
+      titulo: "Histórico de votação",
+      origem: "Câmara dos Deputados",
+      comando: "—",
+      nota: "Votos nominais das últimas 12 votações abertas em votação nominal.",
+    },
+    {
+      rota: "/ferramentas/ranking",
+      titulo: "Ranking",
+      origem: "TSE",
+      comando: "npm run patrimonio",
+      nota: "Mostra o ranking de patrimônio e declara por que não publicamos aprovação.",
+    },
+  ];
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -16,139 +65,59 @@ export default async function FerramentasAdminPage() {
         <ArrowLeft size={16} /> Voltar ao dashboard
       </Link>
 
-      <h1 className="text-3xl font-bold text-azul dark:text-white mb-6">
-        Gerenciar Ferramentas
+      <h1 className="text-3xl font-bold text-azul dark:text-white mb-3">
+        Fontes das ferramentas
       </h1>
-      <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-8">
-        Edite os dados das ferramentas do site: ranking, mapa de calor e outras.
+      <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-8 max-w-2xl">
+        Os dados das ferramentas vêm das fontes oficiais e dos scripts de
+        geração. Não há edição manual: alterar um número aqui exigiria
+        adulterar a fonte, e a página deixaria de ser verificável.
       </p>
 
-      <div className="space-y-4">
-        {/* Ranking */}
-        <div className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-azul flex items-center justify-center text-white">
-              <TrendingUp size={24} />
+      <div className="space-y-3">
+        {fontes.map((f) => (
+          <div
+            key={f.rota}
+            className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-5"
+          >
+            <div className="flex items-start justify-between gap-4 mb-2">
+              <h2 className="font-bold text-azul dark:text-white">{f.titulo}</h2>
+              <Link
+                href={f.rota}
+                className="inline-flex items-center gap-1 text-sm text-verde font-semibold hover:underline shrink-0"
+              >
+                Abrir <ExternalLink size={14} />
+              </Link>
             </div>
-            <div>
-              <h2 className="text-xl font-bold text-azul dark:text-white">
-                Ranking de Popularidade
-              </h2>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                Aprovação de governadores, prefeitos e parlamentares
-              </p>
-            </div>
-          </div>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-                Dados do Ranking (JSON)
-              </label>
-              <textarea
-                rows={10}
-                defaultValue={JSON.stringify(
-                  [
-                    { nome: "Romeu Zema", estado: "MG", partido: "Novo", aprovacao: 68, tendencia: "up" },
-                    { nome: "Ratinho Junior", estado: "PR", partido: "PSD", aprovacao: 65, tendencia: "up" },
-                    { nome: "Tarcísio de Freitas", estado: "SP", partido: "Republicanos", aprovacao: 62, tendencia: "down" },
-                  ],
-                  null,
-                  2
-                )}
-                className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-verde"
-              />
-            </div>
-            <button className="px-4 py-2 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors">
-              Salvar Ranking
-            </button>
-          </div>
-        </div>
 
-        {/* Mapa de Calor */}
-        <div className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-verde flex items-center justify-center text-white">
-              <Map size={24} />
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-azul dark:text-white">
-                Mapa de Calor Eleitoral
-              </h2>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                Aprovação dos governadores por estado
-              </p>
-            </div>
-          </div>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-                Dados do Mapa de Calor (JSON)
-              </label>
-              <textarea
-                rows={10}
-                defaultValue={JSON.stringify(
-                  [
-                    { estado: "São Paulo", uf: "SP", aprovacao: 62, tendencia: "up" },
-                    { estado: "Rio de Janeiro", uf: "RJ", aprovacao: 45, tendencia: "down" },
-                    { estado: "Minas Gerais", uf: "MG", aprovacao: 68, tendencia: "up" },
-                  ],
-                  null,
-                  2
-                )}
-                className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-verde"
-              />
-            </div>
-            <button className="px-4 py-2 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors">
-              Salvar Mapa de Calor
-            </button>
-          </div>
-        </div>
+            <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
+              {f.nota}
+            </p>
 
-        {/* Histórico de Votação */}
-        <div className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-verde-dark flex items-center justify-center text-white">
-              <BarChart3 size={24} />
-            </div>
-            <div>
-              <h2 className="text-xl font-bold text-azul dark:text-white">
-                Histórico de Votação
-              </h2>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                Como cada parlamentar votou nas principais pautas
-              </p>
-            </div>
+            <p className="flex items-center gap-2 mt-2 text-xs text-cinza-escuro dark:text-cinza-medio">
+              <Database size={13} className="text-verde shrink-0" />
+              Fonte: {f.origem}
+              {f.comando !== "—" && (
+                <>
+                  {" · "}
+                  <code className="px-1.5 py-0.5 rounded bg-cinza-claro dark:bg-azul-dark text-azul dark:text-white">
+                    {f.comando}
+                  </code>
+                </>
+              )}
+            </p>
           </div>
-          <div className="space-y-3">
-            <div>
-              <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
-                Dados do Histórico (JSON)
-              </label>
-              <textarea
-                rows={10}
-                defaultValue={JSON.stringify(
-                  [
-                    {
-                      parlamentar: "Arthur Lira",
-                      cargo: "Deputado Federal",
-                      partido: "PP",
-                      votacoes: [
-                        { pauta: "Reforma Administrativa", voto: "Sim", data: "2026-08-15" },
-                        { pauta: "Marco Temporal", voto: "Não", data: "2026-07-20" },
-                      ],
-                    },
-                  ],
-                  null,
-                  2
-                )}
-                className="w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-verde"
-              />
-            </div>
-            <button className="px-4 py-2 rounded-lg bg-verde hover:bg-verde-dark text-white font-semibold transition-colors">
-              Salvar Histórico
-            </button>
-          </div>
-        </div>
+        ))}
+      </div>
+
+      <div className="mt-8 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/20 text-sm text-cinza-escuro dark:text-cinza-medio flex items-start gap-2">
+        <Info size={16} className="text-verde shrink-0 mt-0.5" />
+        <span>
+          Nenhuma ferramenta usa número escrito à mão. Isso vale para
+          aprovações, gastos e emendas: quando a fonte não está disponível, a
+          tela explica o que falta em vez de preencher a tabela. Digitar um
+          valor aqui seria publicar um dado sem origem.
+        </span>
       </div>
     </div>
   );

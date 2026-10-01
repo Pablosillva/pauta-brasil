@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { formatarNome } from "@/lib/nomes";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Crown, LogOut, User, MapPin, Heart, FileText } from "lucide-react";
@@ -228,7 +229,7 @@ export default async function MinhaContaPage() {
                     <div className="w-12 h-12 rounded-full bg-cinza-medio dark:bg-azul-light overflow-hidden flex-shrink-0">
                       <FotoCandidato
                         src={c.foto}
-                        alt={`Foto de ${c.nome}`}
+                        alt={`Foto de ${formatarNome(c.nome)}`}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -238,7 +239,7 @@ export default async function MinhaContaPage() {
                         href={`/candidatos/${c.id}`}
                         className="font-bold text-azul dark:text-white hover:text-verde transition-colors block truncate"
                       >
-                        {c.nome}
+                        {formatarNome(c.nome)}
                       </Link>
                       <p className="text-xs text-cinza-escuro dark:text-cinza-medio truncate">
                         {c.cargo} · {c.partido} · {nomeEstadoDoCandidato(c)}

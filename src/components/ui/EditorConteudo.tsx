@@ -293,13 +293,29 @@ export function EditorConteudo({
         defaultValue={defaultValue}
         rows={rows}
         placeholder={placeholder}
+        onKeyDown={(e) => {
+          // Atalhos citados na ajuda abaixo. Sem Ctrl, para nao roubar o
+          // atalho de novo paragrafo do navegador.
+          if (!e.ctrlKey || e.altKey) return;
+
+          const editor = criarEditor();
+
+          if (e.key.toLowerCase() === "b") {
+            e.preventDefault();
+            envolver(editor, "**");
+          } else if (e.key.toLowerCase() === "i") {
+            e.preventDefault();
+            envolver(editor, "*");
+          }
+        }}
         className="w-full p-4 font-mono text-sm text-azul dark:text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-verde resize-y"
       />
 
       <p className="px-4 py-2 text-xs text-cinza-escuro dark:text-cinza-medio border-t border-cinza-medio dark:border-azul-light">
         Selecione o texto e use a barra acima para formatar. Atalhos:{" "}
         <kbd className="px-1">Ctrl+B</kbd> negrito, <kbd className="px-1">Ctrl+I</kbd>{" "}
-        itálico.
+        itálico. Linha em branco separa parágrafos;{" "}
+        <code className="px-1">- item</code> monta lista.
       </p>
     </div>
   );

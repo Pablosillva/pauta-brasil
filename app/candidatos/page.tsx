@@ -1,3 +1,4 @@
+import { formatarNome } from "@/lib/nomes";
 import Link from "next/link";
 import { Suspense } from "react";
 import { Users } from "lucide-react";
@@ -128,13 +129,13 @@ export default async function CandidatosPage({ searchParams }: PageProps) {
                 <div className="w-16 h-16 rounded-full bg-cinza-medio dark:bg-azul-light overflow-hidden flex-shrink-0">
                   <FotoCandidato
                     src={c.foto}
-                    alt={`Foto de ${c.nome}`}
+                    alt={`Foto de ${formatarNome(c.nome)}`}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="min-w-0">
                   <h3 className="font-bold text-azul dark:text-white truncate group-hover:text-verde transition-colors">
-                    {c.nome}
+                    {formatarNome(c.nome)}
                   </h3>
                   <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
                     {c.partido} · Nº {c.numero}

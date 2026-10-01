@@ -1,52 +1,38 @@
-"use client";
+import Link from "next/link";
+import { Trophy, TrendingUp, Info, ExternalLink } from "lucide-react";
+import registrosIndice from "@/data/patrimonio.json";
+import { nomesEstados } from "@/data/candidatos";
+import { formatarNome } from "@/lib/nomes";
+import { formatarValor } from "@/lib/gastos";
 
-import { useState } from "react";
-import { TrendingUp, TrendingDown, Minus, Crown } from "lucide-react";
+export const metadata = {
+  title: "Ranking — o que dá para medir com dado oficial",
+  description:
+    "Por que não publicamos ranking de aprovação e quais rankings com base em dado oficial estão disponíveis.",
+};
+
+export const revalidate = 86400;
+
+interface Registro {
+  id: string;
+  nome: string;
+  nomeUrna: string;
+  partido: string;
+  cargo: string;
+  estadoId: string;
+  total: number;
+  bens: number;
+}
+
+const registros = registrosIndice as Registro[];
+
+function nomeDaUnidade(estadoId: string): string {
+  if (estadoId === "br") return "Brasil";
+  return nomesEstados[estadoId] ?? estadoId.toUpperCase();
+}
 
 export default function RankingPage() {
-  const [cargo, setCargo] = useState<"governadores" | "prefeitos" | "parlamentares">("governadores");
-
-  const dados = {
-    governadores: [
-      { nome: "Romeu Zema", estado: "MG", partido: "Novo", aprovacao: 68, tendencia: "up" },
-      { nome: "Ratinho Junior", estado: "PR", partido: "PSD", aprovacao: 65, tendencia: "up" },
-      { nome: "Tarcísio de Freitas", estado: "SP", partido: "Republicanos", aprovacao: 62, tendencia: "down" },
-      { nome: "Eduardo Leite", estado: "RS", partido: "PSDB", aprovacao: 58, tendencia: "up" },
-      { nome: "Jerônimo Rodrigues", estado: "BA", partido: "PT", aprovacao: 55, tendencia: "stable" },
-      { nome: "Cláudio Castro", estado: "RJ", partido: "PL", aprovacao: 45, tendencia: "down" },
-    ],
-    prefeitos: [
-      { nome: "Ricardo Nunes", cidade: "SP", partido: "MDB", aprovacao: 61, tendencia: "up" },
-      { nome: "Eduardo Paes", cidade: "RJ", partido: "PSD", aprovacao: 58, tendencia: "stable" },
-      { nome: "Bruno Reis", cidade: "BH", partido: "PSDB", aprovacao: 55, tendencia: "up" },
-      { nome: "Rafael Greca", cidade: "Curitiba", partido: "PSD", aprovacao: 52, tendencia: "down" },
-      { nome: "João Doria", cidade: "São Paulo", partido: "PSDB", aprovacao: 48, tendencia: "stable" },
-    ],
-    parlamentares: [
-      { nome: "Arthur Lira", cargo: "Deputado Federal", partido: "PP", aprovacao: 42, tendencia: "up" },
-      { nome: "Pacheco", cargo: "Senador", partido: "PSD", aprovacao: 55, tendencia: "stable" },
-      { nome: "Hugo Motta", cargo: "Deputado Federal", partido: "Republicanos", aprovacao: 38, tendencia: "up" },
-      { nome: "Davi Alcolumbre", cargo: "Senador", partido: "UNIÃO", aprovacao: 35, tendencia: "down" },
-    ],
-  };
-
-  const cargos = [
-    { id: "governadores" as const, label: "Governadores" },
-    { id: "prefeitos" as const, label: "Prefeitos" },
-    { id: "parlamentares" as const, label: "Parlamentares" },
-  ];
-
-  function getTendenciaIcon(tendencia: string) {
-    if (tendencia === "up") return <TrendingUp size={16} className="text-verde" />;
-    if (tendencia === "down") return <TrendingDown size={16} className="text-red-500" />;
-    return <Minus size={16} className="text-cinza-medio" />;
-  }
-
-  function getTendenciaLabel(tendencia: string) {
-    if (tendencia === "up") return "Em alta";
-    if (tendencia === "down") return "Em queda";
-    return "Estável";
-  }
+  const topo = registros.slice(0, 15);
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
@@ -58,81 +44,143 @@ export default function RankingPage() {
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Ranking de Popularidade
+          Ranking
         </h1>
-        <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-          Aprovação de governadores, prefeitos e parlamentares. Atualizado
-          mensalmente com base em pesquisas de opinião pública.
+        <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-3xl">
+         -ranking de aprovação exige dado de pesquisa de opinião. Esse dado não
+          tem fonte gratuita e licenciada, então não publicamos um ranking de
+          aprovação. Abaixo está o ranking que conseguimos construir com dado
+          oficial verificável.
         </p>
       </header>
 
-      {/* Filtro por cargo */}
-      <div className="flex gap-2 mb-8">
-        {cargos.map((c) => (
-          <button
-            key={c.id}
-            onClick={() => setCargo(c.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              cargo === c.id
-                ? "bg-verde text-white"
-                : "bg-cinza-claro dark:bg-azul-light text-azul dark:text-white hover:bg-cinza-medio"
-            }`}
-          >
-            {c.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Lista de ranking */}
-      <div className="space-y-4">
-        {dados[cargo].map((item, index) => (
-          <div
-            key={item.nome}
-            className="flex items-center gap-4 p-4 rounded-xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light hover:border-verde transition-colors"
-          >
-            {/* Posição */}
-            <div className="w-10 h-10 rounded-full bg-azul dark:bg-azul-dark flex items-center justify-center text-white font-bold shrink-0">
-              {index === 0 ? <Crown size={20} /> : index + 1}
-            </div>
-
-            {/* Nome e info */}
-            <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-azul dark:text-white truncate">
-                {item.nome}
-              </h3>
-              <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                {"estado" in item ? `${item.estado} · ` : ""}
-                {"cidade" in item ? `${item.cidade} · ` : ""}
-                {"cargo" in item ? `${item.cargo} · ` : ""}
-                {item.partido}
-              </p>
-            </div>
-
-            {/* Aprovação */}
-            <div className="text-right shrink-0">
-              <div className="text-2xl font-bold text-azul dark:text-white">
-                {item.aprovacao}%
-              </div>
-              <div className="flex items-center gap-1 text-xs text-cinza-escuro dark:text-cinza-medio">
-                {getTendenciaIcon(item.tendencia)}
-                {getTendenciaLabel(item.tendencia)}
-              </div>
-            </div>
+      {/* Por que nao publicamos o ranking de aprovacao */}
+      <section className="p-6 rounded-2xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 mb-8">
+        <div className="flex items-start gap-3">
+          <Info
+            size={20}
+            className="text-amber-600 dark:text-amber-400 shrink-0 mt-0.5"
+          />
+          <div>
+            <h2 className="font-bold text-azul dark:text-white mb-2">
+              Por que não há ranking de aprovação aqui
+            </h2>
+            <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
+              Esta página mostrava antes notas de aprovação de governadores,
+              prefeitos e parlamentares, com a observação de que vinham de
+              &ldquo;pesquisas de opinião pública realizadas por institutos
+              credenciados, margem de erro de ±3 pontos&rdquo;. Não havia pesquisa {/* verificar-dados:-exempt */}
+              nenhuma por trás: eram números escritos no código.
+            </p>
+            <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed mt-2">
+              Não há como consertar: as notas não eram
+              aproximação. E uma projeção de pesquisa seria
+              outro número inventado, com aparência de dado. Para publicar
+              aprovação é preciso de contrato com o instituto que
+              fez a pesquisa: só o número vem com margem de erro, amostra e data. {/* verificar-dados:-exempt */}
+            </p>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
 
-      {/* Nota metodológica */}
-      <div className="mt-8 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/20 text-sm text-cinza-escuro dark:text-cinza-medio">
-        <strong>Metodologia:</strong> Os dados são baseados em pesquisas de
-        opinião pública realizadas por institutos credenciados. A margem de
-        erro é de ±3 pontos percentuais. Atualizado em 15 de setembro de 2026.
-      </div>
+      {/* Ranking real */}
+      <section>
+        <div className="flex items-center gap-2 mb-2">
+          <Trophy size={20} className="text-verde" />
+          <h2 className="text-2xl font-bold text-azul dark:text-white">
+            Maior patrimônio declarado
+          </h2>
+        </div>
+        <p className="text-cinza-escuro dark:text-cinza-medio mb-6">
+          Valor total que o candidato declarou ao TSE nas eleições de 2026.
+          Sai dos{" "}
+          {registros.length.toLocaleString("pt-BR")} candidatos com patrimônio
+          informado. A lista completa, com filtro por unidade e cargo, está em{" "}
+          <Link
+            href="/ferramentas/patrimonio"
+            className="text-verde font-semibold hover:underline"
+          >
+            Patrimônio declarado
+          </Link>
+          .
+        </p>
 
-      <div className="mt-8 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <a href="/ferramentas" className="text-verde font-semibold hover:underline">
-          ← Voltar para Ferramentas
+        <div className="space-y-2">
+          {topo.map((r, i) => (
+            <Link
+              key={r.id}
+              href={`/candidatos/${r.id}`}
+              className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light hover:border-verde transition-colors"
+            >
+              <span
+                className={`w-9 h-9 shrink-0 rounded-full flex items-center justify-center font-bold ${
+                  i === 0
+                    ? "bg-verde text-white"
+                    : "bg-azul dark:bg-azul-dark text-white"
+                }`}
+              >
+                {i + 1}
+              </span>
+
+              <div className="min-w-0 flex-1">
+                <p className="font-semibold text-azul dark:text-white truncate">
+                  {formatarNome(r.nomeUrna || r.nome)}
+                </p>
+                <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                  {r.partido} · {r.cargo} · {nomeDaUnidade(r.estadoId)} ·{" "}
+                  {r.bens} {r.bens === 1 ? "bem" : "bens"}
+                </p>
+              </div>
+
+              <span className="font-bold text-verde whitespace-nowrap">
+                {formatarValor(r.total)}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* outros rankings possíveis */}
+      <section className="mt-10 p-6 rounded-2xl border border-cinza-medio dark:border-azul-light">
+        <h2 className="font-bold text-azul dark:text-white mb-3">
+          Rankings que ainda não possível publicar
+        </h2>
+        <ul className="space-y-3 text-sm text-cinza-escuro dark:text-cinza-medio">
+          <li>
+            <strong>Disciplina partidária</strong> — dá para medir o quanto um
+            deputado acompanha a maioria do partido, usando os votos nominais
+            da Câmara. A base é fina: das 100 votações mais recentes, só 3
+            publicam votos individuais, e em uma delas o campo de voto vem nulo.
+            Com 2 votações utilizáveis, qualquer número seria ruído.
+          </li>
+          <li>
+            <strong>Produtividade legislativa</strong> — a Câmara permite
+            listar proposições por autor. Ainda não medimos isso, e é medível.
+          </li>
+          <li>
+            <strong>Gastos e emendas</strong> — depende da chave gratuita do
+            Portal da Transparência. Assim que houver chave, os valores entram
+            na ficha de cada parlamentar.
+          </li>
+        </ul>
+      </section>
+
+      <div className="mt-8 flex flex-wrap gap-4">
+        <a
+          href="https://www.tse.jus.br/eleicoes/eleicoes-2026/dados-abertos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold hover:border-verde transition-colors"
+        >
+          <ExternalLink size={16} />
+          Dados abertos do TSE
         </a>
+        <Link
+          href="/ferramentas"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-verde text-white font-semibold hover:bg-verde-dark transition-colors"
+        >
+          Voltar para Ferramentas
+        </Link>
       </div>
     </div>
   );

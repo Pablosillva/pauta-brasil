@@ -58,6 +58,15 @@ function paraTexto(buffer: ArrayBuffer): string {
   return Buffer.from(buffer).toString("latin1");
 }
 
+/**
+ * A API nova do Senado (dadosabertos.senado.leg.br/api/v3) responde 401 sem
+ * chave. Usamos hoje apenas o arquivo XML publico, que traz cadastro,
+ * mandato e suplentes. As materias de autoria e as votacoes dependem da chave.
+ */
+export function temChaveSenado(): boolean {
+  return Boolean((process.env.SENADO_API_KEY ?? "").trim());
+}
+
 export async function obterSenadores(): Promise<DadoSenado> {
   try {
     const resposta = await fetch(URL_DADOS, {

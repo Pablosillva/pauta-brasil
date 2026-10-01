@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
-import { listarNoticias, buscarNoticia } from "@/lib/noticias";
+import { listarNoticias, buscarNoticiaPublicada } from "@/lib/noticias";
 import { SITE_URL } from "@/lib/config";
 import { NoticiaConteudo } from "@/components/noticias/NoticiaConteudo";
 import {
@@ -20,7 +20,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const noticia = await buscarNoticia(slug);
+  const noticia = await buscarNoticiaPublicada(slug);
   if (!noticia) return { title: "Notícia não encontrada" };
   return {
     title: noticia.titulo,
@@ -30,13 +30,14 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
+  // Só as publicadas entram no build; as demais são geradas sob demanda.
   const noticias = await listarNoticias();
   return noticias.map((n) => ({ slug: n.slug }));
 }
 
 export default async function NoticiaPage({ params }: PageProps) {
   const { slug } = await params;
-  const noticia = await buscarNoticia(slug);
+  const noticia = await buscarNoticiaPublicada(slug);
   if (!noticia) return notFound();
 
   const todasNoticias = await listarNoticias();

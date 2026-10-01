@@ -1,5 +1,7 @@
 "use client";
 
+import { formatarNome } from "@/lib/nomes";
+
 import { useEffect, useState } from "react";
 import { AlertCircle, FileText } from "lucide-react";
 import { nomesEstados, type Candidato } from "@/data/candidatos";
@@ -140,7 +142,7 @@ export function TabelaComparativa({ ids }: TabelaComparativaProps) {
                       loading="lazy"
                     />
                     <div>
-                      <p className="font-bold text-sm">{c.nome}</p>
+                      <p className="font-bold text-sm">{formatarNome(c.nome)}</p>
                       <p className="text-xs text-white/70">
                         {c.partido} · {c.numero ? `nº ${c.numero}` : "sem número"}
                       </p>

@@ -310,6 +310,18 @@ interface IndiceVotos {
   votacoes: Votacao[];
 }
 
+/**
+ * Índice de votos das últimas votações nominais, para uso em cálculo
+ * estatístico (ranking de participação e de alinhamento partidário).
+ *
+ * A API não entrega "votos de um deputado", mas entrega "votos de uma
+ * votação". Quem precisa de número agregado consulta por aqui em vez de
+ * refazer as mesmas 12 requisições.
+ */
+export function indiceDeVotos(): Promise<IndiceVotos | null> {
+  return obterIndice();
+}
+
 let indiceCache: { dados: IndiceVotos; geradoEm: number } | null = null;
 const VALIDADE_INDICE_MS = REVALIDACAO * 1000;
 

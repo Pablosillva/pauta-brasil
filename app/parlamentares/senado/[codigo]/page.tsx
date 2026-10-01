@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Mail, Phone, ExternalLink, Users } from "lucide-react";
-import { buscarSenador } from "@/lib/senado";
+import { ArrowLeft, ExternalLink, Info } from "lucide-react";
+import { buscarSenador, temChaveSenado } from "@/lib/senado";
+import { listarGastos, temChavePortalTransparencia } from "@/lib/gastos";
+import { TabsSenador } from "@/components/parlamentares/TabsSenador";
 import { jsonLdBreadcrumb } from "@/lib/seo";
 
 export const revalidate = 3600;
@@ -31,22 +33,19 @@ export default async function SenadorPage({ params }: PageProps) {
 
   if (!senador) notFound();
 
+  // Os gastos vem da mesma base da Camara (CGU), que tambem exige chave.
+  const gastos = temChavePortalTransparencia()
+    ? await listarGastos(senador.nome).catch(() => null)
+    : null;
+
   const breadcrumb = jsonLdBreadcrumb([
     { name: "Início", url: "/" },
     { name: "Parlamentares", url: "/parlamentares" },
     { name: senador.nome, url: `/parlamentares/senado/${codigo}` },
   ]);
 
-  const ficha = [
-    senador.bloco && { rotulo: "Bloco", valor: senador.bloco },
-    senador.lideranca && { rotulo: "Lideranca", valor: "Sim" },
-    senador.mesa && { rotulo: "Mesa diretora", valor: "Sim" },
-    senador.telefone && { rotulo: "Gabinete", valor: senador.telefone },
-    senador.email && { rotulo: "E-mail", valor: senador.email },
-  ].filter(Boolean) as { rotulo: string; valor: string }[];
-
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-6xl mx-auto px-6 py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
@@ -59,6 +58,7 @@ export default async function SenadorPage({ params }: PageProps) {
         <ArrowLeft size={16} /> Todos os senadores
       </Link>
 
+      {/* Cabecalho no mesmo formato da ficha do deputado */}
       <header className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-6 mb-8">
         <div className="flex flex-col sm:flex-row gap-6 items-start">
           <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-cinza-medio dark:bg-azul-light flex-shrink-0">
@@ -99,77 +99,34 @@ export default async function SenadorPage({ params }: PageProps) {
                   {senador.bloco}
                 </span>
               )}
+              {senador.lideranca && (
+                <span className="px-3 py-1 rounded-lg bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-sm font-semibold">
+                  Lideranca
+                </span>
+              )}
             </div>
           </div>
         </div>
       </header>
 
-      {ficha.length > 0 && (
-        <section className="mb-10">
-          <h2 className="text-xl font-bold text-azul dark:text-white mb-4">
-            Ficha
-          </h2>
-          <dl className="grid sm:grid-cols-2 gap-4">
-            {ficha.map((item) => (
-              <div
-                key={item.rotulo}
-                className="p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light"
-              >
-                <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
-                  {item.rotulo === "E-mail" ? (
-                    <Mail size={14} className="text-verde" />
-                  ) : item.rotulo === "Gabinete" ? (
-                    <Phone size={14} className="text-verde" />
-                  ) : (
-                    <Users size={14} className="text-verde" />
-                  )}
-                  {item.rotulo}
-                </dt>
-                <dd className="text-azul dark:text-white break-words">
-                  {item.valor}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-      )}
+      <TabsSenador
+        senador={senador}
+        gastos={gastos}
+        temChaveGastos={temChavePortalTransparencia()}
+        temChaveSenado={temChaveSenado()}
+      />
 
-      {senador.suplentes.length > 0 && (
-        <section className="mb-10">
-          <h2 className="text-xl font-bold text-azul dark:text-white mb-4">
-            Suplentes
-          </h2>
-          <ul className="space-y-2">
-            {senador.suplentes.map((s, i) => (
-              <li
-                key={i}
-                className="flex items-center justify-between gap-4 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/10 border border-cinza-medio dark:border-azul-light"
-              >
-                <span className="text-azul dark:text-white">{s.nome}</span>
-                <span className="text-xs px-2.5 py-1 rounded bg-azul/10 dark:bg-azul-light/30 text-azul dark:text-white font-semibold flex-shrink-0">
-                  {s.participacao}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <div className="p-5 rounded-2xl bg-cinza-claro dark:bg-azul-light/10 border border-cinza-medio dark:border-azul-light">
-        <h2 className="font-bold text-azul dark:text-white mb-2 text-sm">
-          O que ainda falta nesta ficha
-        </h2>
-        <p className="text-sm text-cinza-escuro dark:text-cinza-medio leading-relaxed">
-          Votacoes, projetos de autoria e gastos de senadores ainda nao estao
-          publicados aqui. O arquivo que consultamos traz cadastro, mandato e
-          suplentes; para o restante seria preciso integrar a API nova do
-          Senado, que exige chave, e a base de gastos da CGU, tambem com chave.
-          Preferimos dizer o que falta a preencher com estimativa.
+      <div className="mt-10 space-y-4">
+        <p className="flex items-start gap-2 text-sm text-cinza-escuro dark:text-cinza-medio">
+          <Info size={16} className="text-verde shrink-0 mt-0.5" />
+          <span>
+            A ficha vem do arquivo publico do Senado com os parlamentares em
+            exercicio. Materias de autoria, votacoes e gastos dependem de APIs
+            que exigem chave gratuita; cada aba explica o que falta.
+          </span>
         </p>
-      </div>
 
-      {senador.pagina && (
-        <div className="mt-10 pt-8 border-t border-cinza-medio dark:border-azul-light">
+        {senador.pagina && (
           <a
             href={senador.pagina}
             target="_blank"
@@ -179,8 +136,8 @@ export default async function SenadorPage({ params }: PageProps) {
             Ver o perfil oficial no Senado Federal
             <ExternalLink size={14} />
           </a>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

@@ -1,203 +1,314 @@
-"use client";
+import Link from "next/link";
+import { Landmark, TrendingUp, TrendingDown, Search } from "lucide-react";
+import registrosIndice from "@/data/patrimonio.json";
+import { nomesEstados } from "@/data/candidatos";
+import { formatarNome } from "@/lib/nomes";
+import { formatarValor } from "@/lib/gastos";
 
-import { useState } from "react";
-import { Search, TrendingUp, TrendingDown, DollarSign } from "lucide-react";
+export const metadata = {
+  title: "Patrimônio declarado ao TSE",
+  description:
+    "Bens declarados por candidatos nas eleições de 2026, com o total declarado por candidato e a lista completa na ficha individual.",
+};
 
-export default function PatrimonioPage() {
-  const [busca, setBusca] = useState("");
+export const revalidate = 86400;
 
-  const candidatos = [
-    {
-      nome: "Eros Barroso",
-      cargo: "Deputado Estadual",
-      estado: "AC",
-      partido: "PODE",
-      patrimonio2022: 150000,
-      patrimonio2026: 320000,
-    },
-    {
-      nome: "Cristiane de Souza",
-      cargo: "Deputado Estadual",
-      estado: "AC",
-      partido: "CIDADANIA",
-      patrimonio2022: 80000,
-      patrimonio2026: 120000,
-    },
-    {
-      nome: "Jean Gonçalves",
-      cargo: "Deputado Federal",
-      estado: "AC",
-      partido: "SOLIDARIEDADE",
-      patrimonio2022: 250000,
-      patrimonio2026: 180000,
-    },
-    {
-      nome: "Pricila Paulino",
-      cargo: "Deputado Federal",
-      estado: "AC",
-      partido: "PRD",
-      patrimonio2022: 500000,
-      patrimonio2026: 750000,
-    },
-    {
-      nome: "Marcio Bittar",
-      cargo: "Senador",
-      estado: "AC",
-      partido: "PL",
-      patrimonio2022: 1200000,
-      patrimonio2026: 950000,
-    },
-  ];
+interface Registro {
+  id: string;
+  nome: string;
+  nomeUrna: string;
+  partido: string;
+  cargo: string;
+  estadoId: string;
+  total: number;
+  bens: number;
+}
 
-  const candidatosFiltrados = candidatos.filter(
-    (c) =>
-      c.nome.toLowerCase().includes(busca.toLowerCase()) ||
-      c.partido.toLowerCase().includes(busca.toLowerCase())
+const registros = registrosIndice as Registro[];
+
+const CARGOS = [
+  "Presidente",
+  "Governador",
+  "Senador",
+  "Deputado Federal",
+  "Deputado Estadual",
+] as const;
+
+/** "br" e a eleicao nacional; nao e uma unidade da federacao. */
+function nomeDaUnidade(estadoId: string): string {
+  if (estadoId === "br") return "Brasil";
+  return nomesEstados[estadoId] ?? estadoId.toUpperCase();
+}
+
+interface PageProps {
+  searchParams: Promise<{
+    uf?: string;
+    cargo?: string;
+    busca?: string;
+    ordem?: string;
+    pagina?: string;
+  }>;
+}
+
+const POR_PAGINA = 100;
+
+export default async function PatrimonioPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const uf = params.uf ?? "";
+  const cargo = params.cargo ?? "";
+  const busca = (params.busca ?? "").trim();
+  const ordem = params.ordem === "bens" ? "bens" : "total";
+  const pagina = Math.max(1, Number(params.pagina ?? 1) || 1);
+
+  const termo = busca
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+  const filtrados = registros.filter((r) => {
+    if (uf && r.estadoId !== uf) return false;
+    if (cargo && r.cargo !== cargo) return false;
+    if (termo) {
+      const alvo =
+        `${r.nome} ${r.nomeUrna} ${r.partido}`
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+      if (!alvo.includes(termo)) return false;
+    }
+    return true;
+  });
+
+  filtrados.sort((a, b) =>
+    ordem === "bens" ? b.bens - a.bens : b.total - a.total
   );
 
-  function formatCurrency(valor: number) {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-      maximumFractionDigits: 0,
-    }).format(valor);
-  }
+  const totalPaginas = Math.max(1, Math.ceil(filtrados.length / POR_PAGINA));
+  const paginaAtual = Math.min(pagina, totalPaginas);
+  const visiveis = filtrados.slice(
+    (paginaAtual - 1) * POR_PAGINA,
+    paginaAtual * POR_PAGINA
+  );
 
-  function getVariacao(atual: number, anterior: number) {
-    const variacao = ((atual - anterior) / anterior) * 100;
-    return variacao;
-  }
+  /** Monta a querystring preservando os filtros ao trocar de pagina. */
+  const linkPagina = (n: number) => {
+    const q = new URLSearchParams();
+    if (uf) q.set("uf", uf);
+    if (cargo) q.set("cargo", cargo);
+    if (busca) q.set("busca", busca);
+    if (ordem !== "total") q.set("ordem", ordem);
+    if (n > 1) q.set("pagina", String(n));
+    const s = q.toString();
+    return s ? `/ferramentas/patrimonio?${s}` : "/ferramentas/patrimonio";
+  };
 
-  function getVariacaoColor(variacao: number) {
-    if (variacao > 0) return "text-verde";
-    if (variacao < 0) return "text-red-500";
-    return "text-cinza-medio";
-  }
+  const unidades = [...new Set(registros.map((r) => r.estadoId))].sort((a, b) =>
+    nomeDaUnidade(a).localeCompare(nomeDaUnidade(b), "pt-BR")
+  );
 
-  function getVariacaoIcon(variacao: number) {
-    if (variacao > 0) return <TrendingUp size={16} className="text-verde" />;
-    if (variacao < 0) return <TrendingDown size={16} className="text-red-500" />;
-    return <DollarSign size={16} className="text-cinza-medio" />;
-  }
+  const maior = registros.reduce((soma, r) => soma + r.total, 0);
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      <header className="mb-10">
+    <div className="max-w-6xl mx-auto px-6 py-12">
+      <header className="mb-8">
         <div className="inline-flex items-center gap-2 text-verde mb-3">
-          <DollarSign size={18} />
+          <Landmark size={18} />
           <span className="text-xs font-semibold uppercase tracking-wider">
             Ferramentas
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Análise de Patrimônio
+          Patrimônio declarado
         </h1>
-        <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-          Veja a evolução patrimonial dos candidatos entre as eleições de 2022
-          e 2026.
+        <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-3xl">
+          Bens que cada candidato declarou ao TSE nas eleições de 2026. São{" "}
+          {registros.length.toLocaleString("pt-BR")} candidatos com valor
+          informado, somando {formatarValor(maior)}.
         </p>
       </header>
 
-      {/* Busca */}
-      <div className="relative mb-8">
-        <Search
-          size={18}
-          className="absolute left-3 top-1/2 -translate-y-1/2 text-cinza-medio"
-        />
-        <input
-          type="text"
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          placeholder="Buscar candidato ou partido..."
-          className="w-full pl-10 pr-4 py-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white placeholder:text-cinza-medio focus:outline-none focus:ring-2 focus:ring-verde"
-        />
-      </div>
+      {/* Filtros */}
+      <form
+        action="/ferramentas/patrimonio"
+        method="get"
+        className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-6"
+      >
+        <div className="relative">
+          <Search
+            size={16}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-cinza-medio"
+          />
+          <input
+            type="search"
+            name="busca"
+            defaultValue={busca}
+            placeholder="Nome ou partido"
+            className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white placeholder:text-cinza-medio focus:outline-none focus:ring-2 focus:ring-verde"
+          />
+        </div>
 
-      {/* Lista de candidatos */}
-      <div className="space-y-4">
-        {candidatosFiltrados.map((candidato) => {
-          const variacao = getVariacao(
-            candidato.patrimonio2026,
-            candidato.patrimonio2022
-          );
-          return (
-            <div
-              key={candidato.nome}
-              className="bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light rounded-2xl p-6"
+        <select
+          name="uf"
+          defaultValue={uf}
+          className="px-3 py-2.5 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+        >
+          <option value="">Todas as unidades</option>
+          {unidades.map((u) => (
+            <option key={u} value={u}>
+              {nomeDaUnidade(u)}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="cargo"
+          defaultValue={cargo}
+          className="px-3 py-2.5 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+        >
+          <option value="">Todos os cargos</option>
+          {CARGOS.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="ordem"
+          defaultValue={ordem}
+          className="px-3 py-2.5 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde"
+        >
+          <option value="total">Maior valor declarado</option>
+          <option value="bens">Mais bens declarados</option>
+        </select>
+
+        <button
+          type="submit"
+          className="sm:col-span-2 lg:col-span-4 justify-self-start px-4 py-2.5 rounded-lg bg-verde text-white font-semibold hover:bg-verde-dark transition-colors"
+        >
+          Filtrar
+        </button>
+      </form>
+
+      <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-4">
+        {filtrados.length.toLocaleString("pt-BR")} candidato
+        {filtrados.length === 1 ? "" : "s"}
+        {filtrados.length > POR_PAGINA && (
+          <> · página {paginaAtual} de {totalPaginas}</>
+        )}
+      </p>
+
+      {visiveis.length === 0 ? (
+        <p className="py-12 text-center text-cinza-escuro dark:text-cinza-medio">
+          Nenhum candidato bate com esses filtros.
+        </p>
+      ) : (
+        <div className="space-y-3">
+          {visiveis.map((r, i) => (
+            <Link
+              key={r.id}
+              href={`/candidatos/${r.id}`}
+              className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light hover:border-verde transition-colors"
             >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <div>
-                  <h3 className="font-bold text-lg text-azul dark:text-white">
-                    {candidato.nome}
-                  </h3>
-                  <p className="text-sm text-cinza-escuro dark:text-cinza-medio">
-                    {candidato.cargo} · {candidato.estado} · {candidato.partido}
+              <div className="flex items-center gap-4 min-w-0">
+                <span className="w-8 shrink-0 text-right text-sm font-bold text-cinza-medio">
+                  {(paginaAtual - 1) * POR_PAGINA + i + 1}
+                </span>
+                <div className="min-w-0">
+                  <p className="font-semibold text-azul dark:text-white truncate">
+                    {formatarNome(r.nomeUrna || r.nome)}
+                  </p>
+                  <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                    {r.partido} · {r.cargo} · {nomeDaUnidade(r.estadoId)}
                   </p>
                 </div>
+              </div>
 
-                <div className="flex items-center gap-6">
-                  {/* Patrimônio 2022 */}
-                  <div className="text-right">
-                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
-                      2022
-                    </p>
-                    <p className="font-semibold text-azul dark:text-white">
-                      {formatCurrency(candidato.patrimonio2022)}
-                    </p>
-                  </div>
-
-                  {/* Seta */}
-                  <div className="text-cinza-medio">→</div>
-
-                  {/* Patrimônio 2026 */}
-                  <div className="text-right">
-                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
-                      2026
-                    </p>
-                    <p className="font-semibold text-azul dark:text-white">
-                      {formatCurrency(candidato.patrimonio2026)}
-                    </p>
-                  </div>
-
-                  {/* Variação */}
-                  <div className="text-right min-w-[80px]">
-                    <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
-                      Variação
-                    </p>
-                    <div className="flex items-center gap-1 justify-end">
-                      {getVariacaoIcon(variacao)}
-                      <span
-                        className={`font-semibold ${getVariacaoColor(variacao)}`}
-                      >
-                        {variacao > 0 ? "+" : ""}
-                        {variacao.toFixed(1)}%
-                      </span>
-                    </div>
-                  </div>
+              <div className="flex items-center gap-5 text-right shrink-0">
+                <div>
+                  <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                    bens
+                  </p>
+                  <p className="font-semibold text-azul dark:text-white">
+                    {r.bens}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
+                    declarado
+                  </p>
+                  <p className="font-semibold text-verde">
+                    {formatarValor(r.total)}
+                  </p>
                 </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {candidatosFiltrados.length === 0 && (
-        <div className="text-center py-12 text-cinza-escuro dark:text-cinza-medio">
-          Nenhum candidato encontrado.
+            </Link>
+          ))}
         </div>
       )}
 
-      {/* Nota */}
-      <div className="mt-8 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/20 text-sm text-cinza-escuro dark:text-cinza-medio">
-        <strong>Fonte:</strong> Dados declarados ao TSE. O patrimônio inclui
-        bens móveis e imóveis, aplicações financeiras, veículos e outros ativos.
-        Valores atualizados em 1 de setembro de 2026.
-      </div>
+      {/* Paginacao */}
+      {totalPaginas > 1 && (
+        <nav className="mt-8 flex items-center justify-between gap-4">
+          {paginaAtual > 1 ? (
+            <Link
+              href={linkPagina(paginaAtual - 1)}
+              className="px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold hover:border-verde"
+            >
+              Anterior
+            </Link>
+          ) : (
+            <span />
+          )}
+
+          <span className="text-sm text-cinza-escuro dark:text-cinza-medio">
+            {paginaAtual} / {totalPaginas}
+          </span>
+
+          {paginaAtual < totalPaginas && (
+            <Link
+              href={linkPagina(paginaAtual + 1)}
+              className="px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold hover:border-verde"
+            >
+              Próxima
+            </Link>
+          )}
+        </nav>
+      )}
+
+      {/* Como ler estes numeros */}
+      <section className="mt-10 p-5 rounded-2xl border border-cinza-medio dark:border-azul-light">
+        <h2 className="font-bold text-azul dark:text-white mb-2">
+          O que estes números significam
+        </h2>
+        <ul className="space-y-2 text-sm text-cinza-escuro dark:text-cinza-medio">
+          <li>
+            É o que o candidato <strong>declara</strong> na ficha de
+            inscrição. O TSE registra o que foi declarado, sem conferir a
+            existência do bem.
+          </li>
+          <li>
+            Candidatos que não informaram valor legível ficam fora desta
+            lista, porque somar zero junto dos demais falsearia o total. Eles
+            continuam nas páginas individuais, com tudo que declararam.
+          </li>
+          <li>
+            A soma de todos os valores é{" "}
+            <strong>{formatarValor(maior)}</strong> e serve para comparar
+            magnitudes, não para afirmar riqueza: o maior valor da lista não
+            significa o candidato mais rico do país, e sim o que declarou o
+            maior patrimônio.
+          </li>
+        </ul>
+      </section>
 
       <div className="mt-8 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <a href="/ferramentas" className="text-verde font-semibold hover:underline">
+        <Link
+          href="/ferramentas"
+          className="text-verde font-semibold hover:underline"
+        >
           ← Voltar para Ferramentas
-        </a>
+        </Link>
       </div>
     </div>
   );

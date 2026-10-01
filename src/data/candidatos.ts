@@ -310,19 +310,20 @@ export const candidatos: Candidato[] = [
   ]),
 ];
 
-export const governadoresAtuais: Record<string, string> = {
-  "br-sp": "Tarcísio de Freitas (Republicanos)",
-  "br-rj": "Cláudio Castro (PL)",
-  "br-mg": "Romeu Zema (Novo)",
-  "br-ba": "Jerônimo Rodrigues (PT)",
-  "br-rs": "Eduardo Leite (PSDB)",
-  "br-pr": "Ratinho Junior (PSD)",
-  "br-pe": "Raquel Lyra (PSDB)",
-  "br-ce": "Elmano de Freitas (PT)",
-  "br-pa": "Helder Barbalho (MDB)",
-  "br-sc": "Jorginho Mello (PL)",
-  // ... adicione os outros conforme necessidade
-};
+/**
+ * Governadores em exercicio.
+ *
+ * Esta lista foi REMOVIDA de proposito. Cobria 10 dos 27 estados e trazia
+ * partidos incorretos (Claudio Castro como PL, Eduardo Leite como PSDB), sem
+ * nenhuma fonte verificavel no projeto.
+ *
+ * Os arquivos do TSE nao respondem a pergunta: os 201 candidatos a governador
+ * estao todos com status "Pre-candidato", porque a eleicao de 2026 ainda nao
+ * houve. Quem ocupa o cargo hoje exigiria outra fonte, que nao temos.
+ *
+ * O que o TSE registra e quem disputa a vaga em 2026, e isso e o que a tela do
+ * portal mostra, a partir de src/data/governadores.json.
+ */
 
 export const nomesEstados: Record<string, string> = {
   "br-ac": "Acre",
@@ -367,13 +368,6 @@ export function getNomeEstado(id: string): string {
   return id.toUpperCase();
 }
 
-export function getGovernador(id: string): string | undefined {
-  const norm = normalizarId(id);
-  for (const [key, gov] of Object.entries(governadoresAtuais)) {
-    if (normalizarId(key) === norm) return gov;
-  }
-  return undefined;
-}
 
 export function getCandidatosDoEstado(id: string): Candidato[] {
   const norm = normalizarId(id);

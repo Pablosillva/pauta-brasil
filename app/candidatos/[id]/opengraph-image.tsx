@@ -1,3 +1,4 @@
+import { formatarNome } from "@/lib/nomes";
 import { ImageResponse } from "next/og";
 import { candidatos, nomesEstados } from "@/data/candidatos";
 
@@ -55,7 +56,7 @@ export default async function Image({ params }: Props) {
       >
         <img
           src={candidato.foto}
-          alt={candidato.nome}
+          alt={formatarNome(candidato.nome)}
           width="280"
           height="280"
           style={{
@@ -98,7 +99,7 @@ export default async function Image({ params }: Props) {
               marginBottom: "20px",
             }}
           >
-            {candidato.nome}
+            {formatarNome(candidato.nome)}
           </div>
 
           <div

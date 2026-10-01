@@ -1,5 +1,7 @@
 "use client";
 
+import { formatarNome } from "@/lib/nomes";
+
 import { useState, useEffect } from "react";
 import { Plus, X, Search } from "lucide-react";
 import { nomesEstados, type Candidato } from "@/data/candidatos";
@@ -134,13 +136,13 @@ export function SeletorCandidatos({
           >
             <img
               src={c.foto}
-              alt={c.nome}
+              alt={formatarNome(c.nome)}
               className="w-10 h-10 rounded-full object-cover"
               loading="lazy"
             />
             <div className="min-w-0">
               <p className="text-sm font-semibold text-azul dark:text-white truncate">
-                {c.nome}
+                {formatarNome(c.nome)}
               </p>
               <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
                 {c.partido} · {nomesEstados[c.estadoId] ?? c.estadoId}
@@ -149,7 +151,7 @@ export function SeletorCandidatos({
             <button
               onClick={() => remover(c.id)}
               className="p-1 rounded-md hover:bg-cinza-claro dark:hover:bg-azul-light transition-colors"
-              aria-label={`Remover ${c.nome}`}
+              aria-label={`Remover ${formatarNome(c.nome)}`}
             >
               <X size={16} className="text-cinza-escuro" />
             </button>
@@ -192,13 +194,13 @@ export function SeletorCandidatos({
                 >
                   <img
                     src={c.foto}
-                    alt={c.nome}
+                    alt={formatarNome(c.nome)}
                     className="w-9 h-9 rounded-full object-cover"
                     loading="lazy"
                   />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-azul dark:text-white truncate">
-                      {c.nome}
+                      {formatarNome(c.nome)}
                     </p>
                     <p className="text-xs text-cinza-escuro dark:text-cinza-medio">
                       {c.cargo} · {c.partido} ·{" "}

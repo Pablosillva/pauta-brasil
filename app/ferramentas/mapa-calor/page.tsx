@@ -1,56 +1,38 @@
-"use client";
+import Link from "next/link";
+import { BarChart3, Users, Flag, Landmark } from "lucide-react";
+import { todosOsDeputados } from "@/lib/camara";
+import { nomesEstados } from "@/data/candidatos";
+import governadoresJson from "@/data/governadores.json";
 
-import { useState } from "react";
-import { BarChart3, TrendingUp, TrendingDown } from "lucide-react";
+export const metadata = {
+  title: "Peso eleitoral por estado",
+  description:
+    "Quantos deputados federais cada estado elege e quantos candidatos disputam o governo em 2026.",
+};
 
-interface DadoEstado {
-  estado: string;
-  uf: string;
-  aprovacao: number;
-  tendencia: "up" | "down" | "stable";
+export const revalidate = 86400;
+
+interface CandidatoGovernador {
+  partido: string;
 }
 
-const dados: DadoEstado[] = [
-  { estado: "São Paulo", uf: "SP", aprovacao: 62, tendencia: "up" },
-  { estado: "Rio de Janeiro", uf: "RJ", aprovacao: 45, tendencia: "down" },
-  { estado: "Minas Gerais", uf: "MG", aprovacao: 68, tendencia: "up" },
-  { estado: "Bahia", uf: "BA", aprovacao: 55, tendencia: "stable" },
-  { estado: "Rio Grande do Sul", uf: "RS", aprovacao: 58, tendencia: "up" },
-  { estado: "Paraná", uf: "PR", aprovacao: 65, tendencia: "up" },
-  { estado: "Pernambuco", uf: "PE", aprovacao: 52, tendencia: "down" },
-  { estado: "Ceará", uf: "CE", aprovacao: 60, tendencia: "up" },
-  { estado: "Pará", uf: "PA", aprovacao: 48, tendencia: "stable" },
-  { estado: "Santa Catarina", uf: "SC", aprovacao: 57, tendencia: "up" },
-  { estado: "Goiás", uf: "GO", aprovacao: 54, tendencia: "down" },
-  { estado: "Maranhão", uf: "MA", aprovacao: 42, tendencia: "down" },
-];
+const governadoresPorUf = governadoresJson as Record<
+  string,
+  CandidatoGovernador[]
+>;
 
-export default function MapaCalorPage() {
-  const [filtro, setFiltro] = useState<"todos" | "up" | "down" | "stable">("todos");
+export default async function MapaCalorPage() {
+  const deputados = await todosOsDeputados();
 
-  const dadosFiltrados = dados.filter((d) => {
-    if (filtro === "todos") return true;
-    return d.tendencia === filtro;
-  });
-
-  function getCorAprovacao(valor: number) {
-    if (valor >= 60) return "bg-verde";
-    if (valor >= 50) return "bg-yellow-500";
-    if (valor >= 40) return "bg-orange-500";
-    return "bg-red-500";
+  const porUf = new Map<string, number>();
+  for (const d of deputados) {
+    porUf.set(d.siglaUf, (porUf.get(d.siglaUf) ?? 0) + 1);
   }
 
-  function getTendenciaIcon(tendencia: string) {
-    if (tendencia === "up") return <TrendingUp size={16} className="text-verde" />;
-    if (tendencia === "down") return <TrendingDown size={16} className="text-red-500" />;
-    return <span className="text-cinza-medio">—</span>;
-  }
+  const total = deputados.length;
+  const linhas = [...porUf.entries()].sort((a, b) => b[1] - a[1]);
 
-  function getTendenciaLabel(tendencia: string) {
-    if (tendencia === "up") return "Em alta";
-    if (tendencia === "down") return "Em queda";
-    return "Estável";
-  }
+  const maior = linhas[0]?.[1] ?? 1;
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-12">
@@ -62,96 +44,149 @@ export default function MapaCalorPage() {
           </span>
         </div>
         <h1 className="text-4xl lg:text-5xl font-bold text-azul dark:text-white mb-3">
-          Mapa de Calor Eleitoral
+          Peso eleitoral por estado
         </h1>
-        <p className="text-lg text-cinza-escuro dark:text-cinza-medio">
-          Visualize a aprovação dos governadores por estado e identifique tendências.
+        <p className="text-lg text-cinza-escuro dark:text-cinza-medio max-w-3xl">
+          Cada estado tem um tamanho fixo na Câmara: é assim que os 513
+          deputados se distribuem. Maine é o maior bloco, com{" "}
+          {linhas[0]?.[1] ?? 0} deputados; a maior parte dos estados elege 8.
         </p>
       </header>
 
-      {/* Filtros */}
-      <div className="flex gap-2 mb-8">
-        {[
-          { id: "todos", label: "Todos" },
-          { id: "up", label: "Em alta" },
-          { id: "down", label: "Em queda" },
-          { id: "stable", label: "Estável" },
-        ].map((f) => (
-          <button
-            key={f.id}
-            onClick={() => setFiltro(f.id as typeof filtro)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              filtro === f.id
-                ? "bg-verde text-white"
-                : "bg-cinza-claro dark:bg-azul-light text-azul dark:text-white hover:bg-cinza-medio"
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
+      {/* Resumo */}
+      <div className="grid sm:grid-cols-3 gap-4 mb-8">
+        <div className="p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Deputados federais
+          </p>
+          <p className="text-3xl font-bold text-azul dark:text-white">{total}</p>
+          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
+            em {linhas.length} unidades
+          </p>
+        </div>
 
-      {/* Grid de estados */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        {dadosFiltrados.map((dado) => (
-          <div
-            key={dado.uf}
-            className="bg-white dark:bg-azul-light/20 rounded-2xl border border-cinza-medio dark:border-azul-light p-5 hover:border-verde transition-colors"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-2xl font-bold text-azul dark:text-white">
-                {dado.uf}
-              </span>
-              {getTendenciaIcon(dado.tendencia)}
-            </div>
-            <p className="text-sm text-cinza-escuro dark:text-cinza-medio mb-3">
-              {dado.estado}
-            </p>
-            <div className="relative h-3 bg-cinza-claro dark:bg-azul-light rounded-full overflow-hidden">
-              <div
-                className={`absolute left-0 top-0 h-full ${getCorAprovacao(dado.aprovacao)}`}
-                style={{ width: `${dado.aprovacao}%` }}
-              />
-            </div>
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-2xl font-bold text-azul dark:text-white">
-                {dado.aprovacao}%
-              </span>
-              <span className="text-xs text-cinza-escuro dark:text-cinza-medio">
-                {getTendenciaLabel(dado.tendencia)}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+        <div className="p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Maior delegação
+          </p>
+          <p className="text-3xl font-bold text-verde">{linhas[0]?.[1] ?? 0}</p>
+          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
+            {linhas[0]?.[0] ?? "-"}
+          </p>
+        </div>
 
-      {/* Legenda */}
-      <div className="mt-8 p-4 rounded-xl bg-cinza-claro dark:bg-azul-light/20">
-        <h3 className="font-semibold text-azul dark:text-white mb-3">Legenda</h3>
-        <div className="flex flex-wrap gap-4 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-verde" />
-            <span className="text-cinza-escuro dark:text-cinza-medio">60% ou mais</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-yellow-500" />
-            <span className="text-cinza-escuro dark:text-cinza-medio">50% a 59%</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-orange-500" />
-            <span className="text-cinza-escuro dark:text-cinza-medio">40% a 49%</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-red-500" />
-            <span className="text-cinza-escuro dark:text-cinza-medio">Menos de 40%</span>
-          </div>
+        <div className="p-5 rounded-2xl bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light">
+          <p className="text-xs uppercase tracking-wider text-cinza-escuro dark:text-cinza-medio mb-1">
+            Candidatos a governador
+          </p>
+          <p className="text-3xl font-bold text-azul dark:text-white">
+            {Object.values(governadoresPorUf).reduce(
+              (soma, lista) => soma + lista.length,
+              0
+            )}
+          </p>
+          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
+            registrados para 2026
+          </p>
         </div>
       </div>
 
-      <div className="mt-8 pt-8 border-t border-cinza-medio dark:border-azul-light">
-        <a href="/ferramentas" className="text-verde font-semibold hover:underline">
+      {/* Grafico por estado */}
+      <section className="bg-white dark:bg-azul-light/20 border border-cinza-medio dark:border-azul-light rounded-2xl p-6">
+        <h2 className="flex items-center gap-2 text-lg font-bold text-azul dark:text-white mb-5">
+          <Users size={18} className="text-verde" />
+          Deputados por unidade
+        </h2>
+
+        <ul className="space-y-2.5">
+          {linhas.map(([uf,qtt]) => {
+            const percentual = Math.round((qtt / maior) * 100);
+            const candidatos = governadoresPorUf[uf]?.length ?? 0;
+            const partidos = new Set(
+              (governadoresPorUf[uf] ?? []).map((c) => c.partido)
+            ).size;
+
+            return (
+              <li key={uf}>
+                <Link
+                  href={`/candidatos?uf=br-${uf.toLowerCase()}`}
+                  className="grid grid-cols-[3.5rem_1fr_auto] items-center gap-3 group"
+                >
+                  <span className="font-bold text-azul dark:text-white group-hover:text-verde">
+                    {uf}
+                  </span>
+
+                  <span className="flex items-center gap-3 min-w-0">
+                    <span className="flex-1 h-6 bg-cinza-claro dark:bg-azul-dark/60 rounded overflow-hidden">
+                      <span
+                        className="block h-full bg-verde/80 group-hover:bg-verde transition-colors"
+                        style={{ width: `${percentual}%` }}
+                      />
+                    </span>
+                    <span className="text-sm text-cinza-escuro dark:text-cinza-medio w-24 truncate">
+                      {nomesEstados[`br-${uf.toLowerCase()}`] ?? uf}
+                    </span>
+                  </span>
+
+                  <span className="flex items-center gap-3 text-sm w-32 justify-end">
+                    <span className="font-bold text-azul dark:text-white">
+                      {qtt}
+                    </span>
+                    {candidatos > 0 && (
+                      <span
+                        className="text-xs text-cinza-escuro dark:text-cinza-medio"
+                        title={`${candidatos} candidatos a governador, em ${partidos} partidos`}
+                      >
+                        <Flag size={12} className="inline mr-0.5" />
+                        {candidatos}
+                      </span>
+                    )}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      {/* Como ler */}
+      <section className="mt-8 p-6 rounded-2xl border border-cinza-medio dark:border-azul-light">
+        <h2 className="flex items-center gap-2 font-bold text-azul dark:text-white mb-3">
+          <Landmark size={18} className="text-verde" />
+          Como ler estes números
+        </h2>
+        <ul className="space-y-2 text-sm text-cinza-escuro dark:text-cinza-medio">
+          <li>
+            A distribuição de deputados é definida em lei e não muda entre
+            eleições. Por isso a soma dá exatamente 513, e a barra mostra o
+            tamanho relativo de cada estado.
+          </li>
+          <li>
+            A bandeira com o número ao lado é a quantidade de candidatos a
+            governador registrados pelo TSE para 2026, também real.
+          </li>
+          <li>
+              Esta página mostrava antes uma &ldquo;aprovação dos governadores por
+              estado&rdquo; com tendência de alta e queda. Não havia pesquisa por trás:
+            eram valores escritos no código. Não existe fonte gratuita de
+            pesquisa de opinião, então o dado de aprovação não é publicado.
+          </li>
+        </ul>
+      </section>
+
+      <div className="mt-8 flex flex-wrap gap-4">
+        <Link
+          href="/parlamentares"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-verde text-white font-semibold hover:bg-verde-dark transition-colors"
+        >
+          Ver parlamentares
+        </Link>
+        <Link
+          href="/ferramentas"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-cinza-medio dark:border-azul-light text-azul dark:text-white font-semibold hover:border-verde transition-colors"
+        >
           ← Voltar para Ferramentas
-        </a>
+        </Link>
       </div>
     </div>
   );

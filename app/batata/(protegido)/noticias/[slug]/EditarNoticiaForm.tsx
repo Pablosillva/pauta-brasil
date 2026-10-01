@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Trash2 } from "lucide-react";
+import { Trash2, CalendarClock } from "lucide-react";
 import type { Noticia } from "@/lib/noticias";
 import Link from "next/link";
 import { EditorConteudo } from "@/components/ui/EditorConteudo";
@@ -20,6 +20,16 @@ const CATEGORIAS = [
   "Sociedade",
   "Internacional",
 ];
+
+/** "2026-10-05T14:30", formato aceito por <input type="datetime-local">. */
+function paraInputDateTime(valor: Date | string | null): string {
+  if (!valor) return "";
+  const data = new Date(valor);
+  if (Number.isNaN(data.getTime())) return "";
+  // Desloca 3h: o input mostra hora local, toISOString() mostraria UTC.
+  const local = new Date(data.getTime() - data.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 16);
+}
 
 const inputClass =
   "w-full p-3 rounded-lg border border-cinza-medio dark:border-azul-light bg-white dark:bg-azul-dark text-azul dark:text-white focus:outline-none focus:ring-2 focus:ring-verde";
@@ -138,6 +148,22 @@ export function EditarNoticiaForm({ noticia }: EditarNoticiaFormProps) {
       </div>
 
       <CampoImagem name="imagemCapa" imagemAtual={noticia.imagemCapa} />
+
+      <div>
+        <label className="flex items-center gap-1.5 text-sm font-semibold text-azul dark:text-white mb-2">
+          <CalendarClock size={15} />
+          Data de publicação
+        </label>
+        <input
+          type="datetime-local"
+          name="dataPublicacao"
+          defaultValue={paraInputDateTime(noticia.createdAt)}
+          className={inputClass}
+        />
+        <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
+          Altere para retroagir ou reagendar a publicação.
+        </p>
+      </div>
 
       <div>
         <label className="block text-sm font-semibold text-azul dark:text-white mb-2">

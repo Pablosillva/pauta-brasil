@@ -1,10 +1,17 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CalendarClock } from "lucide-react";
 import { getSession } from "@/lib/auth";
 import { criarNoticia } from "@/lib/noticias";
 import { EditorConteudo } from "@/components/ui/EditorConteudo";
 import { CampoImagem } from "@/components/ui/CampoImagem";
+
+/** Converte "2026-10-05T14:30" (input datetime-local) em Date. */
+function lerData(valor: string): Date | null {
+  if (!valor) return null;
+  const data = new Date(valor);
+  return Number.isNaN(data.getTime()) ? null : data;
+}
 
 async function salvar(formData: FormData) {
   "use server";
@@ -19,6 +26,9 @@ async function salvar(formData: FormData) {
   const tagsInput = (formData.get("tags") as string) ?? "";
   const imagemCapa = (formData.get("imagemCapa") as string) || null;
   const destaque = formData.get("destaque") === "on";
+  const dataPublicacao = lerData(
+    (formData.get("dataPublicacao") as string) ?? ""
+  );
 
   if (!titulo || !resumo) redirect("/batata/noticias/nova?erro=campos");
 
@@ -29,6 +39,7 @@ async function salvar(formData: FormData) {
       categoria,
       conteudo,
       imagemCapa,
+      dataPublicacao,
       tags: tagsInput
         ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean)
         : [],
@@ -134,6 +145,24 @@ export default async function NovaNoticiaPage({
         </div>
 
         <CampoImagem name="imagemCapa" />
+
+        <div>
+          <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
+            <span className="inline-flex items-center gap-1.5">
+              <CalendarClock size={15} />
+              Data de publicação
+            </span>
+          </label>
+          <input
+            type="datetime-local"
+            name="dataPublicacao"
+            defaultValue={new Date().toISOString().slice(0, 16)}
+            className={inputClass}
+          />
+          <p className="text-xs text-cinza-escuro dark:text-cinza-medio mt-1">
+            Ajuste para retroagir a noticia ou para agendar a publicação.
+          </p>
+        </div>
 
         <div>
           <label className="block text-sm font-semibold text-azul dark:text-white mb-2">
