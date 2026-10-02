@@ -1,11 +1,13 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { segredoAdmin } from "@/lib/sessao-segredos";
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "centro-politico-secret-altere-em-producao"
-);
+const JWT_SECRET = segredoAdmin();
 
 const COOKIE_NAME = "pauta_auth";
+
+/** Distingue o token do painel do token de conta comum. */
+export const TIPO_ADMIN = "admin";
 const TOKEN_EXPIRY = "7d";
 
 export interface AuthPayload {
@@ -15,7 +17,14 @@ export interface AuthPayload {
 }
 
 export async function createToken(payload: AuthPayload): Promise<string> {
-  return new SignJWT({ ...payload })
+  /*
+   * O campo typ separa este token do token de conta comum. Sem ele, um
+   * visitante que se cadastra recebia um token que o painel aceitava como
+   * sessao de admin: bastava copiar o cookie centro_user para pauta_auth.
+   *
+   * Com o typ, verifyToken recusa qualquer token que nao seja de admin.
+   */
+  return new SignJWT({ ...payload, typ: TIPO_ADMIN })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(TOKEN_EXPIRY)
@@ -25,6 +34,10 @@ export async function createToken(payload: AuthPayload): Promise<string> {
 export async function verifyToken(token: string): Promise<AuthPayload | null> {
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
+
+    // Recusa token de outra finalidade, mesmo que a assinatura seja valida.
+    if (payload.typ !== TIPO_ADMIN) return null;
+
     return payload as unknown as AuthPayload;
   } catch {
     return null;
