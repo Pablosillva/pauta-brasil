@@ -170,8 +170,7 @@ export function Footer() {
             reservados.
           </p>
           <p>
-            Feito com <span className="text-verde-light">♥</span> para a
-            democracia brasileira.
+            O poder é seu. A informação também.
           </p>
         </div>
       </div>
